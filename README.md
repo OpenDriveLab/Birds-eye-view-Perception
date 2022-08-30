@@ -7,7 +7,7 @@ The general picture of BEV perception at a glance, where consists of three sub-p
 ## Datasets of BEV Perception
 ![](figs/dataset_table.jpg)
 
-# WIP
+<!-- # WIP -->
 ## Academic Summary of BEV Perception
 Important methods in recent years about BEV perception, including different modalities and tasks.
 
