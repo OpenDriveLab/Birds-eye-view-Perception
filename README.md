@@ -1,9 +1,11 @@
 # BEVPerception-Survey-Recipe
 Awesome BEV perception papers and cookbook for achieving SOTA results
 
-## Overview
+## Overview of BEV Perception
 ![](figs/general_overview.jpg)
 The general picture of BEV perception at a glance, where consists of three sub-parts based on the input modality. BEV perception is a general task built on top of a series of fundamental tasks. For better completeness of the whole perception algorithms in autonomous driving, we list other topics as well.
+## Datasets of BEV Perception
+![](figs/dataset_table.jpg)
 
 # WIP
 ## Academic Summary of BEV Perception
