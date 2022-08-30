@@ -7,15 +7,24 @@ The general picture of BEV perception at a glance, where consists of three sub-p
 
 # WIP
 ## BEV Perception Summary
-![](figs/important_methods.jpg)
-
 Important methods in recent years about BEV perception, including different modalities and tasks.
 
-![](figs/important_methods_leaderboard.jpg)
+
+![](figs/important_methods.jpg)
 
 Important methods performance in recent years about BEV perception, including different settings and leaderboards.
 
+
+![](figs/important_methods_leaderboard.jpg)
+
+
 ## BEV Camera
+A general pipeline in BEV Camera
+
+![](figs/cam_pipeline.jpg)
+
+And related literature.
+
 - Lift, Splat, Shoot: Encoding Images from Arbitrary Camera Rigs by Implicitly Unprojecting to 3D / [paper](https://arxiv.org/pdf/2008.05711.pdf) / [project](https://github.com/nv-tlabs/lift-splat-shoot) / ECCV 2020 / LSS 
 - BEVDet: High-performance Multi-camera 3D Object Detection in Bird-Eye-View / [paper](https://arxiv.org/pdf/2112.11790.pdf) / [project](https://github.com/HuangJunJie2017/BEVDet) / arXiv / BEVDet
 - BEVDet4D: Exploit Temporal Cues in Multi-camera 3D Object Detection / [paper](https://arxiv.org/pdf/2203.17054.pdf) / [project](https://github.com/HuangJunJie2017/BEVDet) / arXiv / BEVDet4D
@@ -49,6 +58,13 @@ Important methods performance in recent years about BEV perception, including di
 - MV-FCOS3D++: Multi-View Camera-Only 4D Object Detection with Pretrained Monocular Backbones / [paper](https://arxiv.org/pdf/2207.12716.pdf) / [project](https://github.com/Tai-Wang/Depth-from-Motion) / arXiv
 
 ## BEV LiDAR
+
+A general pipeline in BEV Camera
+
+![](figs/lidar_pipeline.jpg)
+
+And related literature.
+
 - VoxelNet: End-to-End Learning for Point Cloud Based 3D Object Detection / [paper](https://openaccess.thecvf.com/content_cvpr_2018/papers/Zhou_VoxelNet_End-to-End_Learning_CVPR_2018_paper.pdf) / [supplemental](https://openaccess.thecvf.com/content_cvpr_2018/Supplemental/3333-supp.pdf) / VoxelNet
 - SECOND: Sparsely Embedded Convolutional Detection / [paper](https://www.mdpi.com/1424-8220/18/10/3337/pdf?version=1538798176) / [project](https://github.com/traveller59/second.pytorch) / Sensors 2018 / SECOND
 - Center-Based 3D Object Detection and Tracking / [paper](https://openaccess.thecvf.com/content/CVPR2021/papers/Yin_Center-Based_3D_Object_Detection_and_Tracking_CVPR_2021_paper.pdf) / [supplemental](https://openaccess.thecvf.com/content/CVPR2021/supplemental/Yin_Center-Based_3D_Object_CVPR_2021_supplemental.pdf) / [project](https://github.com/tianweiy/CenterPoint) / CVPR 2021 / CenterPoint
@@ -63,6 +79,9 @@ Important methods performance in recent years about BEV perception, including di
 - PointPillars: Fast Encoders for Object Detection From Point Clouds / [paper](https://openaccess.thecvf.com/content_CVPR_2019/papers/Lang_PointPillars_Fast_Encoders_for_Object_Detection_From_Point_Clouds_CVPR_2019_paper.pdf) / CVPR 2019 / PointPillars
 
 ## BEV Fusion
+
+BEV Fusion related literature
+
 - Unifying Voxel-based Representation with Transformer for 3D Object Detection / [paper](https://arxiv.org/pdf/2206.00630.pdf) / [project](https://github.com/dvlab-research/UVTR) / arXiv
 - MVFuseNet: Improving End-to-End Object Detection and Motion Forecasting Through Multi-View Fusion of LiDAR Data / [paper](https://openaccess.thecvf.com/content/CVPR2021W/WAD/papers/Laddha_MVFuseNet_Improving_End-to-End_Object_Detection_and_Motion_Forecasting_Through_Multi-View_CVPRW_2021_paper.pdf) / CVPR 2021 / MVFuseNet
 - FIERY: Future Instance Prediction in Bird's-Eye View From Surround Monocular Cameras / [paper](https://openaccess.thecvf.com/content/ICCV2021/papers/Hu_FIERY_Future_Instance_Prediction_in_Birds-Eye_View_From_Surround_Monocular_ICCV_2021_paper.pdf) / [supplemental](https://openaccess.thecvf.com/content/ICCV2021/supplemental/Hu_FIERY_Future_Instance_ICCV_2021_supplemental.pdf) / [paper](https://github.com/wayveai/fiery) / ICCV 2021
