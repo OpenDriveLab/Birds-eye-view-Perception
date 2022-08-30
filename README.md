@@ -6,7 +6,7 @@ Awesome BEV perception papers and cookbook for achieving SOTA results
 The general picture of BEV perception at a glance, where consists of three sub-parts based on the input modality. BEV perception is a general task built on top of a series of fundamental tasks. For better completeness of the whole perception algorithms in autonomous driving, we list other topics as well.
 
 # WIP
-## BEV Perception Summary
+## Academic Summary of BEV Perception
 Important methods in recent years about BEV perception, including different modalities and tasks.
 
 
@@ -18,7 +18,7 @@ Important methods performance in recent years about BEV perception, including di
 ![](figs/important_methods_leaderboard.jpg)
 
 
-## BEV Camera
+### BEV Camera
 A general pipeline in BEV Camera
 
 ![](figs/cam_pipeline.jpg)
@@ -57,7 +57,7 @@ And related literature.
 - ImVoxelNet: Image to Voxels Projection for Monocular and Multi-View General-Purpose 3D Object Detection / [paper](https://openaccess.thecvf.com/content/WACV2022/papers/Rukhovich_ImVoxelNet_Image_to_Voxels_Projection_for_Monocular_and_Multi-View_General-Purpose_WACV_2022_paper.pdf) / [supplemental](https://openaccess.thecvf.com/content/WACV2022/supplemental/Rukhovich_ImVoxelNet_Image_to_WACV_2022_supplemental.pdf) / [project](https://github.com/saic-vul/imvoxelnet) / WACV 2022
 - MV-FCOS3D++: Multi-View Camera-Only 4D Object Detection with Pretrained Monocular Backbones / [paper](https://arxiv.org/pdf/2207.12716.pdf) / [project](https://github.com/Tai-Wang/Depth-from-Motion) / arXiv
 
-## BEV LiDAR
+### BEV LiDAR
 
 A general pipeline in BEV Camera
 
@@ -78,7 +78,7 @@ And related literature.
 - AFDetV2: Rethinking the Necessity of the Second Stage for Object Detection from Point Clouds / [paper](https://ojs.aaai.org/index.php/AAAI/article/view/19980/19739) / AAAI 2022 / AFDetV2
 - PointPillars: Fast Encoders for Object Detection From Point Clouds / [paper](https://openaccess.thecvf.com/content_CVPR_2019/papers/Lang_PointPillars_Fast_Encoders_for_Object_Detection_From_Point_Clouds_CVPR_2019_paper.pdf) / CVPR 2019 / PointPillars
 
-## BEV Fusion
+### BEV Fusion
 
 BEV Fusion related literature
 
@@ -88,10 +88,14 @@ BEV Fusion related literature
 - BEVerse: Unified Perception and Prediction in Birds-Eye-View for Vision-Centric Autonomous Driving / [paper](https://arxiv.org/pdf/2205.09743.pdf) / [project](https://github.com/zhangyp15/BEVerse) / arXiv
 - UniFormer: Unified Multi-view Fusion Transformer for Spatial-Temporal Representation in Bird's-Eye-View / [paper](https://arxiv.org/pdf/2207.08536.pdf) / arXiv 
 
+## Industrial Roadmap of BEV Perception
+![](figs/industrial_pipeline.jpg)
 
-
-
-
+## Practical Recipe of BEV Perception
+### BEV Camera
+![](figs/cam_ablation.jpg)
+### BEV LiDAR
+![](figs/lidar_ablation.jpg)
 
 ## Conventional Methods Camera 3D Object Detection
 - Monocular 3D Object Detection for Autonomous Driving / [paper](https://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/Chen_Monocular_3D_Object_CVPR_2016_paper.pdf) / CVPR 2016 / Mono3D
