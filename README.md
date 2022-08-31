@@ -31,8 +31,6 @@ And related literature.
 - BEVDet: High-performance Multi-camera 3D Object Detection in Bird-Eye-View / [paper](https://arxiv.org/pdf/2112.11790.pdf) / [project](https://github.com/HuangJunJie2017/BEVDet) / arXiv / BEVDet
 - BEVDet4D: Exploit Temporal Cues in Multi-camera 3D Object Detection / [paper](https://arxiv.org/pdf/2203.17054.pdf) / [project](https://github.com/HuangJunJie2017/BEVDet) / arXiv / BEVDet4D
 - BEVDepth: Acquisition of Reliable Depth for Multi-view 3D Object Detection / [paper](https://arxiv.org/pdf/2206.10092.pdf) / [project](https://github.com/Megvii-BaseDetection/BEVDepth) / arXiv / BEVDepth
-- BEVFusion: Multi-Task Multi-Sensor Fusion with Unified Bird's-Eye View Representation / [paper](https://arxiv.org/pdf/2205.13542.pdf) / [project](https://github.com/mit-han-lab/bevfusion) / arXiv / BEVFusion
-- BEVFusion: A Simple and Robust LiDAR-Camera Fusion Framework / [paper](https://arxiv.org/pdf/2205.13790.pdf) / [project](https://github.com/ADLab-AutoDrive/BEVFusion) / arXiv / BEVFusion
 - DSGN: Deep Stereo Geometry Network for 3D Object Detection / [paper](https://openaccess.thecvf.com/content_CVPR_2020/papers/Chen_DSGN_Deep_Stereo_Geometry_Network_for_3D_Object_Detection_CVPR_2020_paper.pdf) / [supplemental](https://openaccess.thecvf.com/content_CVPR_2020/supplemental/Chen_DSGN_Deep_Stereo_CVPR_2020_supplemental.pdf) / [project](https://github.com/dvlab-research/DSGN) / CVPR 2020
 - LIGA-Stereo: Learning LiDAR Geometry Aware Representations for Stereo-Based 3D Detector / [paper](https://openaccess.thecvf.com/content/ICCV2021/papers/Guo_LIGA-Stereo_Learning_LiDAR_Geometry_Aware_Representations_for_Stereo-Based_3D_Detector_ICCV_2021_paper.pdf) / [supplemental](https://openaccess.thecvf.com/content/ICCV2021/supplemental/Guo_LIGA-Stereo_Learning_LiDAR_ICCV_2021_supplemental.pdf) / [project](https://github.com/xy-guo/LIGA-Stereo) / ICCV 2021
 - Is Pseudo-Lidar Needed for Monocular 3D Object Detection? / [paper](https://openaccess.thecvf.com/content/ICCV2021/papers/Park_Is_Pseudo-Lidar_Needed_for_Monocular_3D_Object_Detection_ICCV_2021_paper.pdf) / [supplemental](https://openaccess.thecvf.com/content/ICCV2021/supplemental/Park_Is_Pseudo-Lidar_Needed_ICCV_2021_supplemental.pdf ) / [project](https://github.com/TRI-ML/dd3d) / ICCV 2021
@@ -58,6 +56,8 @@ And related literature.
 - PETRv2: A Unified Framework for 3D Perception from Multi-Camera Images / [paper](https://arxiv.org/pdf/2206.01256.pdf) / [project](https://github.com/megvii-research/PETR) / arXiv
 - ImVoxelNet: Image to Voxels Projection for Monocular and Multi-View General-Purpose 3D Object Detection / [paper](https://openaccess.thecvf.com/content/WACV2022/papers/Rukhovich_ImVoxelNet_Image_to_Voxels_Projection_for_Monocular_and_Multi-View_General-Purpose_WACV_2022_paper.pdf) / [supplemental](https://openaccess.thecvf.com/content/WACV2022/supplemental/Rukhovich_ImVoxelNet_Image_to_WACV_2022_supplemental.pdf) / [project](https://github.com/saic-vul/imvoxelnet) / WACV 2022
 - MV-FCOS3D++: Multi-View Camera-Only 4D Object Detection with Pretrained Monocular Backbones / [paper](https://arxiv.org/pdf/2207.12716.pdf) / [project](https://github.com/Tai-Wang/Depth-from-Motion) / arXiv
+- FIERY: Future Instance Prediction in Bird's-Eye View From Surround Monocular Cameras / [paper](https://openaccess.thecvf.com/content/ICCV2021/papers/Hu_FIERY_Future_Instance_Prediction_in_Birds-Eye_View_From_Surround_Monocular_ICCV_2021_paper.pdf) / [supplemental](https://openaccess.thecvf.com/content/ICCV2021/supplemental/Hu_FIERY_Future_Instance_ICCV_2021_supplemental.pdf) / [paper](https://github.com/wayveai/fiery) / ICCV 2021
+- BEVerse: Unified Perception and Prediction in Birds-Eye-View for Vision-Centric Autonomous Driving / [paper](https://arxiv.org/pdf/2205.09743.pdf) / [project](https://github.com/zhangyp15/BEVerse) / arXiv
 
 ### BEV LiDAR
 
@@ -86,9 +86,9 @@ BEV Fusion related literature
 
 - Unifying Voxel-based Representation with Transformer for 3D Object Detection / [paper](https://arxiv.org/pdf/2206.00630.pdf) / [project](https://github.com/dvlab-research/UVTR) / arXiv
 - MVFuseNet: Improving End-to-End Object Detection and Motion Forecasting Through Multi-View Fusion of LiDAR Data / [paper](https://openaccess.thecvf.com/content/CVPR2021W/WAD/papers/Laddha_MVFuseNet_Improving_End-to-End_Object_Detection_and_Motion_Forecasting_Through_Multi-View_CVPRW_2021_paper.pdf) / CVPR 2021 / MVFuseNet
-- FIERY: Future Instance Prediction in Bird's-Eye View From Surround Monocular Cameras / [paper](https://openaccess.thecvf.com/content/ICCV2021/papers/Hu_FIERY_Future_Instance_Prediction_in_Birds-Eye_View_From_Surround_Monocular_ICCV_2021_paper.pdf) / [supplemental](https://openaccess.thecvf.com/content/ICCV2021/supplemental/Hu_FIERY_Future_Instance_ICCV_2021_supplemental.pdf) / [paper](https://github.com/wayveai/fiery) / ICCV 2021
-- BEVerse: Unified Perception and Prediction in Birds-Eye-View for Vision-Centric Autonomous Driving / [paper](https://arxiv.org/pdf/2205.09743.pdf) / [project](https://github.com/zhangyp15/BEVerse) / arXiv
 - UniFormer: Unified Multi-view Fusion Transformer for Spatial-Temporal Representation in Bird's-Eye-View / [paper](https://arxiv.org/pdf/2207.08536.pdf) / arXiv 
+- BEVFusion: Multi-Task Multi-Sensor Fusion with Unified Bird's-Eye View Representation / [paper](https://arxiv.org/pdf/2205.13542.pdf) / [project](https://github.com/mit-han-lab/bevfusion) / arXiv / BEVFusion
+- BEVFusion: A Simple and Robust LiDAR-Camera Fusion Framework / [paper](https://arxiv.org/pdf/2205.13790.pdf) / [project](https://github.com/ADLab-AutoDrive/BEVFusion) / arXiv / BEVFusion
 
 ## Industrial Roadmap of BEV Perception
 ![](figs/industrial_pipeline.jpg)
