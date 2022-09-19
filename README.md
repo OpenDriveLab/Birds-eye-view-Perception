@@ -79,6 +79,8 @@ And related literature.
 - Embracing Single Stride 3D Object Detector With Sparse Transformer / [paper](https://openaccess.thecvf.com/content/CVPR2022/papers/Fan_Embracing_Single_Stride_3D_Object_Detector_With_Sparse_Transformer_CVPR_2022_paper.pdf) / [supplemental](https://openaccess.thecvf.com/content/CVPR2022/supplemental/Fan_Embracing_Single_Stride_CVPR_2022_supplemental.pdf) / [project](https://github.com/tusen-ai/SST) / CVPR 2022 / SST
 - AFDetV2: Rethinking the Necessity of the Second Stage for Object Detection from Point Clouds / [paper](https://ojs.aaai.org/index.php/AAAI/article/view/19980/19739) / AAAI 2022 / AFDetV2
 - PointPillars: Fast Encoders for Object Detection From Point Clouds / [paper](https://openaccess.thecvf.com/content_CVPR_2019/papers/Lang_PointPillars_Fast_Encoders_for_Object_Detection_From_Point_Clouds_CVPR_2019_paper.pdf) / CVPR 2019 / PointPillars
+- InfoFocus: 3D Object Detection for Autonomous Driving with Dynamic Information Modeling / [paper](https://www.ecva.net/papers/eccv_2020/papers_ECCV/html/1137_ECCV_2020_paper.php) / ECCV 2020 / InfoFocus
+- M3DETR: Multi-Representation, Multi-Scale, Mutual-Relation 3D Object Detection With Transformers / [paper](https://openaccess.thecvf.com/content/WACV2022/html/Guan_M3DETR_Multi-Representation_Multi-Scale_Mutual-Relation_3D_Object_Detection_With_Transformers_WACV_2022_paper.html) / [project](https://github.com/rayguan97/M3DeTR) / WACV 2022 / M3DETR
 
 ### BEV Fusion
 
