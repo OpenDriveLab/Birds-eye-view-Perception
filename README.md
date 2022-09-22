@@ -35,12 +35,14 @@ Please refer to [changelog.md](docs/changelog.md) for details and release histor
 
 ## <div id='papers'>Awesome Papers</div>
 
-We have summarized important methods in recent years about BEV perception, including 
-* [BEV Camera](docs/paper_list/bev_camera.md)
-* [BEV Lidar](docs/paper_list/bev_lidar.md)
-* [BEV Fusion](docs/paper_list/bev_fusion.md)
+We have summarized important methods in recent years about BEV perception in academia and different roadmaps in industry. 
+* [Academic Summary of BEV Perception](docs/paper_list/academia.md)
+  * [BEV Camera](docs/paper_list/bev_camera.md)
+  * [BEV Lidar](docs/paper_list/bev_lidar.md)
+  * [BEV Fusion](docs/paper_list/bev_fusion.md)
+* [Industrial Roadmap of BEV Perception](docs/paper_list/industry.md)
   
-and some conventional methods for different tasks.
+We have also summarized some conventional methods for different tasks.
 * [Conventional Methods Camera 3D Object Detection](docs/paper_list/camera_detection.md)
 * [Conventional Methods LiDAR Detection](docs/paper_list/lidar_detection.md)
 * [Conventional Methods LiDAR Segmentation](docs/paper_list/lidar_segmentation.md)
