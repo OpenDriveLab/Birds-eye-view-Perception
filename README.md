@@ -93,16 +93,16 @@ We provide an overview of the bag of tricks as the model zoo, which can be group
         </ul>
       </td>
       <td>
-        <ul>
+        <!-- <ul> -->
             TBA
             <!-- <li><a href="tba">TBA</a></li> -->
-      </ul>
+      <!-- </ul> -->
       </td>
       <td>
-        <ul>
+        <!-- <ul> -->
           TBA
           <!-- <li><a href="tba">TBA</a></li> -->
-        </ul>
+        <!-- </ul> -->
       </td>
       <td>
         <ul>
