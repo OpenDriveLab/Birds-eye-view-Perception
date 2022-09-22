@@ -1,3 +1,3 @@
 # Industrial Roadmap of BEV Perception
 
-![](figs/industrial_pipeline.jpg)
+![](../../figs/industrial_pipeline.jpg)

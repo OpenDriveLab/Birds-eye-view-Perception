@@ -1,4 +1,28 @@
-# Copyright (c) OpenPerceptionX. All rights reserved.
+# ==============================================================================
+# Binaries and/or source for the following packages or projects are presented under one or more of the following open
+# source licenses:
+# epoch_based_runner.py       OpenPerceptionX        Apache License, Version 2.0
+#
+# Contact simachonghao@pjlab.org.cn if you have any issue
+#
+# See:
+# https://github.com/open-mmlab/mmcv/blob/master/mmcv/runner/epoch_based_runner.py
+#
+# Copyright (c) 2022 OpenPerceptionX. All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+# ==============================================================================
+
 import torch
 from mmcv.runner.epoch_based_runner import EpochBasedRunner
 from mmcv.runner.builder import RUNNERS

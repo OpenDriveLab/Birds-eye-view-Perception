@@ -1,4 +1,19 @@
-# Copyright (c) OpenMMLab. All rights reserved.
+# ==============================================================================
+# Copyright (c) 2022 OpenPerceptionX. All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+# ==============================================================================
+
 import sys
 import time
 import os
@@ -931,17 +946,17 @@ class WaymoDataset_videoV2(WaymoDataset_video):
             except:
                 show_gt_bboxes = None
             for j in range(5):
-                    show_multi_modality_result(
-                        mmcv.imread(os.path.join(self.data_root, image_filenames[j])),
-                        show_gt_bboxes,
-                        show_pred_bboxes,
-                        lidar2img[j],
-                        out_dir,
-                        image_filenames[j],
-                        box_mode='lidar',
-                        show=show,
-                        scores=scores,
-                    )
+                show_multi_modality_result(
+                    mmcv.imread(os.path.join(self.data_root, image_filenames[j])),
+                    show_gt_bboxes,
+                    show_pred_bboxes,
+                    lidar2img[j],
+                    out_dir,
+                    image_filenames[j],
+                    box_mode='lidar',
+                    show=show,
+                    scores=scores,
+                )
 
             bev_img = np.zeros([1500, 1100, 3], dtype=np.float32)
 
