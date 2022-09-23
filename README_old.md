@@ -21,6 +21,8 @@ This is an open source BEV 3D object detection toolbox based on PyTorch, associa
 ## Overview of BEV Perception
 ![](figs/general_overview.jpg)
 The general picture of BEV perception at a glance, where consists of three sub-parts based on the input modality. BEV perception is a general task built on top of a series of fundamental tasks. For better completeness of the whole perception algorithms in autonomous driving, we list other topics as well.
+## Datasets of BEV Perception
+![](figs/dataset_table.jpg)
 
 ## <div id='update'>What's New</div>
 
@@ -33,9 +35,8 @@ Please refer to [changelog.md](docs/changelog.md) for details and release histor
 
 ## <div id='papers'>Awesome Papers</div>
 
-We have summarized important datasets and methods in recent years about BEV perception in academia and also different roadmaps used in industry. 
+We have summarized important methods in recent years about BEV perception in academia and different roadmaps in industry. 
 * [Academic Summary of BEV Perception](docs/paper_list/academia.md)
-  * [Datasets of BEV Perception]()
   * [BEV Camera](docs/paper_list/bev_camera.md)
   * [BEV Lidar](docs/paper_list/bev_lidar.md)
   * [BEV Fusion](docs/paper_list/bev_fusion.md)

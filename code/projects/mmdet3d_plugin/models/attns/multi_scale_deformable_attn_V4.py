@@ -32,7 +32,7 @@ from mmcv import deprecated_api_warning
 from mmcv.cnn import xavier_init, constant_init
 from mmcv.cnn.bricks.registry import ATTENTION
 from mmcv.runner.base_module import BaseModule
-from mmcv.utils import (ConfigDict, build_from_cfg, deprecated_api_warning, to_2tuple, ext_loader)
+from mmcv.utils import deprecated_api_warning, ext_loader
 from mmcv.ops.multi_scale_deform_attn import multi_scale_deformable_attn_pytorch
 
 ext_module = ext_loader.load_ext('_ext', ['ms_deform_attn_backward', 'ms_deform_attn_forward'])

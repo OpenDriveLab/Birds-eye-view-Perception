@@ -152,10 +152,6 @@ class BEVTransformer(BaseModule):
         if dim == '3d':
 
             zs = torch.linspace(0.5, Z - 0.5, D, dtype=dtype, device=device).view(-1, 1, 1).expand(D, H, W) / Z
-
-            # zs = torch.arange(1, Z, 2, dtype=dtype,
-            #                  device=device).view(-1, 1, 1).expand(-1, H, W)/Z
-
             xs = torch.linspace(0.5, W - 0.5, W, dtype=dtype, device=device).view(1, 1, W).expand(D, H, W) / W
             ys = torch.linspace(0.5, H - 0.5, H, dtype=dtype, device=device).view(1, H, 1).expand(D, H, W) / H
             ref_3d = torch.stack((xs, ys, zs), -1)
@@ -279,8 +275,6 @@ class BEVTransformer(BaseModule):
             shift_y = 0
             shift_x = 0
         shift = bev_embed.new_tensor([shift_x, shift_y])
-        # if np.abs(rotation_angle)>10:
-        #    print(ego_angle, tmp_angle, rotation_angle, bev_angle, translation_length, shift_x, shift_y)
 
         if prev_bev is not None:
             if prev_bev.shape[1] == bev_h * bev_w:

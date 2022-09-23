@@ -166,7 +166,6 @@ class CustomMultiScaleDeformableAttention(BaseModule):
 
         bs, num_query, _ = query.shape
         bs, num_value, _ = value.shape
-        # print(spatial_shapes,  (spatial_shapes[:, 0] * spatial_shapes[:, 1]).sum(), num_value)
         assert (spatial_shapes[:, 0] * spatial_shapes[:, 1]).sum() == num_value
 
         value = self.value_proj(value)

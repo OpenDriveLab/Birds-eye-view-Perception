@@ -6,12 +6,11 @@ import torch.nn.functional as F
 from mmcv.cnn import xavier_init, constant_init
 from mmcv.cnn.bricks.registry import ATTENTION
 from mmcv.cnn.bricks.transformer import build_attention
-from mmcv.runner import force_fp32, auto_fp16
+from mmcv.runner import force_fp32
 from mmcv.runner.base_module import BaseModule
 from mmcv.utils import ext_loader
 from mmcv.ops.multi_scale_deform_attn import multi_scale_deformable_attn_pytorch
-from .multi_scale_deformable_attn_function import MultiScaleDeformableAttnFunction_fp32, \
-    MultiScaleDeformableAttnFunction_fp16
+from .multi_scale_deformable_attn_function import MultiScaleDeformableAttnFunction_fp32
 
 ext_module = ext_loader.load_ext('_ext', ['ms_deform_attn_backward', 'ms_deform_attn_forward'])
 
@@ -77,8 +76,6 @@ class SpatialCrossAttention(BaseModule):
         self.im2col_step = im2col_step
         self.embed_dims = embed_dims
         self.num_levels = num_levels
-        # self.num_heads = num_heads
-        # self.num_points = num_points
         self.num_cams = num_cams
 
         self.attention_weights = None
@@ -172,38 +169,22 @@ class SpatialCrossAttention(BaseModule):
             reference_points_rebatch[i:i + 1, :len(index_query_per_img)] = reference_points_per_img[:,
                                                                                                     index_query_per_img]
 
-        # for i, reference_points_per_img in enumerate(reference_points_cam):
-        #         # assert bs == 1, 'batch size must be 1'
-        #         for j in range(bs):
-        #             index_query_per_img = indexes[i]
-        #             queries_rebatch[:len(index_query_per_img), j * self.num_cams + i] = query[index_query_per_img, j]
-        #             reference_points_rebatch[j * self.num_cams + i, :len(index_query_per_img)] = reference_points_per_img[j,
-        #                                                                    index_query_per_img]
-
-        # _, l, _, _ = key.shape
         l = key.size(1)
 
         key = key.permute(1, 0, 2, 3).view(l, self.num_cams * bs, self.embed_dims)
         value = value.permute(1, 0, 2, 3).view(l, self.num_cams * bs, self.embed_dims)
-        # print(queries_rebatch.mean(), queries_rebatch.std())
-        # print(reference_points_rebatch)
+
         queries = self.deformable_attention(query=queries_rebatch,
                                             key=key,
                                             value=value,
                                             reference_points=reference_points_rebatch,
                                             spatial_shapes=spatial_shapes,
                                             level_start_index=level_start_index)
-        # print(queries.mean(), queries.std())
+
         for i, index_query_per_img in enumerate(indexes):
             slots[index_query_per_img] += queries[:len(index_query_per_img), i:i + 1]
-            # print(slots.shape, len(index_query_per_img))
-            # save_tensor(slots.reshape(200, 200, -1).permute(2, 0, 1), f'{i}_main.png')
             self.count += 1
-        # exit(0)
-        # from IPython import embed
-        # embed(
-        # )
-        # exit()
+
         count = mask.sum(-1) > 0
         count = count.permute(2, 1, 0).sum(-1)
         count = torch.clamp(count, min=1.0)
@@ -401,9 +382,7 @@ class MSDeformableAttention3D(BaseModule):
         else:
             raise ValueError(f'Last dim of reference_points must be'
                              f' 2 or 4, but get {reference_points.shape[-1]} instead.')
-        # print('sampling_locations', sampling_locations.shape)  # bs, num_query, num_heads, scales, num_points, 2
-        # print('attention_weights', attention_weights.shape)  # bs, num_query, num_heads, scales, num_points
-        #
+
         if torch.cuda.is_available() and value.is_cuda:
             if value.dtype == torch.float16:
                 MultiScaleDeformableAttnFunction = MultiScaleDeformableAttnFunction_fp32

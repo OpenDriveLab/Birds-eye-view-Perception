@@ -82,11 +82,9 @@ class EpochBasedRunner_video(EpochBasedRunner):
 
             with torch.no_grad():
                 for i in range(num_samples - 1):
-                    #if i>0 and pre_data_list[i]['img_metas'].data[0][0]['sample_idx'] == pre_data_list[i-1]['img_metas'].data[0][0]['next_idx']:
+                    # if i>0 and pre_data_list[i]['img_metas'].data[0][0]['sample_idx'] == pre_data_list[i-1]['img_metas'].data[0][0]['next_idx']:
                     if data_list[i]['img_metas'].data[0][0]['prev_bev']:
                         data_list[i]['prev_bev'] = DataContainer(data=[prev_bev], cpu_only=False)
-                    # print(i)
-                    # print(data_list[i])
                     prev_bev = self.eval_model.val_step(data_list[i], self.optimizer, **kwargs)
             if data_list[-1]['img_metas'].data[0][0]['prev_bev']:
                 data_list[-1]['prev_bev'] = DataContainer(data=[prev_bev], cpu_only=False)

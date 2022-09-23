@@ -22,24 +22,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import time
-import copy
-import numpy as np
 import torch
 from torch import nn
-from torch.nn import functional as F
 import torch.utils.checkpoint as cp
-from mmcv.runner import force_fp32, auto_fp16
+from mmcv.runner import auto_fp16
 from mmdet.models import DETECTORS
 from mmdet.models.builder import build_head
-import mmdet3d
-from mmdet3d.core import bbox3d2result
-from mmdet3d.models.detectors.mvx_two_stage import MVXTwoStageDetector
 from .bevformer import BEV_Former
-
-from projects.mmdet3d_plugin.models.utils.grid_mask import GridMask
-from projects.mmdet3d_plugin.models.utils.bricks import run_time
-from projects.mmdet3d_plugin.models.utils.dummy_metas import dummy_metas, lss_dummy_metas
 
 
 @DETECTORS.register_module()

@@ -31,11 +31,9 @@ from torch.nn import functional as F
 import torch.utils.checkpoint as cp
 from mmcv.runner import force_fp32, auto_fp16
 from mmdet.models import DETECTORS
-import mmdet3d
 from mmdet3d.core import bbox3d2result
 from mmdet3d.models.detectors.mvx_two_stage import MVXTwoStageDetector
 from projects.mmdet3d_plugin.models.utils.grid_mask import GridMask
-from projects.mmdet3d_plugin.models.utils.bricks import run_time
 from projects.mmdet3d_plugin.models.utils.dummy_metas import dummy_metas, lss_dummy_metas
 
 
@@ -194,9 +192,6 @@ class BEV_Former(MVXTwoStageDetector):
         Returns:
             dict: Losses of each branch.
         """
-        # from IPython import embed
-        # embed()
-        # exit()
         outs = self.pts_bbox_head(pts_feats, img_metas, prev_bev, bev_teacher=bev_teacher, gt_bboxes_3d=gt_bboxes_3d)
         loss_inputs = [gt_bboxes_3d, gt_labels_3d, outs]
         losses = self.pts_bbox_head.loss(*loss_inputs, img_metas=img_metas)
@@ -264,19 +259,8 @@ class BEV_Former(MVXTwoStageDetector):
                 self.eval()
                 lidar_bev = self.extract_pts_feat(points)
                 self.train()
-                # from IPython import embed
-                # embed()
-                # exit()
-                # from projects.mmdet3d_plugin.models.utils.visual import save_tensor
-                # save_tensor(lidar_bev[0][0, :100], f'lidar_bev_{self.count}.png')
-                # self.count += 1
         else:
             lidar_bev = None
-
-            # if prev_bev is not None:
-            #     bev = prev_bev.reshape(300, 220, 256)
-            #     bev = bev.permute(2, 0, 1)
-            #     save_tensor(bev[:50], 'img_bev.png')
 
         if img_metas[0]['prev_bev']:
             self.prev_bev = prev_bev
@@ -298,14 +282,6 @@ class BEV_Former(MVXTwoStageDetector):
 
     # @run_time('forward_pts_test')
     def forward_test(self, img_metas, img=None, points=None, **kwargs):
-
-        # lidar_bev = self.extract_pts_feat(points[0])
-        # from projects.mmdet3d_plugin.models.utils.visual import save_tensor
-        # from IPython import embed
-        # embed()
-        # exit()
-        # save_tensor(lidar_bev[0][0, :100], f'lidar_bev_{self.count}.png')
-        # self.count += 1
 
         for var, name in [(img_metas, 'img_metas')]:
             if not isinstance(var, list):
@@ -334,11 +310,6 @@ class BEV_Former(MVXTwoStageDetector):
         self.prev_bev = new_prev_bev
         results = {'bbox_results': bbox_results, 'mask_results': None}
         return results
-        # if num_augs == 1:
-        #     img = [img] if img is None else img
-        #     return self.simple_test(None, img_metas[0], img[0], **kwargs)
-        # else:
-        #     return self.aug_test(None, img_metas, img, **kwargs)
 
     def simple_test_pts(self, x, img_metas, prev_bev=None, rescale=False):
         """Test function of point cloud branch."""
@@ -396,13 +367,10 @@ class BEV_Former(MVXTwoStageDetector):
             else:
                 lidar_bev = None
 
-            # print('kwargs[img]',kwargs['img'].data[0].shape,kwargs['img'].data[0].device)
             img_feats = self.extract_feat(img=img, img_metas=img_metas)
             prev_bev = data.get('prev_bev', None)
             outs = self.pts_bbox_head(img_feats, img_metas, bev_teacher=lidar_bev, prev_bev=prev_bev)
-            # from IPython import embed
-            # embed()
-            # exit()
+
             return outs
         losses = self(**data)
         loss, log_vars = self._parse_losses(losses)

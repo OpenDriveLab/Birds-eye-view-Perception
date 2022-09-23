@@ -13,7 +13,6 @@
 # limitations under the License.
 # ==============================================================================
 
-
 import warnings
 import torch
 import torch.nn as nn
@@ -88,8 +87,6 @@ class BEVCrossDeformableAtten(BaseModule):
         self.im2col_step = im2col_step
         self.embed_dims = embed_dims
         self.num_levels = num_levels
-        # self.num_heads = num_heads
-        # self.num_points = num_points
         self.num_cams = num_cams
 
         self.attention_weights = None
@@ -165,8 +162,6 @@ class BEVCrossDeformableAtten(BaseModule):
 
         num_query, bs, _ = query.size()
 
-        # reference_points_cam, mask= =point_sampling(reference_points, self.pc_range, kwargs['img_metas'])
-
         D = reference_points_cam.size(3)
         indexes = []
         for i, mask_per_img in enumerate(mask):
@@ -183,21 +178,11 @@ class BEVCrossDeformableAtten(BaseModule):
             reference_points_rebatch[i:i + 1, :len(index_query_per_img)] = reference_points_per_img[:,
                                                                                                     index_query_per_img]
 
-        # for i, reference_points_per_img in enumerate(reference_points_cam):
-        #         # assert bs == 1, 'batch size must be 1'
-        #         for j in range(bs):
-        #             index_query_per_img = indexes[i]
-        #             queries_rebatch[:len(index_query_per_img), j * self.num_cams + i] = query[index_query_per_img, j]
-        #             reference_points_rebatch[j * self.num_cams + i, :len(index_query_per_img)] = reference_points_per_img[j,
-        #                                                                    index_query_per_img]
-
-        # _, l, _, _ = key.shape
         l = key.size(1)
 
         key = key.permute(1, 0, 2, 3).view(l, self.num_cams * bs, self.embed_dims)
         value = value.permute(1, 0, 2, 3).view(l, self.num_cams * bs, self.embed_dims)
-        # print(queries_rebatch.mean(), queries_rebatch.std())
-        # print(reference_points_rebatch)
+
         queries = self.deformable_attention(query=queries_rebatch,
                                             key=key,
                                             value=value,
@@ -210,11 +195,7 @@ class BEVCrossDeformableAtten(BaseModule):
             # print(slots.shape, len(index_query_per_img))
             # save_tensor(slots.reshape(200, 200, -1).permute(2, 0, 1), f'{i}_main.png')
             self.count += 1
-        #exit(0)
-        # from IPython import embed
-        # embed(
-        # )
-        # exit()
+
         count = mask.sum(-1) > 0
         count = count.permute(2, 1, 0).sum(-1)
         count = torch.clamp(count, min=1.0)

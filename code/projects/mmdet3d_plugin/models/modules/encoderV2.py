@@ -72,8 +72,7 @@ class BEVTransformerEncoderV2(TransformerLayerSequence):
         lidar2img = np.asarray(lidar2img)
         lidar2img = reference_points.new_tensor(lidar2img)  # (B, N, 4, 4)
         reference_points = reference_points.clone()
-        # dataset_type = 'waymo'
-        # dataset_type = 'nuscenes'
+
         # if dataset_type == 'nuscenes':
         reference_points[..., 0:1] = reference_points[..., 0:1] * \
                                          (pc_range[3] - pc_range[0]) + pc_range[0]
@@ -100,8 +99,6 @@ class BEVTransformerEncoderV2(TransformerLayerSequence):
         num_cam = lidar2img.size(1)
 
         reference_points = reference_points.view(D, B, 1, num_query, 4).repeat(1, 1, num_cam, 1, 1).unsqueeze(-1)
-        # print(lidar2img)
-        # print('ref', reference_points[0])
 
         lidar2img = lidar2img.view(1, B, num_cam, 1, 4, 4).repeat(D, 1, 1, num_query, 1, 1)
 
@@ -112,7 +109,6 @@ class BEVTransformerEncoderV2(TransformerLayerSequence):
         reference_points_cam = reference_points_cam[..., 0:2] / torch.maximum(
             reference_points_cam[..., 2:3],
             torch.ones_like(reference_points_cam[..., 2:3]) * eps)
-        # print('reference_points_cam[..., 0:2]',reference_points_cam[..., 0:2])
 
         # TODO use ori_shape
         # print('reference_points_cam', reference_points_cam.shape)
@@ -124,7 +120,6 @@ class BEVTransformerEncoderV2(TransformerLayerSequence):
         else:
             reference_points_cam[..., 0] /= img_metas[0]['img_shape'][0][1]
             reference_points_cam[..., 1] /= img_metas[0]['img_shape'][0][0]
-        # reference_points_cam = (reference_points_cam - 0.5) * 2
 
         mask = (mask & (reference_points_cam[..., 1:2] > 0.0)
                 & (reference_points_cam[..., 1:2] < 1.0)
@@ -137,21 +132,11 @@ class BEVTransformerEncoderV2(TransformerLayerSequence):
 
         reference_points_cam = reference_points_cam.permute(2, 1, 3, 0, 4)
         mask = mask.permute(2, 1, 3, 0, 4).squeeze(-1)
-        # from IPython import embed
-        # embed()
-        # exit()
         self.key_padding_mask = mask.permute(1, 0, 3, 2).reshape(B, -1, bev_h * bev_w)  #.cpu().numpy()
-        # save_tensor(self.key_padding_mask.cpu().reshape(-1, bev_h, bev_w), 'tmp1.png')
-        # exit()
         self.key_padding_mask = self.key_padding_mask.permute(0, 2, 1).sum(-1)
         self.key_padding_mask = (self.key_padding_mask == 0)
         if not self.use_key_padding_mask:
             self.key_padding_mask = None
-
-        # np.save('grid.npy', tmp)
-        # from IPython import embed
-        # embed()
-        # exit()
 
         # save_tensor(tmp, 'tmp3_waymo2.png')
         # imgs = []
