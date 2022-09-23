@@ -1,4 +1,13 @@
 # ==============================================================================
+# Binaries and/or source for the following packages or projects are presented under one or more of the following open
+# source licenses:
+# bevformer.py       OpenPerceptionX        Apache License, Version 2.0
+#
+# Contact simachonghao@pjlab.org.cn if you have any issue
+#
+# See:
+# https://github.com/zhiqi-li/BEVFormer/blob/master/projects/mmdet3d_plugin/bevformer/detectors/bevformer.py
+#
 # Copyright (c) 2022 OpenPerceptionX. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
