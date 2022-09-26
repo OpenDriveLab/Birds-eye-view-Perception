@@ -20,10 +20,10 @@ This is an open source BEV 3D object detection toolbox based on PyTorch, associa
 
 ## <div id='update'>What's New</div>
 
-v0 was released in x/x/2022.
-* Support Waymo dataset
-* Integrate bag of tricks
-* Provide checkpoint and performance for some tricks
+v0 was released in xx/9/2022.
+* Offer a pipeline to process the Waymo dataset (camera-based 3D detection).
+* Release a baseline (with config) for Waymo dataset and also 1/5 Waymo dataset in Kitti format.
+* Integrate some practical data augmentation methods for BEV camera-based 3D detection.
 
 Please refer to [changelog.md](docs/changelog.md) for details and release history.
 
@@ -66,7 +66,14 @@ Please refer to [usage.md](docs/usage.md) for commands of training and evaluatio
 
 ### For expert
 
-We provide bag of tricks to boost the performance of the baseline below implemented by our toolbox.
+#### I want to learn about BEV-toolbox
+
+We have some examples of using BEV-toolbox.
+
+#### I want to know how to use BEV-toolbox with mmdet3d
+
+We provide bag of tricks to boost the performance of the baseline below implemented by our toolbox and mmdet3d.
+
 
 ## <div id='tricks'>Bag of Tricks</div>
 We provide an overview of the bag of tricks as the model zoo, which can be grouped as four types -- data augmentation, design of BEV encoder, loss family and different 3D detection head and post-process policy. Please click the link of each trick for more details. We also offer their corresponding configs and performance in the table below for the convenience of users.
@@ -128,22 +135,22 @@ We provide an overview of the bag of tricks as the model zoo, which can be group
 
 We provide the improvement of each trick compared with the baseline on the Waymo validation set. All the models are trained with 1/5 training data of Waymo v1.3 which is represented as Waymo mini here.
 
-✅: DONE, 🎯: ON-GOING, 🔲 TODO.
+✓: DONE, ☐: TODO.
 
 | Backbone  | Head  | Train data | Trick and corresponding config                                                                                          | LET-mAPL | LET-mAPH | L1/mAPH (Car) | Status |
 | :-------: | :---: | :--------: | :---------------------------------------------------------------------------------------------------------------------- | :------: | :------: | :-----------: | :----: |
-| ResNet101 | DETR  | Waymo mini | [Baseline](code/projects/configs/bevformer/waymo_mini_r101_baseline.py)                                                 |   34.6   |   46.1   |     25.5      |   ✅    |
-| ResNet101 | DETR  | Waymo mini | [Multi-scale resize, Flip](code/projects/configs/bevformer/data_aug/waymo_mini_r101_ms_flip.py)                         |    -     |    -     |     26.8      |   🔲   |
-| ResNet101 | DETR  | Waymo mini | [Conv offset in TSA](code/projects/configs/bevformer/bev_encoder/waymo_mini_r101_conv_offset_3x3.py)                    |   35.9   |   48.1   |     25.6      |   🔲   |
-| ResNet101 | DETR  | Waymo mini | [Deformable view encoder](code/projects/configs/bevformer/bev_encoder/waymo_mini_r101_view_encoder.py)                  |   36.1   |   48.1   |     25.9      |   🔲    |
-| ResNet101 | DETR  | Waymo mini | [Corner pooling](code/projects/configs/bevformer/bev_encoder/waymo_mini_r101_corner_pooling.py)                         |   35.6   |   46.9   |     26.0      |   🔲    |
-| ResNet101 | DETR  | Waymo mini | [2x BEV scale](code/projects/configs/bevformer/bev_encoder/waymo_mini_r101_2xbev.py)                                    |    -     |    -     |     25.5      |   🔲    |
-| ResNet101 | DETR  | Waymo mini | [Sync BN](code/projects/configs/bevformer/bev_encoder/waymo_mini_r101_syncBN.py)                                        |    -     |    -     |     25.5      |   🔲    |
-| ResNet101 | DETR  | Waymo mini | [EMA](code/projects/configs/bevformer/bev_encoder/waymo_mini_r101_ema.py)                                               |    -     |    -     |     25.6      |   🔲    |
-| ResNet101 | DETR  | Waymo mini | [2d auxiliary loss](code/projects/configs/bevformer/loss/waymo_mini_r101_2d_aux.py)                                     |   35.3   |   47.4   |     24.6      |   🔲    |
-| ResNet101 | DETR  | Waymo mini | [2d auxiliary loss, Learnable loss weight](code/projects/configs/bevformer/loss/waymo_mini_r101_2d_aux_learnable_lw.py) |   36.2   |   48.1   |     25.4      |   🔲    |
-| ResNet101 | DETR  | Waymo mini | [Smooth L1 loss](code/projects/configs/bevformer/loss/waymo_mini_r101_smooth_l1.py)                                     |    -     |    -     |     26.2      |   🔲    |
-| ResNet101 | DETR  | Waymo mini | [Label smoothing](code/projects/configs/bevformer/loss/waymo_mini_r101_label_smooth.py)                                 |   36.0   |   46.7   |       -       |   🔲   |
+| ResNet101 | DETR  | Waymo mini | [Baseline](code/projects/configs/bevformer/waymo_mini_r101_baseline.py)                                                 |   34.6   |   46.1   |     25.5      |   ✓    |
+| ResNet101 | DETR  | Waymo mini | [Multi-scale resize, Flip](code/projects/configs/bevformer/data_aug/waymo_mini_r101_ms_flip.py)                         |    -     |    -     |     26.8      |    ☐  |
+| ResNet101 | DETR  | Waymo mini | [Conv offset in TSA](code/projects/configs/bevformer/bev_encoder/waymo_mini_r101_conv_offset_3x3.py)                    |   35.9   |   48.1   |     25.6      |   ☐   |
+| ResNet101 | DETR  | Waymo mini | [Deformable view encoder](code/projects/configs/bevformer/bev_encoder/waymo_mini_r101_view_encoder.py)                  |   36.1   |   48.1   |     25.9      |   ☐    |
+| ResNet101 | DETR  | Waymo mini | [Corner pooling](code/projects/configs/bevformer/bev_encoder/waymo_mini_r101_corner_pooling.py)                         |   35.6   |   46.9   |     26.0      |   ☐    |
+| ResNet101 | DETR  | Waymo mini | [2x BEV scale](code/projects/configs/bevformer/bev_encoder/waymo_mini_r101_2xbev.py)                                    |    -     |    -     |     25.5      |  ☐     |
+| ResNet101 | DETR  | Waymo mini | [Sync BN](code/projects/configs/bevformer/bev_encoder/waymo_mini_r101_syncBN.py)                                        |    -     |    -     |     25.5      |   ☐    |
+| ResNet101 | DETR  | Waymo mini | [EMA](code/projects/configs/bevformer/bev_encoder/waymo_mini_r101_ema.py)                                               |    -     |    -     |     25.6      |     ☐  |
+| ResNet101 | DETR  | Waymo mini | [2d auxiliary loss](code/projects/configs/bevformer/loss/waymo_mini_r101_2d_aux.py)                                     |   35.3   |   47.4   |     24.6      |     ☐  |
+| ResNet101 | DETR  | Waymo mini | [2d auxiliary loss, Learnable loss weight](code/projects/configs/bevformer/loss/waymo_mini_r101_2d_aux_learnable_lw.py) |   36.2   |   48.1   |     25.4      |   ☐    |
+| ResNet101 | DETR  | Waymo mini | [Smooth L1 loss](code/projects/configs/bevformer/loss/waymo_mini_r101_smooth_l1.py)                                     |    -     |    -     |     26.2      |    ☐   |
+| ResNet101 | DETR  | Waymo mini | [Label smoothing](code/projects/configs/bevformer/loss/waymo_mini_r101_label_smooth.py)                                 |   36.0   |   46.7   |       -       |   ☐   |
 
 
 
@@ -177,7 +184,7 @@ If you find this project useful in your https://github.com/OpenPerceptionX/BEVPe
 ```BibTeX
 @article{li2022delving,
   title={Delving into the Devils of Bird's-eye-view Perception: A Review, Evaluation and Recipe},
-  author={Li, Hongyang and Sima, Chonghao and Dai, Jifeng and Wang, Wenhai and Lu, Lewei and Wang, Huijie and Xie, Enze and Li, Zhiqi and Deng, Hanming and Tian, Hao and others},
+  author={Li, Hongyang and Sima, Chonghao and Dai, Jifeng and Wang, Wenhai and Lu, Lewei and Wang, Huijie and Xie, Enze and Li, Zhiqi and Deng, Hanming and Tian, Hao and Zhu, Xizhou and Chen, Li and Gao, Yulu and Geng, Xiangwei and Zeng, Jia and Li, Yang and Yang, Jiazhi and Jia, Xiaosong and Yu, Bohan and Qiao, Yu and Lin, Dahua and Liu, Si and Yan, Junchi and Shi, Jianping and Luo, Ping},
   journal={arXiv preprint arXiv:2209.05324},
   year={2022}
 }
