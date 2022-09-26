@@ -70,7 +70,44 @@ Please refer to [usage.md](docs/usage.md) for commands of training and evaluatio
 
 We have some examples of using BEV-toolbox.
 
+**A simple example**
+```python
+from toolbox.data_aug import RandomScaleImageMultiViewImage_naive
+
+# Declare an augmentation pipeline
+transform = RandomScaleImageMultiViewImage_naive(scales=[0.9, 1.0, 1.1])
+
+# imgs (list of numpy.array): multiple-view images
+imgs = load_multiview_imgs()
+# lidar2img (list of numpy.narray): multiple-view transformations from lidar to image
+lidar2img = load_multiview_lidar2img()
+
+# Augment an image
+imgs_new, lidar2img_new = transform(imgs, lidar2img)
+```
+
 #### I want to know how to use BEV-toolbox with mmdet3d
+
+Add the following code to ```train.py``` or ```test.py```.
+```
+from toolbox.init import init_toolbox
+init_toolbox()
+```
+Then you can directly use the functions in the toolbox just like the usage of mmdet3d. For example, you can just add ```RandomScaleImageMultiViewImage``` to the configure file.
+```python
+train_pipeline = [
+    dict(type='CustomLoadMultiViewImageFromFiles', to_float32=True),
+    dict(type='PhotoMetricDistortionMultiViewImage'),
+    dict(type='LoadAnnotations3D', with_bbox_3d=True, with_label_3d=True, with_attr_label=False),
+    dict(type='ObjectRangeFilter', point_cloud_range=point_cloud_range),
+    dict(type='ObjectNameFilter', classes=class_names),
+    dict(type='RandomScaleImageMultiViewImage', scales=[0.9, 1.0, 1.1]),
+    dict(type='NormalizeMultiviewImage', **img_norm_cfg),
+    dict(type='PadMultiViewImage', size='same2max'),
+    dict(type='DefaultFormatBundle3D', class_names=class_names),
+    dict(type='CustomCollect3D', keys=['gt_bboxes_3d', 'gt_labels_3d', 'img'])
+]
+```
 
 We provide bag of tricks to boost the performance of the baseline below implemented by our toolbox and mmdet3d.
 
