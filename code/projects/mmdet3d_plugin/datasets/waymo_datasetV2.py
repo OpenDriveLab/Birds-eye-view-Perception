@@ -98,7 +98,6 @@ class WaymoDataset_videoV2(WaymoDataset_video):
                     lidar to different cameras
                 - ann_info (dict): annotation info
         """
-
         info = self.data_infos[index]
         sample_idx = info['image']['image_idx']
 
@@ -390,6 +389,7 @@ class WaymoDataset_videoV2(WaymoDataset_video):
             print_log(f'pkl save to {self.waymo_results_final_path}', logger=logger)
             outputs = [pd_bbox.numpy(), pd_type.numpy(), pd_frame_id.numpy(), pd_score.numpy()]
             mmcv.dump(outputs, self.waymo_results_final_path)
+
             if self.split == 'testing_camera': return {}
             if self.gt_bin_file is None:
                 print_log('Starting get_boxes_from_pkl...', logger=logger)
@@ -618,7 +618,7 @@ class WaymoDataset_videoV2(WaymoDataset_video):
 
     def get_boxes_from_pkl(self):
         id_time_map = {}
-        with open('./filter_waymo.txt', 'r') as f:
+        with open(f'./filter_waymo.txt', 'r') as f:
             for each in f.readlines():
                 id, time = each.strip().split(' ')
                 id_time_map[int(id)] = int(time)

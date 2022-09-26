@@ -1,7 +1,4 @@
-_base_ = [
-    '../datasets/custom_waymo-3d.py',
-    '../../../mmdetection3d/configs/_base_/default_runtime.py'
-]
+_base_ = ['../../datasets/custom_waymo-3d.py', '../../../../mmdetection3d/configs/_base_/default_runtime.py']
 
 plugin = True
 plugin_dir = 'projects/mmdet3d_plugin/'
@@ -158,10 +155,10 @@ model = dict(
             pc_range=point_cloud_range))))
 
 
-dataset_type = 'WaymoDataset_video'
-data_root = 'data/waymo/kitti_format/'
-data_root2 = 'data/waymo/kitti_format/'
+dataset_type = 'WaymoDataset_videoV2'
+data_root = 'data/waymo_mini/'
 file_client_args = dict(backend='disk')
+gt_bin_file = 'data/waymo_mini/gt.bin'
 
 train_pipeline = [
     dict(type='CustomLoadMultiViewImageFromFiles', to_float32=True),
@@ -198,11 +195,14 @@ test_pipeline = [
 
 data = dict(
     samples_per_gpu=1,
-    workers_per_gpu=4,
+    workers_per_gpu=0,
     train=dict(
         type=dataset_type,
         data_root=data_root,
-        ann_file=data_root + 'waymo_infos_train.pkl',
+        ann_file=data_root + 'waymo_mini_infos_train.pkl',
+        calib_file=data_root + 'waymo_calibs.pkl',
+        gt_bin_file=gt_bin_file,
+        use_pkl_annos=True,
         split='training',
         pipeline=train_pipeline,
         modality=input_modality,
@@ -214,37 +214,41 @@ data = dict(
         box_type_3d='LiDAR',
         pcd_limit_range=point_cloud_range,
         bev_size=(bev_h_, bev_w_),
+        img_format='.jpg',
         # load one frame every five frames
-        load_interval=5),
-    val=dict(
-        type=dataset_type,
-        pipeline=test_pipeline,
-        data_root=data_root,
-        ann_file=data_root2 + 'waymo_infos_val.pkl',
-        split='training',
-        pcd_limit_range=point_cloud_range,
-        bev_size=(bev_h_, bev_w_),
-        classes=class_names,
-        modality=input_modality,
-        samples_per_gpu=1,
-        load_interval=1
-    ),
-    test=dict(
-        type=dataset_type,
-        pipeline=test_pipeline,
-        data_root=data_root,
-        ann_file=data_root2 + 'waymo_infos_val.pkl',
-        split='training',
-        pcd_limit_range=point_cloud_range,
-        bev_size=(bev_h_, bev_w_),
-        classes=class_names,
-        modality=input_modality,
-        samples_per_gpu=1,
-        load_interval=1
-    ),
+        load_interval=1),
+    val=dict(type=dataset_type,
+             pipeline=test_pipeline,
+             data_root=data_root,
+             ann_file=data_root + 'waymo_infos_val.pkl',
+             calib_file=data_root + 'waymo_calibs.pkl',
+             gt_bin_file=gt_bin_file,
+             use_pkl_annos=True,
+             split='training',
+             pcd_limit_range=point_cloud_range,
+             bev_size=(bev_h_, bev_w_),
+             classes=class_names,
+             modality=input_modality,
+             samples_per_gpu=1,
+             img_format='.jpg',
+             load_interval=1),
+    test=dict(type=dataset_type,
+              pipeline=test_pipeline,
+              data_root=data_root,
+              ann_file=data_root + 'waymo_infos_val.pkl',
+              calib_file=data_root + 'waymo_calibs.pkl',
+              gt_bin_file=gt_bin_file,
+              use_pkl_annos=True,
+              split='training',
+              pcd_limit_range=point_cloud_range,
+              bev_size=(bev_h_, bev_w_),
+              classes=class_names,
+              modality=input_modality,
+              samples_per_gpu=1,
+              img_format='.jpg',
+              load_interval=1),
     shuffler_sampler=dict(type='OriginDistributedGroupSampler'),
-    nonshuffler_sampler=dict(type='DistributedSampler')
-)
+    nonshuffler_sampler=dict(type='DistributedSampler'))
 
 optimizer = dict(
     type='AdamW2',
@@ -265,7 +269,7 @@ lr_config = dict(
 total_epochs = 12
 evaluation = dict(interval=12, pipeline=test_pipeline)
 
-runner = dict(type='EpochBasedRunner_video4', max_epochs=total_epochs)
+runner = dict(type='EpochBasedRunner_video', max_epochs=total_epochs)
 load_from = 'ckpts/fcos3d.pth'
 
 fp16 = dict(loss_scale=512.)

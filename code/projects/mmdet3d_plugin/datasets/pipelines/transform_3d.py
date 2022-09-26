@@ -222,83 +222,79 @@ class CropMultiViewImage(object):
         return repr_str
 
 
-@PIPELINES.register_module()
-class RandomScaleImageMultiViewImage(object):
-    """Random scale the image
-    Args:
-        scales
-    """
+# @PIPELINES.register_module()
+# class RandomScaleImageMultiViewImage(object):
+#     """Random scale the image
+#     Args:
+#         scales
+#     """
 
-    def __init__(self, scales=[0.5, 1.0, 1.5]):
-        self.scales = scales
-        self.seed = 0
-        #[i/10 for i in range(5, 16)]
+#     def __init__(self, scales=[0.5, 1.0, 1.5]):
+#         self.scales = scales
+#         self.seed = 0
+#         #[i/10 for i in range(5, 16)]
 
-    def __call__(self, results, seed=None):
-        """Call function to pad images, masks, semantic segmentation maps.
-        Args:
-            results (dict): Result dict from loading pipeline.
-        Returns:
-            dict: Updated result dict.
-        """
-        # print(seed)
-        if seed is not None:
-            np.random.seed(int(seed))
-        rand_ind = np.random.permutation(range(len(self.scales)))[0]
-        rand_scale = self.scales[rand_ind]
-        # print(rand_scale)
-        # print(results['img_shape'])
-        # for each in results['img_shape']:
-        #    print(each)
-        # img_shape = results['img_shape']
-        # print(img_shape, rand_scale)
-        #y_size = int(img_shape[0] * rand_scale)
-        #x_size = int(img_shape[1] * rand_scale)
-        #scale_factor = np.eye(4)
-        #scale_factor[0, 0] *= rand_scale
-        #scale_factor[1, 1] *= rand_scale
+#     def __call__(self, results, seed=None):
+#         """Call function to pad images, masks, semantic segmentation maps.
+#         Args:
+#             results (dict): Result dict from loading pipeline.
+#         Returns:
+#             dict: Updated result dict.
+#         """
+#         if seed is not None:
+#             np.random.seed(int(seed))
+#         rand_ind = np.random.permutation(range(len(self.scales)))[0]
+#         rand_scale = self.scales[rand_ind]
+#         # print(rand_scale)
+#         # print(results['img_shape'])
+#         # for each in results['img_shape']:
+#         #    print(each)
+#         # img_shape = results['img_shape']
+#         # print(img_shape, rand_scale)
+#         #y_size = int(img_shape[0] * rand_scale)
+#         #x_size = int(img_shape[1] * rand_scale)
+#         #scale_factor = np.eye(4)
+#         #scale_factor[0, 0] *= rand_scale
+#         #scale_factor[1, 1] *= rand_scale
 
-        y_size = [int(img.shape[0] * rand_scale) for img in results['img']]
-        x_size = [int(img.shape[1] * rand_scale) for img in results['img']]
-        # print(x_size, y_size)
+#         y_size = [int(img.shape[0] * rand_scale) for img in results['img']]
+#         x_size = [int(img.shape[1] * rand_scale) for img in results['img']]
+#         # print(x_size, y_size)
 
-        scale_factor = np.eye(4)
-        scale_factor[0, 0] *= rand_scale
-        scale_factor[1, 1] *= rand_scale
-        results['img'] = [
-            mmcv.imresize(img, (x_size[idx], y_size[idx]), return_scale=False) for idx, img in enumerate(results['img'])
-        ]
-        # results['img'] = [mmcv.imresize(img, (x_size, y_size), return_scale=False) for img in results['img']]
-        lidar2img = [scale_factor @ l2i for l2i in results['lidar2img']]
-        results['lidar2img'] = lidar2img
-        results['img_shape'] = [img.shape for img in results['img']]
-        results['ori_shape'] = [img.shape for img in results['img']]
+#         scale_factor = np.eye(4)
+#         scale_factor[0, 0] *= rand_scale
+#         scale_factor[1, 1] *= rand_scale
+#         results['img'] = [
+#             mmcv.imresize(img, (x_size[idx], y_size[idx]), return_scale=False) for idx, img in enumerate(results['img'])
+#         ]
+#         # results['img'] = [mmcv.imresize(img, (x_size, y_size), return_scale=False) for img in results['img']]
+#         lidar2img = [scale_factor @ l2i for l2i in results['lidar2img']]
+#         results['lidar2img'] = lidar2img
+#         results['img_shape'] = [img.shape for img in results['img']]
+#         results['ori_shape'] = [img.shape for img in results['img']]
 
-        #results['gt_bboxes_3d'].tensor[:, :6] *= rand_scale
-        # for i in range(len(results['img'])):
-        #     # print(results['bbox3d_fields'])
-        #     # print(results['gt_bboxes_3d'].tensor)
-        #     # print(results['lidar2img'][i])
-        #     show_multi_modality_result(
-        #         results['img'][i],
-        #         results['gt_bboxes_3d'],
-        #         None,
-        #         results['lidar2img'][i],
-        #         '.',
-        #         f'aug2_{i}.png',
-        #         box_mode='lidar',
-        #         show=True,
-        #         scores=None,
-        # )
-        return results
+#         #results['gt_bboxes_3d'].tensor[:, :6] *= rand_scale
+#         # for i in range(len(results['img'])):
+#         #     # print(results['bbox3d_fields'])
+#         #     # print(results['gt_bboxes_3d'].tensor)
+#         #     # print(results['lidar2img'][i])
+#         #     show_multi_modality_result(
+#         #         results['img'][i],
+#         #         results['gt_bboxes_3d'],
+#         #         None,
+#         #         results['lidar2img'][i],
+#         #         '.',
+#         #         f'aug2_{i}.png',
+#         #         box_mode='lidar',
+#         #         show=True,
+#         #         scores=None,
+#         # )
+#         return results
 
-    def __repr__(self):
-        repr_str = self.__class__.__name__
-        repr_str += f'(size={self.scales}, '
-        return repr_str
-
-
-from projects.mmdet3d_plugin.models.utils.draw_bbox import show_multi_modality_result
+#     def __repr__(self):
+#         repr_str = self.__class__.__name__
+#         repr_str += f'(size={self.scales}, '
+#         return repr_str
 
 
 @PIPELINES.register_module()

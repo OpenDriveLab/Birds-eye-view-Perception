@@ -206,7 +206,6 @@ class CustomWaymoDataset(CustomKittiDataset):
                     lidar to different cameras
                 - ann_info (dict): annotation info
         """
-
         info = self.data_infos[index]
         sample_idx = info['image']['image_idx']
         img_filename_0 = os.path.join(self.data_root, info['image']['image_path'])
@@ -215,7 +214,6 @@ class CustomWaymoDataset(CustomKittiDataset):
             image_filenames.append(img_filename_0.replace('image_0', f'image_{i}'))
 
         calib_file = img_filename_0.replace('image_0', 'calib').replace('png', 'txt').replace('jpg', 'txt')
-
         calibs = mmcv.load(calib_file)
 
         calibs = [each.strip() for each in calibs]
@@ -1147,7 +1145,6 @@ class WaymoDataset_video(CustomWaymoDataset):
         index_list = sorted(index_list[1:])
         seed = time.time()
         for i in index_list:
-
             i = max(0, i)
             input_dict = self.get_data_info(i)
             if input_dict is None:

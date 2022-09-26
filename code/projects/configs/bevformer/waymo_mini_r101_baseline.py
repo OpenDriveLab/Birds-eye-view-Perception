@@ -140,9 +140,9 @@ model = dict(
             pc_range=point_cloud_range))))
 
 dataset_type = 'WaymoDataset_videoV2'
-data_root = 'tianhao2_98:s3://waymo_v_1_3/'
-file_client_args = dict(backend='petrel', path_mapping=dict(data='tianhao2_98:s3://waymo_v_1_3/'))
-gt_bin_file = '/mnt/lustre/share_data/litianyu1/waymo_v_1_3/gt.bin'
+data_root = 'data/waymo_mini/'
+file_client_args = dict(backend='disk')
+gt_bin_file = 'data/waymo_mini/gt.bin'
 
 train_pipeline = [
     dict(type='CustomLoadMultiViewImageFromFiles', to_float32=True),
@@ -171,7 +171,7 @@ test_pipeline = [
 ]
 
 data = dict(samples_per_gpu=1,
-            workers_per_gpu=4,
+            workers_per_gpu=0,
             train=dict(type=dataset_type,
                        data_root=data_root,
                        ann_file=data_root + 'waymo_mini_infos_train.pkl',
@@ -187,6 +187,7 @@ data = dict(samples_per_gpu=1,
                        box_type_3d='LiDAR',
                        pcd_limit_range=point_cloud_range,
                        bev_size=(bev_h_, bev_w_),
+                       img_format='.jpg',
                        load_interval=1),
             val=dict(type=dataset_type,
                      pipeline=test_pipeline,
@@ -201,6 +202,7 @@ data = dict(samples_per_gpu=1,
                      classes=class_names,
                      modality=input_modality,
                      samples_per_gpu=1,
+                     img_format='.jpg',
                      load_interval=1),
             test=dict(type=dataset_type,
                       pipeline=test_pipeline,
@@ -215,6 +217,7 @@ data = dict(samples_per_gpu=1,
                       classes=class_names,
                       modality=input_modality,
                       samples_per_gpu=1,
+                      img_format='.jpg',
                       load_interval=1),
             shuffler_sampler=dict(type='OriginDistributedGroupSampler'),
             nonshuffler_sampler=dict(type='DistributedSampler'))
