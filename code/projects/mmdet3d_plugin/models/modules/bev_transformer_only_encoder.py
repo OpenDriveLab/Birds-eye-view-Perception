@@ -83,7 +83,6 @@ class BEVTransformerOnlyEncoder(BaseModule):
         """Initialize layers of the Detr3DTransformer."""
         self.level_embeds = nn.Parameter(torch.Tensor(self.num_feature_levels, self.embed_dims))
         self.cams_embeds = nn.Parameter(torch.Tensor(self.num_cams, self.embed_dims))
-        # self.reference_points = nn.Linear(self.embed_dims, 3)
         self.can_bus_mlp = nn.Sequential(
             nn.Linear(18, self.embed_dims // 2),
             nn.ReLU(inplace=True),
@@ -112,7 +111,6 @@ class BEVTransformerOnlyEncoder(BaseModule):
                     m.init_weights()
         normal_(self.level_embeds)
         normal_(self.cams_embeds)
-        # xavier_init(self.reference_points, distribution='uniform', bias=0.)
         xavier_init(self.can_bus_mlp, distribution='uniform', bias=0.)
 
     @staticmethod
@@ -130,10 +128,6 @@ class BEVTransformerOnlyEncoder(BaseModule):
         if dim == '3d':
 
             zs = torch.linspace(0.5, Z - 0.5, D, dtype=dtype, device=device).view(-1, 1, 1).expand(D, H, W) / Z
-
-            # zs = torch.arange(1, Z, 2, dtype=dtype,
-            #                  device=device).view(-1, 1, 1).expand(-1, H, W)/Z
-
             xs = torch.linspace(0.5, W - 0.5, W, dtype=dtype, device=device).view(1, 1, W).expand(D, H, W) / W
             ys = torch.linspace(0.5, H - 0.5, H, dtype=dtype, device=device).view(1, H, 1).expand(D, H, W) / H
             ref_3d = torch.stack((xs, ys, zs), -1)
@@ -254,8 +248,6 @@ class BEVTransformerOnlyEncoder(BaseModule):
             shift_y = shift_y * self.use_shift
             shift_x = shift_x * self.use_shift
         shift = bev_embed.new_tensor([shift_x, shift_y])
-        # if np.abs(rotation_angle)>10:
-        #    print(ego_angle, tmp_angle, rotation_angle, bev_angle, translation_length, shift_x, shift_y)
 
         if prev_bev is not None:
             if prev_bev.shape[1] == bev_h * bev_w:
@@ -327,9 +319,6 @@ class BEVTransformerOnlyEncoder(BaseModule):
                                  shift=shift,
                                  gt_bboxes_3d=gt_bboxes_3d,
                                  **kwargs)
-        # save_tensor(bev_embed.reshape(bev_h, bev_w, -1).permute(2, 0, 1)[:20], '{i}_main.png'.format(i=self.count))
-        # self.count += 1
-        # if self.count>5: exit()
         if return_bev:
             return bev_embed, bev_embed
 

@@ -7,6 +7,24 @@ from mmcv.cnn.bricks.registry import ATTENTION
 from mmcv.runner.base_module import BaseModule
 
 
+def inverse_sigmoid(x, eps=1e-5):
+    """Inverse function of sigmoid.
+    Args:
+        x (Tensor): The tensor to do the
+            inverse.
+        eps (float): EPS avoid numerical
+            overflow. Defaults 1e-5.
+    Returns:
+        Tensor: The x has passed the inverse
+            function of sigmoid, has same
+            shape with input.
+    """
+    x = x.clamp(min=0, max=1)
+    x1 = x.clamp(min=eps)
+    x2 = (1 - x).clamp(min=eps)
+    return torch.log(x1 / x2)
+
+
 @ATTENTION.register_module()
 class Detr3DCrossAtten(BaseModule):
     """An attention module used in Detr3d. 
@@ -150,11 +168,8 @@ class Detr3DCrossAtten(BaseModule):
 
         attention_weights = self.attention_weights(query).view(bs, 1, num_query, self.num_cams, self.num_points,
                                                                self.num_levels)
-        #  self.num_points = 1
         reference_points_3d, output, mask = feature_sampling(value, reference_points, self.pc_range,
                                                              kwargs['img_metas'])
-        #print(attention_weights.shape)
-        #print(reference_points_3d.shape, output.shape, mask.shape)
 
         output = torch.nan_to_num(output)
         mask = torch.nan_to_num(mask)

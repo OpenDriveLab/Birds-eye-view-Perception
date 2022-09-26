@@ -41,7 +41,6 @@ try:
     from waymo_open_dataset import dataset_pb2, label_pb2
     from waymo_open_dataset.protos import breakdown_pb2, metrics_pb2
     from waymo_open_dataset.metrics.python import config_util_py as config_util
-    # from waymo_open_dataset.metrics.ops import py_metrics_ops
 
 except ImportError:
     print('WARNING no tensorflow')
@@ -99,7 +98,6 @@ class WaymoDataset_videoV2(WaymoDataset_video):
                     lidar to different cameras
                 - ann_info (dict): annotation info
         """
-
         info = self.data_infos[index]
         sample_idx = info['image']['image_idx']
 
@@ -389,11 +387,9 @@ class WaymoDataset_videoV2(WaymoDataset_video):
 
             self.waymo_results_final_path = f'{pklfile_prefix}_T.pkl'
             print_log(f'pkl save to {self.waymo_results_final_path}', logger=logger)
-            # from IPython import embed
-            # embed()
-            # exit()
             outputs = [pd_bbox.numpy(), pd_type.numpy(), pd_frame_id.numpy(), pd_score.numpy()]
             mmcv.dump(outputs, self.waymo_results_final_path)
+
             if self.split == 'testing_camera': return {}
             if self.gt_bin_file is None:
                 print_log('Starting get_boxes_from_pkl...', logger=logger)
@@ -455,21 +451,16 @@ class WaymoDataset_videoV2(WaymoDataset_video):
             except:
                 gt_bboxes = None
 
-            # box_preds.tensor[:, -1] = box_preds.tensor[:, -1] - np.pi
-
             box_preds.limit_yaw(offset=0.5, period=np.pi * 2)
             limit_range = box_preds.tensor.new_tensor(self.pcd_limit_range)
-            valid_inds = ((box_preds.center > limit_range[:3]) &
-                          (box_preds.center < limit_range[3:])).all(-1)
+            valid_inds = ((box_preds.center > limit_range[:3]) & (box_preds.center < limit_range[3:])).all(-1)
             info = self.data_infos[idx]
             sample_idx = info['image']['image_idx']
 
             data_info = self.get_data_info(idx)
             lidar2imgs = data_info['lidar2img']
 
-            img_shapes = [
-                (1280, 1920, 3), (1280, 1920, 3), (1280, 1920, 3), (886, 1920, 3), (886, 1920, 3)
-            ]
+            img_shapes = [(1280, 1920, 3), (1280, 1920, 3), (1280, 1920, 3), (886, 1920, 3), (886, 1920, 3)]
 
             cam_valid_list = []
             n_pred = box_preds.tensor.shape[0]
@@ -478,8 +469,7 @@ class WaymoDataset_videoV2(WaymoDataset_video):
                     break
                 corners_3d = box_preds.corners
                 num_bbox = corners_3d.shape[0]
-                pts_4d = torch.cat(
-                    [corners_3d.view(-1, 3), torch.ones((num_bbox * 8, 1))], dim=-1)
+                pts_4d = torch.cat([corners_3d.view(-1, 3), torch.ones((num_bbox * 8, 1))], dim=-1)
                 lidar2img = lidar2imgs[i]
                 pts_2d = pts_4d @ lidar2img.T
 
@@ -498,56 +488,30 @@ class WaymoDataset_videoV2(WaymoDataset_video):
                 pred_2d_bboxes_camera = torch.cat([minxy, maxxy], dim=1)
 
                 valid_cam_inds &= ((pred_2d_bboxes_camera[:, 0] < image_shape[1]) &
-                                   (pred_2d_bboxes_camera[:, 1] < image_shape[0]) &
-                                   (pred_2d_bboxes_camera[:, 2] > 0) & (pred_2d_bboxes_camera[:, 3] > 0))
+                                   (pred_2d_bboxes_camera[:, 1] < image_shape[0]) & (pred_2d_bboxes_camera[:, 2] > 0) &
+                                   (pred_2d_bboxes_camera[:, 3] > 0))
 
                 # calculate gt_2d_bboxes_camera
                 if self.refine_with_2dbbox and gt_bboxes is not None:
-                    # gt_corners_3d = gt_bboxes.corners
-                    # num_bbox = gt_corners_3d.shape[0]
-                    # pts_4d = torch.cat(
-                    #     [gt_corners_3d.view(-1, 3), torch.ones((num_bbox * 8, 1))], dim=-1)
-                    # lidar2img = lidar2imgs[i]
-                    # pts_2d = pts_4d @ lidar2img.T
-                    #
-                    # gt_valid_cam_inds = (pts_2d[:, 2].view(num_bbox, 8) > 0).all(-1)
-                    #
-                    # pts_2d[:, 2] = torch.clamp(pts_2d[:, 2], min=1e-5, max=1e5)
-                    # pts_2d[:, 0] /= pts_2d[:, 2]
-                    # pts_2d[:, 1] /= pts_2d[:, 2]
-                    # imgfov_pts_2d = pts_2d[..., :2].view(num_bbox, 8, 2)
-                    #
-                    # minxy = imgfov_pts_2d.min(dim=1)[0]
-                    # maxxy = imgfov_pts_2d.max(dim=1)[0]
-                    # gt_2d_bboxes_camera = torch.cat([minxy, maxxy], dim=1)
-                    #
-                    # gt_valid_cam_inds &= ((gt_2d_bboxes_camera[:, 0] < image_shape[1]) &
-                    #                       (gt_2d_bboxes_camera[:, 1] < image_shape[0]) &
-                    #                       (gt_2d_bboxes_camera[:, 2] > 0) & (gt_2d_bboxes_camera[:, 3] > 0))
-                    #
-                    # gt_2d_bboxes_camera = gt_2d_bboxes_camera[gt_valid_cam_inds]
-                    # gt_2d_bboxes_camera[:, [0, 2]] = torch.clamp(gt_2d_bboxes_camera[:, [0, 2]], min=0,
-                    #                                              max=image_shape[1])
-                    # gt_2d_bboxes_camera[:, [1, 3]] = torch.clamp(gt_2d_bboxes_camera[:, [1, 3]], min=0,
-                    #                                              max=image_shape[0])
-                    #
                     bbox_in_cam = pred_2d_bboxes_camera[valid_cam_inds]
                     bbox_in_cam[:, [0, 2]] = torch.clamp(bbox_in_cam[:, [0, 2]], min=0, max=image_shape[1])
                     bbox_in_cam[:, [1, 3]] = torch.clamp(bbox_in_cam[:, [1, 3]], min=0, max=image_shape[0])
 
-                    gt_2d_bboxes_camera_ = torch.tensor(self.gt_bboxes_2d_info[str(sample_idx)]['gt_bboxes_2d'][i]).reshape(-1, 4)
+                    gt_2d_bboxes_camera_ = torch.tensor(
+                        self.gt_bboxes_2d_info[str(sample_idx)]['gt_bboxes_2d'][i]).reshape(-1, 4)
                     cls2id = {
                         'Car': 0,
                         'Pedestrian': 1,
                         'Cyclist': 2,
                     }
 
-                    gt_labels_ = torch.tensor([cls2id[each] for each in self.gt_bboxes_2d_info[str(sample_idx)]['gt_labels_2d'][i]])
+                    gt_labels_ = torch.tensor(
+                        [cls2id[each] for each in self.gt_bboxes_2d_info[str(sample_idx)]['gt_labels_2d'][i]])
                     len_gt = len(gt_labels_)
 
-                    pairwise_iou = bbox_overlaps(bbox_in_cam, torch.tensor(gt_2d_bboxes_camera_, device=bbox_in_cam.device))
+                    pairwise_iou = bbox_overlaps(bbox_in_cam,
+                                                 torch.tensor(gt_2d_bboxes_camera_, device=bbox_in_cam.device))
 
-                    #_gt_labels = torch.as_tensor(gt_labels)[gt_valid_cam_inds].unsqueeze(0).repeat(bbox_in_cam.shape[0],                                                                                                   1)
                     _pred_labels = torch.as_tensor(labels_3d)[valid_cam_inds].unsqueeze(1).repeat(1, len_gt)
 
                     valid_cam_inds[valid_cam_inds.clone()] = ((pairwise_iou > 0.2) & (_pred_labels == gt_labels_)).any(
@@ -654,7 +618,7 @@ class WaymoDataset_videoV2(WaymoDataset_video):
 
     def get_boxes_from_pkl(self):
         id_time_map = {}
-        with open('./filter_waymo.txt', 'r') as f:
+        with open(f'./filter_waymo.txt', 'r') as f:
             for each in f.readlines():
                 id, time = each.strip().split(' ')
                 id_time_map[int(id)] = int(time)
@@ -707,42 +671,9 @@ class WaymoDataset_videoV2(WaymoDataset_video):
 
     def get_boxes_from_gtbin(self, remove_gt=True, valid_pd_frame_id=None, score_th=None, logger=None):
 
-        # def get_time_id_map(file_path='./filter_waymo.txt'):
-        #     time_id_map = {}
-        #     id_useless_gt = {}
-        #     with open(file_path, 'r') as f:
-        #         for each in f.readlines():
-        #             id, time = each.strip().split(' ')
-        #             time_id_map[time] = id
-        #             id_useless_gt[id] = []
-        #     if not self.use_pkl_annos:
-        #         for id in id_useless_gt:
-        #             try:
-        #                 g = mmcv.load(os.path.join(self.data_root, f'training/label_all/{id}.txt'))
-        #                 for box_info in g:
-        #                     box_info = box_info.strip().split(' ')
-        #                     if box_info[4:8] == ['0', '0', '0', '0']:
-        #                         id_useless_gt[id].append(['%.2f' % float(each) for each in box_info[8:11]])
-        #             except:
-        #                 continue
-        #     else:
-        #         for data_info in self.data_infos:
-        #             id = str(data_info['image']['image_idx']).zfill(7)
-        #             for idx in data_info['annos']['index']:
-        #                 box_info = data_info['annos']['bbox'][idx]
-        #                 if (box_info == 0).all():
-        #                     useless_gt_dimensions = data_info['annos']['dimensions'][idx][[1, 2, 0]]
-        #                     useless_gt_dimensions = ['%.2f' % float(_) for _ in useless_gt_dimensions]
-        #                     id_useless_gt[id].append(useless_gt_dimensions)
-        #
-        #     return time_id_map, id_useless_gt
-
         if os.path.exists(self.gt_bin_file + '.pkl'):
             print_log(f'Directly load from {self.gt_bin_file}.pkl', logger=logger)
             return mmcv.load(self.gt_bin_file + '.pkl')
-
-        # if remove_gt:
-        #     time_id_map, id_useless_gt = get_time_id_map()
 
         pd_bbox, pd_type, pd_frame_id, difficulty = [], [], [], []
 
@@ -995,8 +926,7 @@ class WaymoDataset_videoV3(WaymoDataset_videoV2):
             dict: Training data dict of the corresponding index.
         """
         queue = []
-        index_list = list(range(index - self.queue_length+1, index+1))
-        # random.shuffle(index_list)
+        index_list = list(range(index - self.queue_length + 1, index + 1))
 
         # index_list = sorted(index_list[1:])
         seed = time.time()
@@ -1009,19 +939,12 @@ class WaymoDataset_videoV3(WaymoDataset_videoV2):
             example = self.pipeline(input_dict, seed=seed)
             queue.append(example)
         return self.union2one_test(queue)
-        # return example
 
     def union2one_test(self, queue):
-        # print(queue)
-        # print(len(queue))
-        # print(queue[0].keys())
-        # print(len(queue[0]['img']), queue[0]['img'][0].data.shape)
-
 
         imgs_list = [each['img'][0].data for each in queue]
         if 'points' in queue[0].keys():
             points_list = [each['points'].data for each in queue]
-            # print(type(queue[0]['points'].data))
             queue[-1]['points'] = DC(points_list, cpu_only=False, stack=False)
         metas_map = {}
         prev_scene_token = None

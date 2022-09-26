@@ -12,7 +12,7 @@ img_norm_cfg = dict(mean=[103.530, 116.280, 123.675], std=[1.0, 1.0, 1.0], to_rg
 
 class_names = ['Car', 'Pedestrian', 'Cyclist']
 point_cloud_range = [-35, -75, -3, 75, 75, 4]
-# point_cloud_range = [-80, -80, -2.0, 80.0, 80.0, 2.0]
+
 input_modality = dict(use_lidar=False, use_camera=True)
 
 _dim_ = 256
@@ -140,9 +140,9 @@ model = dict(
             pc_range=point_cloud_range))))
 
 dataset_type = 'WaymoDataset_videoV2'
-data_root = 'tianhao2_98:s3://waymo_v_1_3/'
-file_client_args = dict(backend='petrel', path_mapping=dict(data='tianhao2_98:s3://waymo_v_1_3/'))
-gt_bin_file = '/mnt/lustre/share_data/litianyu1/waymo_v_1_3/gt.bin'
+data_root = 'data/waymo_mini/'
+file_client_args = dict(backend='disk')
+gt_bin_file = 'data/waymo_mini/gt.bin'
 
 train_pipeline = [
     dict(type='CustomLoadMultiViewImageFromFiles', to_float32=True),
@@ -170,59 +170,57 @@ test_pipeline = [
          ])
 ]
 
-data = dict(
-    samples_per_gpu=1,
-    workers_per_gpu=4,
-    train=dict(
-        type=dataset_type,
-        data_root=data_root,
-        ann_file=data_root + 'waymo_infos_train.pkl',
-        calib_file=data_root + 'waymo_calibs.pkl',
-        gt_bin_file=gt_bin_file,
-        use_pkl_annos=True,
-        split='training',
-        pipeline=train_pipeline,
-        modality=input_modality,
-        classes=class_names,
-        test_mode=False,
-        queue_length=num_queue,
-        # we use box_type_3d='LiDAR' in kitti and nuscenes dataset
-        # and box_type_3d='Depth' in sunrgbd and scannet dataset.
-        box_type_3d='LiDAR',
-        pcd_limit_range=point_cloud_range,
-        bev_size=(bev_h_, bev_w_),
-        # load one frame every five frames
-        load_interval=5),
-    val=dict(type=dataset_type,
-             pipeline=test_pipeline,
-             data_root=data_root,
-             ann_file=data_root + 'waymo_infos_val.pkl',
-             calib_file=data_root + 'waymo_calibs.pkl',
-             gt_bin_file=gt_bin_file,
-             use_pkl_annos=True,
-             split='training',
-             pcd_limit_range=point_cloud_range,
-             bev_size=(bev_h_, bev_w_),
-             classes=class_names,
-             modality=input_modality,
-             samples_per_gpu=1,
-             load_interval=1),
-    test=dict(type=dataset_type,
-              pipeline=test_pipeline,
-              data_root=data_root,
-              ann_file=data_root + 'waymo_infos_val.pkl',
-              calib_file=data_root + 'waymo_calibs.pkl',
-              gt_bin_file=gt_bin_file,
-              use_pkl_annos=True,
-              split='training',
-              pcd_limit_range=point_cloud_range,
-              bev_size=(bev_h_, bev_w_),
-              classes=class_names,
-              modality=input_modality,
-              samples_per_gpu=1,
-              load_interval=1),
-    shuffler_sampler=dict(type='OriginDistributedGroupSampler'),
-    nonshuffler_sampler=dict(type='DistributedSampler'))
+data = dict(samples_per_gpu=1,
+            workers_per_gpu=0,
+            train=dict(type=dataset_type,
+                       data_root=data_root,
+                       ann_file=data_root + 'waymo_mini_infos_train.pkl',
+                       calib_file=data_root + 'waymo_calibs.pkl',
+                       gt_bin_file=gt_bin_file,
+                       use_pkl_annos=True,
+                       split='training',
+                       pipeline=train_pipeline,
+                       modality=input_modality,
+                       classes=class_names,
+                       test_mode=False,
+                       queue_length=num_queue,
+                       box_type_3d='LiDAR',
+                       pcd_limit_range=point_cloud_range,
+                       bev_size=(bev_h_, bev_w_),
+                       img_format='.jpg',
+                       load_interval=1),
+            val=dict(type=dataset_type,
+                     pipeline=test_pipeline,
+                     data_root=data_root,
+                     ann_file=data_root + 'waymo_infos_val.pkl',
+                     calib_file=data_root + 'waymo_calibs.pkl',
+                     gt_bin_file=gt_bin_file,
+                     use_pkl_annos=True,
+                     split='training',
+                     pcd_limit_range=point_cloud_range,
+                     bev_size=(bev_h_, bev_w_),
+                     classes=class_names,
+                     modality=input_modality,
+                     samples_per_gpu=1,
+                     img_format='.jpg',
+                     load_interval=1),
+            test=dict(type=dataset_type,
+                      pipeline=test_pipeline,
+                      data_root=data_root,
+                      ann_file=data_root + 'waymo_infos_val.pkl',
+                      calib_file=data_root + 'waymo_calibs.pkl',
+                      gt_bin_file=gt_bin_file,
+                      use_pkl_annos=True,
+                      split='training',
+                      pcd_limit_range=point_cloud_range,
+                      bev_size=(bev_h_, bev_w_),
+                      classes=class_names,
+                      modality=input_modality,
+                      samples_per_gpu=1,
+                      img_format='.jpg',
+                      load_interval=1),
+            shuffler_sampler=dict(type='OriginDistributedGroupSampler'),
+            nonshuffler_sampler=dict(type='DistributedSampler'))
 
 optimizer = dict(type='AdamW2',
                  lr=2e-4,
@@ -237,15 +235,12 @@ total_epochs = 12
 evaluation = dict(interval=12, pipeline=test_pipeline)
 
 runner = dict(type='EpochBasedRunner_video', max_epochs=total_epochs)
-# load_from = '/home/lizhiqi/bevformer/work_dirs/waymoD5_r101_ms_flip/epoch_12.pth'
 load_from = 'ckpts/fcos3d.pth'
 
 fp16 = dict(loss_scale=512.)
-# fp16 =None
+
 # find_unused_parameters = True
 custom_hooks = [dict(type='TransferWeight', priority='LOWEST')]
-# custom_hooks = [dict(type='GradChecker',priority='HIGHEST')]
-# tools/dist_test.sh ./projects/configs/detr3d/detr3d_res101_gridmask.py ./detr3d_resnet101.pth 1 --eval=bbox
+
 log_config = dict(interval=50, hooks=[dict(type='TextLoggerHook'), dict(type='TensorboardLoggerHook')])
 checkpoint_config = dict(interval=1)
-#, max_keep_ckpts=1)

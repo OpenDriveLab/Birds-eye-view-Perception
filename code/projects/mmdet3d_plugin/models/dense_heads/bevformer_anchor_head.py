@@ -17,17 +17,13 @@ import torch
 from torch import nn
 import torch.nn.functional as F
 
-from mmcv.cnn import ConvModule, build_conv_layer
-from mmcv.runner import BaseModule, force_fp32, auto_fp16
+from mmcv.cnn import ConvModule
+from mmcv.runner import force_fp32
 from mmcv.cnn.bricks.transformer import build_positional_encoding
-from mmcv.cnn import ConvModule, Linear, bias_init_with_prob
-from mmcv.utils import TORCH_VERSION, digit_version
+from mmcv.cnn import ConvModule
 
-from mmdet.core import (multi_apply, reduce_mean, build_bbox_coder)
 from mmdet.models import HEADS
-from mmdet.models.dense_heads import DETRHead
 from mmdet.models.utils import build_transformer
-from mmdet.models.utils.transformer import inverse_sigmoid
 
 from mmdet3d.core.bbox import bbox_overlaps_nearest_3d
 from mmdet3d.models.dense_heads.anchor3d_head import Anchor3DHead
@@ -161,26 +157,13 @@ class BEVFormer_FreeAnchor3DHead(Anchor3DHead):
                 Shape [nb_dec, bs, num_query, 9].
             gt_bboxes_3d: for debug
         """
-
-        # for i,each in enumerate(mlvl_feats):
-        #    print('mlvl_feats',i,each.shape)
         bs, nm, c, input_img_h, input_img_w = mlvl_feats[0].shape
         dtype = mlvl_feats[0].dtype
         device = mlvl_feats[0].device
-        # query_embeds = self.query_embedding.weight.to(dtype)
         bev_embeds = self.bev_embedding.weight.to(dtype)
 
         bev_mask = torch.zeros((bs, self.bev_h, self.bev_w), device=device).to(dtype)
         bev_pos = self.positional_encoding(bev_mask).to(dtype)
-        # print(bev_pos.shape,bev_embeds.shape)
-
-        # img_masks = mlvl_feats[0].new_ones(
-        #     (bs, input_img_h, input_img_w))
-        # mlvl_masks = []
-        # mlvl_positional_encodings = []
-        # # from IPython import embed
-        # # embed()
-        # # exit()
 
         outputs = self.transformer(
             mlvl_feats,
@@ -247,9 +230,6 @@ class BEVFormer_FreeAnchor3DHead(Anchor3DHead):
         gt_labels = gt_labels_3d
         gt_bboxes = gt_bboxes_3d
         input_metas = img_metas
-        # from IPython import embed
-        # embed()
-        # exit()
         cls_scores = [preds_dicts['all_cls_scores']]
         bbox_preds = [preds_dicts['all_bbox_preds']]
         dir_cls_preds = [preds_dicts['dir_cls_preds']]
@@ -283,18 +263,11 @@ class BEVFormer_FreeAnchor3DHead(Anchor3DHead):
             anchors_, gt_labels_, gt_bboxes_, cls_prob_, bbox_preds_, dir_cls_preds_ =\
             anchors[i], gt_labels[i], gt_bboxes[i], cls_prob[i], bbox_preds[i],\
             dir_cls_preds[i]
-            # for _, (anchors_, gt_labels_, gt_bboxes_, cls_prob_, bbox_preds_,
-            #         dir_cls_preds_) in enumerate(
-            #             zip(anchors, gt_labels, gt_bboxes, cls_prob, bbox_preds,
-            #                 dir_cls_preds)):
 
             gt_bboxes_ = gt_bboxes_.tensor.to(anchors_.device)
 
             with torch.no_grad():
                 # box_localization: a_{j}^{loc}, shape: [j, 4]
-                # from IPython import embed
-                # embed()
-                # exit()
                 pred_boxes = self.bbox_coder.decode(anchors_, bbox_preds_)
 
                 # object_box_iou: IoU_{ij}^{loc}, shape: [i, j]
@@ -367,10 +340,6 @@ class BEVFormer_FreeAnchor3DHead(Anchor3DHead):
 
             # generate bbox weights
             if self.diff_rad_by_sin:
-                # from IPython import embed
-                # embed()
-                # exit()
-
                 bbox_preds_[matched], matched_object_targets = \
                     self.add_sin_difference(
                         bbox_preds_[matched], matched_object_targets)
@@ -416,7 +385,6 @@ class BEVFormer_FreeAnchor3DHead(Anchor3DHead):
         Returns:
             torch.Tensor: Loss of positive samples.
         """
-        # bag_prob = Mean-max(matched_prob)
         matched_prob = matched_cls_prob * matched_box_prob
         weight = 1 / torch.clamp(1 - matched_prob, 1e-12, None)
         weight /= weight.sum(dim=1).unsqueeze(dim=-1)
@@ -456,9 +424,6 @@ class BEVFormer_FreeAnchor3DHead(Anchor3DHead):
             list[tuple]: Prediction resultes of batches.
         """
         input_metas = img_metas
-        # from IPython import embed
-        # embed()
-        # exit()
         cls_scores = [preds_dicts['all_cls_scores']]
         bbox_preds = [preds_dicts['all_bbox_preds']]
         dir_cls_preds = [preds_dicts['dir_cls_preds']]

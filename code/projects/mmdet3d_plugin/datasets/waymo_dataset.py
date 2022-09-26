@@ -23,8 +23,6 @@
 # limitations under the License.
 # ==============================================================================
 
-
-import sys
 import time
 
 import mmcv
@@ -42,19 +40,13 @@ from .kitti_dataset import CustomKittiDataset
 from projects.mmdet3d_plugin.models.utils.draw_bbox import show_multi_modality_result
 from nuscenes.eval.common.utils import quaternion_yaw, Quaternion
 from mmdet.datasets import DATASETS
-from mmdet3d.core import show_result
-from mmdet3d.core.bbox import (Box3DMode, CameraInstance3DBoxes, Coord3DMode, LiDARInstance3DBoxes, points_cam2img)
-from mmdet3d.datasets.custom_3d import Custom3DDataset
-from mmdet3d.datasets.pipelines import Compose
+from mmdet3d.core.bbox import (Box3DMode, CameraInstance3DBoxes, LiDARInstance3DBoxes, points_cam2img)
 import copy
 import cv2
 import numpy as np
 import torch
 from glob import glob
 from os.path import join
-from matplotlib import pyplot as plt
-from collections import defaultdict
-from IPython import embed
 from mmcv.parallel import DataContainer as DC
 import random
 from .pipelines.compose import CustomCompose
@@ -127,9 +119,6 @@ class CustomWaymoDataset(CustomKittiDataset):
             nusc_can_bis=None,
             **kwargs):
         classes = ['Car', 'Pedestrian', 'Cyclist']
-        # from IPython import embed
-        # embed()
-        # exit()
         super().__init__(
             data_root=data_root,
             ann_file=ann_file,
@@ -153,7 +142,6 @@ class CustomWaymoDataset(CustomKittiDataset):
             data_infos = s1 + s2 + s3 + s4 + s5
             self.data_infos = data_infos
         else:
-            # print(len(self.data_infos))
             if load_interval == 5:
                 if len(self.data_infos) <= 40000:
                     load_interval = 1
@@ -199,9 +187,6 @@ class CustomWaymoDataset(CustomKittiDataset):
             legal_ids = np.array(list(scenes_infos.keys()))[sorted_index]
         new_data_infos = []
         for each in self.data_infos:
-            # from IPython import embed
-            # embed()
-            # exit()
             if each['image']['image_path'].split('/')[-1][:4] in legal_ids:
                 new_data_infos.append(each)
         return new_data_infos
@@ -221,7 +206,6 @@ class CustomWaymoDataset(CustomKittiDataset):
                     lidar to different cameras
                 - ann_info (dict): annotation info
         """
-
         info = self.data_infos[index]
         sample_idx = info['image']['image_idx']
         img_filename_0 = os.path.join(self.data_root, info['image']['image_path'])
@@ -230,7 +214,6 @@ class CustomWaymoDataset(CustomKittiDataset):
             image_filenames.append(img_filename_0.replace('image_0', f'image_{i}'))
 
         calib_file = img_filename_0.replace('image_0', 'calib').replace('png', 'txt').replace('jpg', 'txt')
-
         calibs = mmcv.load(calib_file)
 
         calibs = [each.strip() for each in calibs]
@@ -245,7 +228,6 @@ class CustomWaymoDataset(CustomKittiDataset):
             Trv2c = np.zeros([4, 4])
             Trv2c[-1, -1] = 1.
             Trv2c[:3, :4] = np.array(calibs[i + 6].split(' ')[1:]).reshape([3, 4])
-            # print(Trv2c)
             Pi = info['calib'][f'P{i}'].astype(np.float32)
             lidar2img = Pi @ rect @ Trv2c
             lidar2imgs.append(lidar2img)
@@ -455,9 +437,6 @@ class CustomWaymoDataset(CustomKittiDataset):
         file_pathname = self.waymo_tfrecord_pathnames[idx]
 
         file_data = tf.data.TFRecordDataset(file_pathname, compression_type='')
-        #from IPython import embed
-        #embed()
-        #exit()
         for frame_num, frame_data in enumerate(file_data):
             frame = open_dataset.Frame()
             frame.ParseFromString(bytearray(frame_data.numpy()))
@@ -465,13 +444,10 @@ class CustomWaymoDataset(CustomKittiDataset):
             context_name = frame.context.name
             frame_timestamp_micros = frame.timestamp_micros
             if frame_num in result.keys():
-                # if filename in self.name2idx:
                 objects = self.parse_objects(result[frame_num], context_name, frame_timestamp_micros)
             else:
                 objects = metrics_pb2.Objects()
-                # else:
                 print(filename, 'not found.')
-            #    objects = metrics_pb2.Objects()
 
             with open(join(self.waymo_results_save_dir, f'{filename}.bin'), 'wb') as f:
                 f.write(objects.SerializeToString())
@@ -511,9 +487,6 @@ class CustomWaymoDataset(CustomKittiDataset):
             sample_idx = info['image']['image_idx']
             img_filename_0 = os.path.join(self.data_root, info['image']['image_path'])
 
-            from IPython import embed
-            # embed()
-            # exit()
             valid_font_ind = (box_preds.tensor[:, 0] < 0) | (
                 (box_preds.tensor[:, 1] / box_preds.tensor[:, 0]).abs() > 0.47)
             valid_cam_inds = valid_font_ind & valid_inds
@@ -542,7 +515,6 @@ class CustomWaymoDataset(CustomKittiDataset):
             raise ValueError('Not supported split value.')
         save_tmp_dir = tempfile.TemporaryDirectory()
         self.waymo_results_save_dir = save_tmp_dir.name
-        #self.waymo_results_save_dir = '.cache'
         self.waymo_results_final_path = f'{pklfile_prefix}.bin'
         self.get_file_names()
 
@@ -554,8 +526,6 @@ class CustomWaymoDataset(CustomKittiDataset):
             output = outputs[idx]['pts_bbox']
             box_preds, scores_3d, labels_3d = output['boxes_3d'], output['scores_3d'], output['labels_3d']
 
-            # box_preds.tensor[:, -1] = box_preds.tensor[:, -1] - np.pi
-
             box_preds.limit_yaw(offset=0.5, period=np.pi * 2)
             limit_range = box_preds.tensor.new_tensor(self.pcd_limit_range)
             valid_inds = ((box_preds.center > limit_range[:3]) & (box_preds.center < limit_range[3:])).all(-1)
@@ -566,7 +536,6 @@ class CustomWaymoDataset(CustomKittiDataset):
             for i in range(5):
                 image_filenames.append(img_filename_0.replace('image_0', f'image_{i}'))
             calib_file = img_filename_0.replace('image_0', 'calib').replace('png', 'txt').replace('jpg', 'txt')
-            # print('calib_file', calib_file)
 
             calibs = mmcv.load(calib_file)
             calibs = [each.strip() for each in calibs]
@@ -641,10 +610,8 @@ class CustomWaymoDataset(CustomKittiDataset):
         self.results_maps = results_maps
         for i, key in enumerate(results_maps.keys()):
             print(i, len(results_maps[key]))
-        # print(len(results_maps[0]), len(results_maps[1]))
         mmcv.track_parallel_progress(self.convert_one, range(len(self.file_idx_list)), 32)
         print('\nFinished ...')
-        # self.convert_one(idx, results)
 
         pathnames = sorted(glob(join(self.waymo_results_save_dir, '*.bin')))
         combined = self.combine(pathnames)
@@ -1019,15 +986,12 @@ class CustomWaymoDataset(CustomKittiDataset):
             'difficulty': [],
             'num_points_in_gt': [],
         }
-        # for i in range(5):
         img_idx = info['image']['image_idx']
         lable_i_root = osp.join(label_root, f'label_all', str(img_idx).zfill(7) + '.txt')
 
         for line in mmcv.load(lable_i_root):
-            # label_all.append(line.strip().split(' '))
             box_info = line.strip().split(' ')
             if box_info[4:8] == ['0', '0', '0', '0']:  # remove back bboxes
-                # print('box_info', box_info)
                 continue
             label_all.append(box_info)
         if len(label_all) == 0:
@@ -1043,7 +1007,6 @@ class CustomWaymoDataset(CustomKittiDataset):
         custom_label_map['dimensions'] = np.array(custom_label_map['dimensions'])
         custom_label_map['rotation_y'] = np.array(custom_label_map['rotation_y'])
         custom_label_map['bbox'] = np.array(custom_label_map['bbox'])
-        # annos = self.remove_dontcare(custom_label_map)
 
         annos = custom_label_map
 
@@ -1051,7 +1014,6 @@ class CustomWaymoDataset(CustomKittiDataset):
         dims = annos['dimensions']
         rots = annos['rotation_y']
         gt_names = annos['name']
-        #print(loc, dims, rots)
 
         gt_bboxes_3d = np.concatenate([loc, dims, rots[..., np.newaxis]], axis=1).astype(np.float32)
 
@@ -1098,29 +1060,14 @@ class CustomWaymoDataset(CustomKittiDataset):
             if 'pts_bbox' in result.keys():
                 result = result['pts_bbox']
             data_info = self.data_infos[i]
-            # pts_path = data_info['point_cloud']['velodyne_path']
-            # print(data_info.keys())
-            # img_path =  data_info['img']['img_filename']
-            # file_name = osp.split(img_path)[-1].split('.')[0]
             img_metas, _ = self._extract_data(i, pipeline, ['img_metas', 'img'])
-            # img = img.permute(0, 2, 3, 1).cpu().numpy()
-            # points = points.numpy()s
-            # for now we convert points into depth mode
-            # points = Coord3DMode.convert_point(points, Coord3DMode.LIDAR,
-            #                                   Coord3DMode.DEPTH)
             try:
                 gt_bboxes = self.get_ann_info(i)['gt_bboxes_3d'].tensor.numpy()
-                # show_gt_bboxes = Box3DMode.convert(gt_bboxes, Box3DMode.LIDAR,
-                #                                    Box3DMode.DEPTH)
                 show_gt_bboxes = LiDARInstance3DBoxes(gt_bboxes, origin=(0.5, 0.5, 0))
             except:
                 show_gt_bboxes = None
 
             pred_bboxes = result['boxes_3d'].tensor.numpy()
-            # show_pred_bboxes = Box3DMode.convert(pred_bboxes, Box3DMode.LIDAR,
-            #                                      Box3DMode.DEPTH)
-            # # show_result(points, show_gt_bboxes, show_pred_bboxes, out_dir,
-            # #            file_name, show)
 
             scores = np.array(result['scores_3d'].cpu().numpy())
 
@@ -1198,7 +1145,6 @@ class WaymoDataset_video(CustomWaymoDataset):
         index_list = sorted(index_list[1:])
         seed = time.time()
         for i in index_list:
-
             i = max(0, i)
             input_dict = self.get_data_info(i)
             if input_dict is None:
@@ -1210,13 +1156,11 @@ class WaymoDataset_video(CustomWaymoDataset):
                 return None
             queue.append(example)
         return self.union2one(queue)
-        # return example
 
     def union2one(self, queue):
         imgs_list = [each['img'].data for each in queue]
         if 'points' in queue[0].keys():
             points_list = [each['points'].data for each in queue]
-            # print(type(queue[0]['points'].data))
             queue[-1]['points'] = DC(points_list, cpu_only=False, stack=False)
         metas_map = {}
         prev_scene_token = None

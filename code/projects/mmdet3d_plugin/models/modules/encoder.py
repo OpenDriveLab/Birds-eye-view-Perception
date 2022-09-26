@@ -86,7 +86,6 @@ class BEVTransformerEncoder(TransformerLayerSequence):
         reference_points_cam = reference_points_cam[..., 0:2] / torch.maximum(
             reference_points_cam[..., 2:3],
             torch.ones_like(reference_points_cam[..., 2:3]) * eps)
-        # print('reference_points_cam[..., 0:2]',reference_points_cam[..., 0:2])
 
         # TODO use ori_shape
         # print('reference_points_cam', reference_points_cam.shape)
@@ -98,7 +97,6 @@ class BEVTransformerEncoder(TransformerLayerSequence):
         else:
             reference_points_cam[..., 0] /= img_metas[0]['img_shape'][0][1]
             reference_points_cam[..., 1] /= img_metas[0]['img_shape'][0][0]
-        # reference_points_cam = (reference_points_cam - 0.5) * 2
 
         mask = (mask & (reference_points_cam[..., 1:2] > 0.0)
                 & (reference_points_cam[..., 1:2] < 1.0)

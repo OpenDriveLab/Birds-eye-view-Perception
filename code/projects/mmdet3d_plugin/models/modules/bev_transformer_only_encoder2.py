@@ -13,7 +13,6 @@
 # limitations under the License.
 # ==============================================================================
 
-
 import numpy as np
 import torch
 import torch.nn as nn
@@ -85,7 +84,6 @@ class BEVTransformerOnlyEncoderV2(BaseModule):
         """Initialize layers of the Detr3DTransformer."""
         self.level_embeds = nn.Parameter(torch.Tensor(self.num_feature_levels, self.embed_dims))
         self.cams_embeds = nn.Parameter(torch.Tensor(self.num_cams, self.embed_dims))
-        # self.reference_points = nn.Linear(self.embed_dims, 3)
         self.can_bus_mlp = nn.Sequential(
             nn.Linear(18, self.embed_dims // 2),
             nn.ReLU(inplace=True),
@@ -114,7 +112,6 @@ class BEVTransformerOnlyEncoderV2(BaseModule):
                     m.init_weights()
         normal_(self.level_embeds)
         normal_(self.cams_embeds)
-        # xavier_init(self.reference_points, distribution='uniform', bias=0.)
         xavier_init(self.can_bus_mlp, distribution='uniform', bias=0.)
 
     @staticmethod
@@ -132,10 +129,6 @@ class BEVTransformerOnlyEncoderV2(BaseModule):
         if dim == '3d':
 
             zs = torch.linspace(0.5, Z - 0.5, D, dtype=dtype, device=device).view(-1, 1, 1).expand(D, H, W) / Z
-
-            # zs = torch.arange(1, Z, 2, dtype=dtype,
-            #                  device=device).view(-1, 1, 1).expand(-1, H, W)/Z
-
             xs = torch.linspace(0.5, W - 0.5, W, dtype=dtype, device=device).view(1, 1, W).expand(D, H, W) / W
             ys = torch.linspace(0.5, H - 0.5, H, dtype=dtype, device=device).view(1, H, 1).expand(D, H, W) / H
             ref_3d = torch.stack((xs, ys, zs), -1)
@@ -285,8 +278,6 @@ class BEVTransformerOnlyEncoderV2(BaseModule):
             shift_y = shift_y * self.use_shift
             shift_x = shift_x * self.use_shift
         shift = bev_embed.new_tensor([shift_x, shift_y])
-        # if np.abs(rotation_angle)>10:
-        #    print(ego_angle, tmp_angle, rotation_angle, bev_angle, translation_length, shift_x, shift_y)
 
         if prev_bev is not None:
             if prev_bev.shape[1] == bev_h * bev_w:
@@ -330,11 +321,9 @@ class BEVTransformerOnlyEncoderV2(BaseModule):
                 feat = feat + self.cams_embeds[:, None, None, :].to(feat.dtype)
             else:
                 feat = feat  # + self.cams_embeds[:, None, None, :].to(feat.dtype).sum()*0
-            # print(lvl, pos_embed.shape)
             pos_embed = pos_embed.flatten(2).transpose(1, 2)
             lvl_pos_embed = pos_embed + self.level_embeds[lvl].view(1, 1, -1).to(feat.dtype)
             lvl_pos_embed_flatten.append(lvl_pos_embed)
-            # feat = feat #+ self.level_embeds[None, None, lvl:lvl + 1, :].to(feat.dtype)
             spatial_shapes.append(spatial_shape)
             feat_flatten.append(feat)
 
@@ -350,7 +339,6 @@ class BEVTransformerOnlyEncoderV2(BaseModule):
         feat_reference_2d = self.origin_get_reference_points(spatial_shapes,
                                                              device=bev_embed.device,
                                                              dtype=bev_embed.dtype)
-        # print(feat_reference_2d.shape)
         feat_flatten = self.feat_encoder(
             query=feat_flatten,
             key=None,
@@ -362,11 +350,10 @@ class BEVTransformerOnlyEncoderV2(BaseModule):
             level_start_index=level_start_index,
             valid_ratios=None,
         )
-        # print(feat_flatten.shape)
         # (HW, num_cam*bs, embed_dims)-> (num_cam, H*W, bs, embed_dims)
         feat_flatten = feat_flatten.reshape(-1, num_cam, bs, c)
         feat_flatten = feat_flatten.permute(1, 0, 2, 3)
-        #
+
         bev_embed = self.encoder(bev_embed,
                                  feat_flatten,
                                  feat_flatten,

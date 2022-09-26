@@ -25,13 +25,9 @@
 
 import copy
 import numpy as np
-import cv2 as cv
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
-import mmcv
 from mmcv.cnn import Linear, bias_init_with_prob
-from mmcv.cnn.bricks.transformer import build_positional_encoding
 from mmcv.runner import force_fp32, auto_fp16
 from mmcv.utils import TORCH_VERSION, digit_version
 from mmdet.core import multi_apply, reduce_mean
@@ -40,10 +36,8 @@ from mmdet.models.dense_heads import DETRHead
 from mmdet.models.utils.transformer import inverse_sigmoid
 from mmdet3d.core import xywhr2xyxyr
 from mmdet3d.core.bbox.coders import build_bbox_coder
-from mmdet3d.ops.iou3d.iou3d_utils import nms_gpu, nms_normal_gpu
+from mmdet3d.ops.iou3d.iou3d_utils import nms_normal_gpu
 from projects.mmdet3d_plugin.core.bbox.util import normalize_bbox
-from projects.mmdet3d_plugin.models.utils.bricks import run_time
-from projects.mmdet3d_plugin.models.utils.visual import save_tensor
 
 
 @HEADS.register_module()
@@ -170,8 +164,6 @@ class BEV_FormerHead(DETRHead):
             gt_bboxes_3d: for debug
         """
 
-        # for i,each in enumerate(mlvl_feats):
-        #    print('mlvl_feats',i,each.shape)
         bs, nm, c, input_img_h, input_img_w = mlvl_feats[0].shape
         dtype = mlvl_feats[0].dtype
         query_embeds = self.query_embedding.weight.to(dtype)
@@ -179,7 +171,6 @@ class BEV_FormerHead(DETRHead):
 
         bev_mask = torch.zeros((bs, self.bev_h, self.bev_w), device=bev_embeds.device).to(dtype)
         bev_pos = self.positional_encoding(bev_mask).to(dtype)
-        # print(bev_pos.shape,bev_embeds.shape)
 
         outputs = self.transformer(
             mlvl_feats,
@@ -268,12 +259,10 @@ class BEV_FormerHead(DETRHead):
                 - neg_inds (Tensor): Sampled negative indices for each image.
         """
 
-        # print(gt_bboxes[:,-1])
         num_bboxes = bbox_pred.size(0)
         # assigner and sampler
         gt_c = gt_bboxes.shape[-1]
 
-        # print(gt_bboxes_ignore)
         assign_result = self.assigner.assign(bbox_pred, cls_score, gt_bboxes, gt_labels, gt_bboxes_ignore)
 
         sampling_result = self.sampler.sample(assign_result, bbox_pred, gt_bboxes)
@@ -494,10 +483,6 @@ class BEV_FormerHead(DETRHead):
         """
 
         preds_dicts = self.bbox_coder.decode(preds_dicts)
-        # from IPython import embed
-        # embed()
-        # print(preds_dicts)
-        # exit()
 
         num_samples = len(preds_dicts)
         ret_list = []
@@ -506,13 +491,9 @@ class BEV_FormerHead(DETRHead):
             bboxes = preds['bboxes']
 
             bboxes[:, 2] = bboxes[:, 2] - bboxes[:, 5] * 0.5
-            # print(bboxes.shape)
             code_size = bboxes.shape[-1]
 
             bboxes = img_metas[i]['box_type_3d'](bboxes, code_size)
-            # from IPython import embed
-            # embed()
-            # exit()
             if img_metas[i]['flip']:
                 bboxes.tensor[:, 1] = -bboxes.tensor[:, 1]
                 bboxes.tensor[:, -1] = -bboxes.tensor[:, -1] + np.pi
@@ -521,9 +502,6 @@ class BEV_FormerHead(DETRHead):
             scores = preds['scores']
             labels = preds['labels']
             if self.nms_thr is not None:
-                # if self.use_rotate_nms:
-                #   nms_func = nms_gpu
-                # else:
                 nms_func = nms_normal_gpu
                 selected = nms_func(bboxes_for_nms, scores, self.nms_thr)
                 ret_list.append([bboxes[selected], scores[selected], labels[selected]])

@@ -14,21 +14,15 @@
 
 
 import copy
-import math
 import numpy as np
-import cv2 as cv
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-import mmcv
-from mmcv.cnn import ConvModule, Linear, bias_init_with_prob, build_conv_layer
-from mmcv.utils import TORCH_VERSION, digit_version
+from mmcv.cnn import ConvModule
 from mmcv.cnn.bricks.transformer import build_positional_encoding
-from mmcv.runner import BaseModule, force_fp32, auto_fp16
-from mmdet.core import (multi_apply, reduce_mean)
-from mmdet.models.utils.transformer import inverse_sigmoid
+from mmcv.runner import BaseModule, force_fp32
+from mmdet.core import multi_apply
 from mmdet.models import HEADS
-from mmdet.models.dense_heads import DETRHead
 from mmdet.models.utils import build_transformer
 from mmdet3d.core.bbox.coders import build_bbox_coder
 from mmdet3d.core import (circle_nms, draw_heatmap_gaussian, gaussian_radius, xywhr2xyxyr)
@@ -37,9 +31,6 @@ from mmdet3d.models.builder import HEADS, build_loss
 from mmdet3d.models.utils import clip_sigmoid
 from mmdet3d.ops.iou3d.iou3d_utils import nms_gpu
 from mmdet.core import build_bbox_coder, multi_apply
-from projects.mmdet3d_plugin.models.utils.visual import save_tensor
-from projects.mmdet3d_plugin.core.bbox.util import normalize_bbox
-from projects.mmdet3d_plugin.models.utils.bricks import run_time
 
 
 @HEADS.register_module()
@@ -207,9 +198,6 @@ class BEV_FormerHead_centerpoint(BaseModule):
                 Shape [nb_dec, bs, num_query, 9].
             gt_bboxes_3d: for debug
         """
-
-        # for i,each in enumerate(mlvl_feats):
-        #    print('mlvl_feats',i,each.shape)
         bs, nm, c, input_img_h, input_img_w = mlvl_feats[0].shape
         dtype = mlvl_feats[0].dtype
         device = mlvl_feats[0].device
@@ -218,15 +206,6 @@ class BEV_FormerHead_centerpoint(BaseModule):
 
         bev_mask = torch.zeros((bs, self.bev_h, self.bev_w), device=device).to(dtype)
         bev_pos = self.positional_encoding(bev_mask).to(dtype)
-        # print(bev_pos.shape,bev_embeds.shape)
-
-        # img_masks = mlvl_feats[0].new_ones(
-        #     (bs, input_img_h, input_img_w))
-        # mlvl_masks = []
-        # mlvl_positional_encodings = []
-        # # from IPython import embed
-        # # embed()
-        # # exit()
 
         outputs = self.transformer(
             mlvl_feats,
@@ -254,23 +233,6 @@ class BEV_FormerHead_centerpoint(BaseModule):
         bev_feature = bev_feature.permute(0, 2, 1).view(bs, self.embed_dims, self.bev_h, self.bev_w)
 
         outs = multi_apply(self.forward_single, [bev_feature])
-
-        # for lvl in range(hs.shape[0]):
-
-        #     cur_lvl_feat = hs[lvl].permute(0, 2, 1).view()
-        #     outputs_class = self.cls_branches[lvl](hs[lvl])
-        #     tmp = self.reg_branches[lvl](hs[lvl])
-
-        #     tmp[..., 0:2] = tmp[..., 0:2].sigmoid()
-        #     tmp[..., 4:5] = tmp[..., 4:5].sigmoid()
-        #     tmp[..., 0:1] = (tmp[..., 0:1] * (self.pc_range[3] - self.pc_range[0]) + self.pc_range[0])
-        #     tmp[..., 1:2] = (tmp[..., 1:2] * (self.pc_range[4] - self.pc_range[1]) + self.pc_range[1])
-        #     tmp[..., 4:5] = (tmp[..., 4:5] * (self.pc_range[5] - self.pc_range[2]) + self.pc_range[2])
-
-        #     # TODO: check if using sigmoid
-        #     outputs_coord = tmp
-        #     outputs_classes.append(outputs_class)
-        #     outputs_coords.append(outputs_coord)
 
         if return_bev:
             return bev_outputs, outs
@@ -447,9 +409,7 @@ class BEV_FormerHead_centerpoint(BaseModule):
                         # vx.unsqueeze(0),
                         # vy.unsqueeze(0)
                     ])
-            # from IPython import embed
-            # embed()
-            # exit()
+
             heatmaps.append(heatmap)
             anno_boxes.append(anno_box)
             masks.append(mask)
@@ -473,9 +433,6 @@ class BEV_FormerHead_centerpoint(BaseModule):
             # heatmap focal loss
             preds_dict[0]['heatmap'] = clip_sigmoid(preds_dict[0]['heatmap'])
             num_pos = heatmaps[task_id].eq(1).float().sum().item()
-            # from IPython import embed
-            # embed()
-            # exit()
             loss_heatmap = self.loss_cls(preds_dict[0]['heatmap'], heatmaps[task_id], avg_factor=max(num_pos, 1))
             target_box = anno_boxes[task_id]
             # reconstruct the anno_box from multiple reg heads
@@ -594,9 +551,6 @@ class BEV_FormerHead_centerpoint(BaseModule):
                 bboxes.tensor[:, 1] = -bboxes.tensor[:, 1]
                 bboxes.tensor[:, -1] = -bboxes.tensor[:, -1] + np.pi
             ret_list.append([bboxes, scores, labels])
-        # from IPython import embed
-        # embed()
-        # exit()
         return ret_list
 
     def get_task_detections(self, num_class_with_bg, batch_cls_preds, batch_reg_preds, batch_cls_labels, img_metas):

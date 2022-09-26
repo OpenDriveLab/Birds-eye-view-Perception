@@ -34,21 +34,7 @@ from mmcv import ConfigDict
 from mmcv.cnn import build_norm_layer
 from mmcv.cnn.bricks.registry import TRANSFORMER_LAYER
 from mmcv.cnn.bricks.transformer import build_feedforward_network, build_attention
-from mmcv.runner.base_module import BaseModule, ModuleList, Sequential
-
-# Avoid BC-breaking of importing MultiScaleDeformableAttention from this file
-try:
-    from mmcv.ops.multi_scale_deform_attn import MultiScaleDeformableAttention  # noqa F401
-    warnings.warn(
-        ImportWarning('``MultiScaleDeformableAttention`` has been moved to '
-                      '``mmcv.ops.multi_scale_deform_attn``, please change original path '  # noqa E501
-                      '``from mmcv.cnn.bricks.transformer import MultiScaleDeformableAttention`` '  # noqa E501
-                      'to ``from mmcv.ops.multi_scale_deform_attn import MultiScaleDeformableAttention`` '  # noqa E501
-                      ))
-except ImportError:
-    warnings.warn('Fail to import ``MultiScaleDeformableAttention`` from '
-                  '``mmcv.ops.multi_scale_deform_attn``, '
-                  'You should install ``mmcv-full`` if you need this module. ')
+from mmcv.runner.base_module import BaseModule, ModuleList
 
 
 

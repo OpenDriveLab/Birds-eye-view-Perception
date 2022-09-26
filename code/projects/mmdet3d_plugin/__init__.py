@@ -5,8 +5,8 @@ from .core.bbox.iou_calculator.iou_calculator import BboxOverlapsNearest3D_with_
 from .core.evaluation.eval_hooks import CustomDistEvalHook
 from .datasets import CustomNuScenesDataset, NuScenesDataset_eval_modified, WaymoDataset_video
 from .datasets.pipelines import (PhotoMetricDistortionMultiViewImage, PadMultiViewImage, NormalizeMultiviewImage,
-                                 CropMultiViewImage, RandomScaleImageMultiViewImage, HorizontalRandomFlipMultiViewImage,
-                                 CustomCollect3D)
+                                 CropMultiViewImage,  HorizontalRandomFlipMultiViewImage,
+                                 CustomCollect3D)  # RandomScaleImageMultiViewImage,
 from .models.backbones.vovnet import VoVNet
 from .models.dense_heads.bevformer_detr_head import BEV_FormerHead
 from .models.detectors.bevformer import BEV_Former
