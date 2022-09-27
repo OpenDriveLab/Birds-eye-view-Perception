@@ -102,7 +102,7 @@ sh ./tools/dist_test_video.sh projects/configs/bevformer/waymo_mini_r101_baselin
 
 ### For expert
 
-We provide wrappers of this BEV toolbox for mmdet3d and detectron2. 
+We provide wrappers of this BEV toolbox for mmdet3d and detectron2(on-going feature). 
 
 #### Use BEV-toolbox with mmdet3d
 
