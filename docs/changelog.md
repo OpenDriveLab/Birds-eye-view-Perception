@@ -1,6 +1,6 @@
 # Changelog
 
-## V0 (xx/xx/2022)
+## V0 (09/30/2022)
 
 ### Highlights
 * First release of BEV-Toolbox
