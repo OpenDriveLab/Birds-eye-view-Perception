@@ -31,7 +31,7 @@ Please refer to [changelog.md](docs/changelog.md) for details and release histor
 ## <div id='overview'>Overview of BEV Perception</div>
 
 ![](figs/general_overview.jpg)
-The general picture of BEV perception at a glance, where consists of three sub-parts based on the input modality. BEV perception is a general task built on top of a series of fundamental tasks. For better completeness of the whole perception algorithms in autonomous driving, we list other topics as well.
+The general picture of BEV perception at a glance, where consists of three sub-parts based on the input modality. BEV perception is a general task built on top of a series of fundamental tasks. For better completeness of the whole perception algorithms in autonomous driving, we list other topics as well. More detail can be found in the [survey paper](https://arxiv.org/abs/2209.05324).
 
 
 ### <div id='papers'>Awesome Papers</div>
