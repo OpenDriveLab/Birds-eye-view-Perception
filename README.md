@@ -77,7 +77,7 @@ We have some examples of using BEV-toolbox.
 
 import cv2
 import numpy as np
-from toolbox.data_aug import RandomScaleImageMultiViewImage_naive
+from bev_toolbox.data_aug import RandomScaleImageMultiViewImage_naive
 
 # Declare an augmentation pipeline
 transform = RandomScaleImageMultiViewImage_naive(scales=[0.9, 1.0, 1.1])
@@ -99,7 +99,7 @@ imgs_new, cam_intr_new, lidar2img_new = transform(imgs, cam_intr, cam_extr, lida
 
 Add the following code to [train_video.py](code/tools/train_video.py#L93) or [test_video.py](code/tools/test_video.py#L110).
 ```
-from toolbox.init import init_toolbox_mmdet3d
+from bev_toolbox.init_toolbox import init_toolbox_mmdet3d
 init_toolbox_mmdet3d()
 ```
 Then you can directly use the functions in the toolbox just like the usage of mmdet3d. For example, you can just add ```RandomScaleImageMultiViewImage``` to the configure file.

@@ -1,3 +1,3 @@
-## Datasets of BEV Perception
+## Datasets for BEV Perception
 
 ![](../../figs/dataset_table.jpg)
