@@ -91,7 +91,7 @@ def main():
         import_modules_from_strings(**cfg['custom_imports'])
 
     # --------------toolbox-------------
-    from toolbox.init_toolbox import init_toolbox_mmdet3d
+    from toolbox.init import init_toolbox_mmdet3d
     init_toolbox_mmdet3d()
     # ----------------------------------
 
