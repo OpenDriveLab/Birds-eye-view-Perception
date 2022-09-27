@@ -1,3 +1,4 @@
+######################################################################
 # Copyright (c) 2022 OpenPerceptionX. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -11,6 +12,12 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+######################################################################
+
+######################################################################
+# This file includes concrete implementation for different data augmentation
+# methods in transforms.py.
+######################################################################
 
 import numpy as np
 import cv2
@@ -35,10 +42,14 @@ def scale_image_multiple_view(imgs: List[np.ndarray],
     """Resize the multiple-view images with the same scale selected randomly.
     Notably used in :class:`.transforms.RandomScaleImageMultiViewImage_naive
     Args:
-        img (list of numpy.array): Multiple-view images to be resized.
-        cam_intrinsics (list of numpy.array): Intrinsic parameters of different cameras.
-        cam_extrinsics (list of numpy.array): Extrinsic parameters of different cameras that transform from lidar to cameras.
-        lidar2img (list of numpy.array): Transformations from lidar to images.
+        imgs (list of numpy.array): Multiple-view images to be resized. len(img) is the number of cameras.
+                    img shape: [H, W, 3].
+        cam_intrinsics (list of numpy.array): Intrinsic parameters of different cameras. len(cam_intrinsics)
+                is the number of camera. For each camera, shape is 4 x 4.
+        cam_extrinsics (list of numpy.array): Extrinsic parameters of different cameras that transform from
+                lidar to cameras. len(cam_extrinsics) is the number of camera. For each camera, shape is 4 x 4.
+        lidar2img (list of numpy.array): Transformations from lidar to images. len(lidar2img) is the number 
+                of camera. For each camera, shape is 4 x 4.
         rand_scale (float): resize ratio
         interpolation (string): mode for interpolation in opencv.
     Returns:

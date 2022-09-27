@@ -1,3 +1,4 @@
+######################################################################
 # Copyright (c) 2022 OpenPerceptionX. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -11,6 +12,13 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+######################################################################
+
+######################################################################
+# This file includes the wrappers of the data augmentation methods for
+# mmdet3d. For more details, please refer to data_aug/transfroms.py and
+# data_aug/functional.py
+######################################################################
 
 from typing import Dict
 from mmdet.datasets.builder import PIPELINES
