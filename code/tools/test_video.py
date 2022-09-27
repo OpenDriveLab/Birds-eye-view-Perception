@@ -107,6 +107,11 @@ def main():
         from mmcv.utils import import_modules_from_strings
         import_modules_from_strings(**cfg['custom_imports'])
 
+    # --------------toolbox-------------
+    from toolbox.init_toolbox import init_toolbox_mmdet3d
+    init_toolbox_mmdet3d()
+    # ----------------------------------
+
     # import modules from plguin/xx, registry will be updated
     if hasattr(cfg, 'plugin'):
         if cfg.plugin:

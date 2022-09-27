@@ -1,3 +1,3 @@
-from transforms import RandomScaleImageMultiViewImage_naive
+from .transforms import RandomScaleImageMultiViewImage_naive
 
 __all__ = ['RandomScaleImageMultiViewImage_naive']

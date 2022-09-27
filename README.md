@@ -72,15 +72,18 @@ We have some examples of using BEV-toolbox.
 
 **A simple example**
 ```python
+# in code dir (cd code)
+import cv2
+import numpy as np
 from toolbox.data_aug import RandomScaleImageMultiViewImage_naive
 
 # Declare an augmentation pipeline
 transform = RandomScaleImageMultiViewImage_naive(scales=[0.9, 1.0, 1.1])
 
 # imgs (list of numpy.array): multiple-view images
-imgs = load_multiview_imgs()
+imgs = [cv2.imread(f'example/view{i}.jpg') for i in range(5)]
 # lidar2img (list of numpy.narray): multiple-view transformations from lidar to image
-lidar2img = load_multiview_lidar2img()
+lidar2img = [np.load(f'example/view{i}_lidar2img.npy') for i in range(5)]
 
 # Augment an image
 imgs_new, lidar2img_new = transform(imgs, lidar2img)
@@ -88,7 +91,7 @@ imgs_new, lidar2img_new = transform(imgs, lidar2img)
 
 #### I want to know how to use BEV-toolbox with mmdet3d
 
-Add the following code to ```train.py``` or ```test.py```.
+Add the following code to ```train_video.py``` or ```test_video.py```.
 ```
 from toolbox.init import init_toolbox
 init_toolbox()
@@ -109,7 +112,7 @@ train_pipeline = [
 ]
 ```
 
-We provide bag of tricks to boost the performance of the baseline below implemented by our toolbox and mmdet3d.
+We also provide bag of tricks to boost the performance of the baseline below implemented by our toolbox and mmdet3d.
 
 
 ## <div id='tricks'>Bag of Tricks</div>

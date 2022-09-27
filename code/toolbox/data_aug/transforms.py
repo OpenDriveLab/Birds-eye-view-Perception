@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Tuple
 import numpy as np
 from .functional import scale_image_multiple_view
 
@@ -14,7 +14,10 @@ class RandomScaleImageMultiViewImage_naive(object):
         self.scales = scales
         self.seed = 0
 
-    def forward(self, imgs: List[np.ndarray], lidar2img: List[np.ndarray], seed=None):
+    def forward(self,
+                imgs: List[np.ndarray],
+                lidar2img: List[np.ndarray],
+                seed=None) -> Tuple[List[np.ndarray], List[np.ndarray]]:
         """
         Args:
             img (list of numpy.array): Multiple-view images to be resized.
@@ -32,6 +35,12 @@ class RandomScaleImageMultiViewImage_naive(object):
         imgs_new, lidar2img_new = scale_image_multiple_view(imgs, lidar2img, rand_scale)
 
         return imgs_new, lidar2img_new
+
+    def __call__(self,
+                 imgs: List[np.ndarray],
+                 lidar2img: List[np.ndarray],
+                 seed=None) -> Tuple[List[np.ndarray], List[np.ndarray]]:
+        return self.forward(imgs, lidar2img)
 
     def __repr__(self):
         repr_str = self.__class__.__name__
