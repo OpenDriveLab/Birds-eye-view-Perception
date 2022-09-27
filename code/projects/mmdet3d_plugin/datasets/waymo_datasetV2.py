@@ -135,7 +135,7 @@ class WaymoDataset_videoV2(WaymoDataset_video):
                 Pi = info['calib'][f'P{i}'].astype(np.float32)
                 lidar2img = Pi @ rect @ Trv2c
                 lidar2imgs.append(lidar2img)
-                lidar2cam_rts.append(rect @ Trv2c)
+                lidar2cam_rts.append(rect @ Trv2c)  # The extrinsics that tranforms data from lidar to camera.
                 cam_intrinsics.append(Pi)
 
         # pts_filename = self._get_pts_filename(sample_idx)
