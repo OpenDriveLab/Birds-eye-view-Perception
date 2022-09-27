@@ -50,30 +50,9 @@ We have also summarized some conventional methods for different tasks.
 * [Conventional Methods LiDAR Segmentation](docs/paper_list/lidar_segmentation.md)
 * [Conventional Methods Sensor Fusion](docs/paper_list/sensor_fusion.md)
 
-## <div id='tutorial'>Getting Started</div>
-
-### For beginners
-We provide a pipeline for beginners to run a baseline experiment on Waymo 1/5 training data and also detailed instruction for the installation of environment, preparation of data and usage of code.
-
-#### 1. Installation
-Please refer to [instatllation.md](docs/installation.md) for installation of environment.
-
-#### 2. Data Preparation
-
-Please refer to [data_preparation.md](docs/data_preparation.md) for preparation of dataset and pretrained model.
-
-#### 3. Usage
-Please refer to [usage.md](docs/usage.md) for commands of training and evaluation.
-
-### For expert
-
-#### I want to learn about BEV-toolbox
-
-We have some examples of using BEV-toolbox.
-
-**A simple example**
+## <div id='example'>A simple example</div>
 ```python
-# in code dir (run cd code first)
+# in code dir
 
 import cv2
 import numpy as np
@@ -95,7 +74,32 @@ lidar2img = [np.load(f'example/cam{i}_lidar2img.npy') for i in range(5)]
 imgs_new, cam_intr_new, lidar2img_new = transform(imgs, cam_intr, cam_extr, lidar2img)
 ```
 
-#### I want to know how to use BEV-toolbox with mmdet3d
+## <div id='tutorial'>Getting Started</div>
+
+#### 1. Installation
+Please refer to [instatllation.md](docs/installation.md) for installation of environment.
+
+#### 2. Data Preparation
+
+Please refer to [data_preparation.md](docs/data_preparation.md) for preparation of dataset and pretrained model.
+
+#### 3. Running Experiments
+Please refer to [usage.md](docs/usage.md) for commands of training and evaluation.
+
+## <div id='guideline'>User Guidelines</div>
+
+### For beginners
+We provide a baseline experiment for beginners to run bevformer on Waymo 1/5 training data.
+```shell
+cd code
+sh ./tools/dist_train_video.sh projects/configs/bevformer/waymo_mini_r101_baseline.py 8
+```
+
+### For expert
+
+We provide wrappers of this BEV toolbox for mmdet3d and detectron2. 
+
+#### Use BEV-toolbox with mmdet3d
 
 Add the following code to [train_video.py](code/tools/train_video.py#L93) or [test_video.py](code/tools/test_video.py#L110).
 ```
@@ -113,6 +117,9 @@ train_pipeline = [
 
 We also provide bag of tricks to boost the performance of the baseline below implemented by our toolbox and mmdet3d.
 
+#### Use BEV-toolbox with detectron2
+
+We plan to make this toolbox compatible with detectron2. But, for now, it is still an onging feature.
 
 ## <div id='tricks'>Bag of Tricks</div>
 We provide an overview of the bag of tricks as the model zoo, which can be grouped as four types -- data augmentation, design of BEV encoder, loss family and different 3D detection head and post-process policy. Please click the link of each trick for more details. We also offer their corresponding configs and performance in the table below for the convenience of users.
