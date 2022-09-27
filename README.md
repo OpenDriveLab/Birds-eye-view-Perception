@@ -225,7 +225,7 @@ This project is released under the [Apache 2.0 license](LICENSE).
 
 ## <div id='cite'>Citation</div>
 
-If you find this project useful in your https://github.com/OpenPerceptionX/BEVPerception-Survey-Recipe.gitresearch, please consider cite:
+If you find this project useful in your research, please consider cite:
 
 ```BibTeX
 @article{li2022delving,
@@ -249,4 +249,3 @@ Many thanks to these excellent open source projects and also the stargazers and 
 
 ### &#8627; Forkers
 [![Forkers repo roster for @OpenPerceptionX/BEVPerception-Survey-Recipe](https://reporoster.com/forks/OpenPerceptionX/BEVPerception-Survey-Recipe)](https://github.com/OpenPerceptionX/BEVPerception-Survey-Recipe/network/members)
-https://github.com/OpenPerceptionX/BEVPerception-Survey-Recipe.git
