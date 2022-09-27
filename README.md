@@ -16,14 +16,15 @@ This is an open source BEV 3D object detection toolbox based on PyTorch, associa
 ### Major Features
 
 * **Support Waymo Open Dataset (WOD) for camera-only detection** <br> We provide a suitable playground for new-beginners in this area, including hands-on tutorial and small-scale dataset (1/5 WOD in kitti format) to validate idea.
-* **Integration with bag of tricks** <br> All these tricks are verifed in the Waymo Open Challenge and help us achieve 1st in the camera-based detection track eventually.
+* **Integration with bag of tricks** <br> Currently, there are few codebase support practical tools for BEV camera 3D detection. We integrate bag of tricks that help us achieve 1st in the camera-based detection track of the Waymo Open Challenge 2022. 
+* **Convenient BEVPerception Toolbox** <br> We provide a convenient toolbox including these tricks that can be used indedependly or as a plug-in for mmdet3d. 
 
 ## <div id='update'>What's New</div>
 
-v0 was released in xx/9/2022.
+v0 was released in 30/9/2022.
 * Offer a pipeline to process the Waymo dataset (camera-based 3D detection).
 * Release a baseline (with config) for Waymo dataset and also 1/5 Waymo dataset in Kitti format.
-* Integrate some practical data augmentation methods for BEV camera-based 3D detection.
+* Integrate some practical data augmentation methods for BEV camera-based 3D detection in the toolbox.
 
 Please refer to [changelog.md](docs/changelog.md) for details and release history.
 
@@ -91,10 +92,10 @@ imgs_new, lidar2img_new = transform(imgs, lidar2img)
 
 #### I want to know how to use BEV-toolbox with mmdet3d
 
-Add the following code to ```train_video.py``` or ```test_video.py```.
+Add the following code to [train_video.py](code/tools/train_video.py#L93) or [test_video.py](code/tools/test_video.py#L110).
 ```
-from toolbox.init import init_toolbox
-init_toolbox()
+from toolbox.init import init_toolbox_mmdet3d
+init_toolbox_mmdet3d()
 ```
 Then you can directly use the functions in the toolbox just like the usage of mmdet3d. For example, you can just add ```RandomScaleImageMultiViewImage``` to the configure file.
 ```python
@@ -173,7 +174,7 @@ We provide an overview of the bag of tricks as the model zoo, which can be group
 
 ### Config with Performance
 
-We provide the improvement of each trick compared with the baseline on the Waymo validation set. All the models are trained with 1/5 training data of Waymo v1.3 which is represented as Waymo mini here.
+We provide the improvement of each trick compared with the baseline on the Waymo validation set. All the models are trained with 1/5 training data of Waymo v1.3 which is represented as Waymo mini here. It's worthy noting that the results were run on data with *png* format. We are revalidating these results on the data with *jpg* format. So, the actual performance may be different.
 
 ✓: DONE, ☐: TODO.
 
@@ -197,17 +198,24 @@ We provide the improvement of each trick compared with the baseline on the Waymo
 ## <div id='todo'>Ongoing Features</div>
 
 **Integrate more tricks**
+- [ ] More data augmentation methods for BEV perception
+  - [ ] Horizontal random flip for multi-view images
+  - [ ] Random Crop for multi-view images
 - [ ] Post-process
   - [ ] Test-time Augmentation
   - [ ] Weighted Box Fusion
   - [ ] Two-stage Ensemble
 
 **Improve the docs**
-- [ ] Add illstruations for the design of BEV Encoder
+- [ ] Add documentation to introduce the APIs of the toolbox
 - [ ] Add more detailed explaination of the bag of tricks
 
+**Visualization**
+- [ ] Visualization in BEV
+- [ ] Visualization of model's features 
+
 **Support other datasets**
-- [ ] Support Nuscenes dataset and also provide some models of different tricks
+- [ ] Support Nuscenes dataset
 
 **Refactoring**
 - [ ] Disentangle the implementation of BEVFormer and bag of tricks
