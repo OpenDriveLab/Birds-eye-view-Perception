@@ -94,6 +94,11 @@ We provide a baseline experiment for beginners to run bevformer on Waymo 1/5 tra
 cd code
 sh ./tools/dist_train_video.sh projects/configs/bevformer/waymo_mini_r101_baseline.py 8
 ```
+Logs and checkpoints will be saved at ```work_dirs/waymo_mini_r101_baseline```. 
+After training, run the following command for evaluation.
+```
+sh ./tools/dist_test_video.sh projects/configs/bevformer/waymo_mini_r101_baseline.py work_dirs/waymo_mini_r101_baseline/latest.pth 8
+```
 
 ### For expert
 
