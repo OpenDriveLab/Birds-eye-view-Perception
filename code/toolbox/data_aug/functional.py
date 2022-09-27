@@ -13,20 +13,24 @@ cv2_interp_codes = {
 
 
 def scale_image_multiple_view(imgs: List[np.ndarray],
+                              cam_intrinsics: List[np.ndarray],
+                              cam_extrinsics: List[np.ndarray],
                               lidar2img: List[np.ndarray],
                               rand_scale: float,
-                              interpolation='bilinear') -> Tuple[List[np.ndarray], List[np.ndarray]]:
+                              interpolation='bilinear') -> Tuple[List[np.ndarray], List[np.ndarray], List[np.ndarray]]:
     """Resize the multiple-view images with the same scale selected randomly.
     Notably used in :class:`.transforms.RandomScaleImageMultiViewImage_naive
     Args:
         img (list of numpy.array): Multiple-view images to be resized.
-        lidar2img (list of numpy.array): Transformations from lidar to different cameras.
+        cam_intrinsics (list of numpy.array): Intrinsic parameters of different cameras.
+        cam_extrinsics (list of numpy.array): Extrinsic parameters of different cameras that transform from lidar to cameras.
+        lidar2img (list of numpy.array): Transformations from lidar to images.
         rand_scale (float): resize ratio
         interpolation (string): mode for interpolation in opencv.
     Returns:
-        imgs_new (list of numpy.array): updated multiple-view images
-        lidar2img_new (list of numpy.array): updated transformations from lidar to different 
-        cameras.
+        imgs_new (list of numpy.array): Updated multiple-view images
+        cam_intrinsics_new (list of numpy.array): Updated intrinsic parameters of different cameras.
+        lidar2img_new (list of numpy.array): Updated Transformations from lidar to images.
     """
 
     y_size = [int(img.shape[0] * rand_scale) for img in imgs]
@@ -39,5 +43,7 @@ def scale_image_multiple_view(imgs: List[np.ndarray],
         cv2.resize(img, (x_size[idx], y_size[idx]), interpolation=cv2_interp_codes[interpolation])
         for idx, img in enumerate(imgs)
     ]
-    lidar2img_new = [scale_factor @ l2i for l2i in lidar2img]
-    return imgs_new, lidar2img_new
+    cam_intrinsics_new = [scale_factor @ cam_intrinsic for cam_intrinsic in cam_intrinsics]
+    lidar2img = [intr @ extr for (intr, extr) in zip(cam_intrinsics_new, cam_extrinsics)]
+
+    return imgs_new, cam_intrinsics_new, lidar2img

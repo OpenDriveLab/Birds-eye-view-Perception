@@ -16,31 +16,38 @@ class RandomScaleImageMultiViewImage_naive(object):
 
     def forward(self,
                 imgs: List[np.ndarray],
+                cam_intrinsics: List[np.ndarray],
+                cam_extrinsics: List[np.ndarray],
                 lidar2img: List[np.ndarray],
-                seed=None) -> Tuple[List[np.ndarray], List[np.ndarray]]:
+                seed=None) -> Tuple[List[np.ndarray], List[np.ndarray], List[np.ndarray]]:
         """
         Args:
             img (list of numpy.array): Multiple-view images to be resized.
-            lidar2img (list of numpy.array): Transformations from lidar to different cameras.
+            cam_intrinsics (list of numpy.array): Intrinsic parameters of different cameras.
+            cam_extrinsics (list of numpy.array): Extrinsic parameters of different cameras that transform from lidar to cameras.
+            lidar2img (list of numpy.array): Transformations from lidar to images.
+            seed (int): Seed for generating random number. 
         Returns:
-            imgs_new (list of numpy.array): updated multiple-view images
-            lidar2img_new (list of numpy.array): updated transformations from lidar to different 
-            cameras.
+            imgs_new (list of numpy.array): Updated multiple-view images
+            cam_intrinsics_new (list of numpy.array): Updated intrinsic parameters of different cameras.
+            lidar2img_new (list of numpy.array): Updated Transformations from lidar to images.
         """
         if seed is not None:
             np.random.seed(int(seed))
         rand_ind = np.random.permutation(range(len(self.scales)))[0]
         rand_scale = self.scales[rand_ind]
+        imgs_new, cam_intrinsic_new, lidar2img_new = scale_image_multiple_view(imgs, cam_intrinsics, cam_extrinsics,
+                                                                               lidar2img, rand_scale)
 
-        imgs_new, lidar2img_new = scale_image_multiple_view(imgs, lidar2img, rand_scale)
-
-        return imgs_new, lidar2img_new
+        return imgs_new, cam_intrinsic_new, lidar2img_new
 
     def __call__(self,
                  imgs: List[np.ndarray],
+                 cam_intrinsics: List[np.ndarray],
+                 cam_extrinsics: List[np.ndarray],
                  lidar2img: List[np.ndarray],
-                 seed=None) -> Tuple[List[np.ndarray], List[np.ndarray]]:
-        return self.forward(imgs, lidar2img)
+                 seed=None) -> Tuple[List[np.ndarray], List[np.ndarray], List[np.ndarray]]:
+        return self.forward(imgs, cam_intrinsics, cam_extrinsics, lidar2img, seed)
 
     def __repr__(self):
         repr_str = self.__class__.__name__

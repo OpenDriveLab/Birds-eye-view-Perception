@@ -16,11 +16,15 @@ class RandomScaleImageMultiViewImage(RandomScaleImageMultiViewImage_naive):
         Args:
             results (dict): Result dict from loading pipeline.
         Returns:
-            dict: Updated result dict.
+            results (dict): Updated result dict.
         """
-        imgs, lidar2img = results['img'], results['lidar2img']
-        imgs_new, lidar2img_new = self.forward(imgs, lidar2img, seed=seed)
+        imgs = results['img']
+        cam_intrinsics = results['cam_intrinsic']
+        lidar2cam = results['lidar2cam']
+        lidar2img = results['lidar2img']
+        imgs_new, cam_intrinsics_new, lidar2img_new = self.forward(imgs, cam_intrinsics, lidar2cam, lidar2img, seed=seed)
         results['img'] = imgs_new
+        results['cam_intrinsic'] = cam_intrinsics_new
         results['lidar2img'] = lidar2img_new
         results['img_shape'] = [img.shape for img in results['img']]
         results['ori_shape'] = [img.shape for img in results['img']]

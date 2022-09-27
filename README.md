@@ -73,7 +73,8 @@ We have some examples of using BEV-toolbox.
 
 **A simple example**
 ```python
-# in code dir (cd code)
+# in code dir (run cd code first)
+
 import cv2
 import numpy as np
 from toolbox.data_aug import RandomScaleImageMultiViewImage_naive
@@ -81,13 +82,17 @@ from toolbox.data_aug import RandomScaleImageMultiViewImage_naive
 # Declare an augmentation pipeline
 transform = RandomScaleImageMultiViewImage_naive(scales=[0.9, 1.0, 1.1])
 
-# imgs (list of numpy.array): multiple-view images
-imgs = [cv2.imread(f'example/view{i}.jpg') for i in range(5)]
-# lidar2img (list of numpy.narray): multiple-view transformations from lidar to image
-lidar2img = [np.load(f'example/view{i}_lidar2img.npy') for i in range(5)]
+# multiple-view images
+imgs = [cv2.imread(f'example/cam{i}_img.jpg') for i in range(5)]
+# intrinsic parameters of different cameras.
+cam_intr = [np.load(f'example/cam{i}_intrinsic.npy') for i in range(5)]
+# extrinsic parameters of different cameras that transform from lidar to cameras.
+cam_extr = [np.load(f'example/cam{i}_extrinsic.npy') for i in range(5)]
+# multiple-view transformations from lidar to image (intrinsic @ extrinsic)
+lidar2img = [np.load(f'example/cam{i}_lidar2img.npy') for i in range(5)]
 
 # Augment an image
-imgs_new, lidar2img_new = transform(imgs, lidar2img)
+imgs_new, cam_intr_new, lidar2img_new = transform(imgs, cam_intr, cam_extr, lidar2img)
 ```
 
 #### I want to know how to use BEV-toolbox with mmdet3d
