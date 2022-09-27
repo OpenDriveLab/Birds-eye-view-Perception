@@ -102,7 +102,7 @@ sh ./tools/dist_test_video.sh projects/configs/bevformer/waymo_mini_r101_baselin
 
 ### For expert
 
-We provide wrappers of this BEV toolbox for mmdet3d and detectron2(on-going feature). 
+We provide wrappers of this BEV toolbox for mmdet3d and detectron2(ongoing feature). 
 
 #### Use BEV-toolbox with mmdet3d
 
@@ -124,7 +124,7 @@ We also provide bag of tricks to boost the performance of the baseline below imp
 
 #### Use BEV-toolbox with detectron2
 
-We plan to make this toolbox compatible with detectron2. But, for now, it is still an onging feature.
+We plan to make this toolbox compatible with detectron2 in the future.
 
 ## <div id='tricks'>Bag of Tricks</div>
 We provide an overview of the bag of tricks as the model zoo, which can be grouped as four types -- data augmentation, design of BEV encoder, loss family and different 3D detection head and post-process policy. Please click the link of each trick for more details. We also offer their corresponding configs and performance in the table below for the convenience of users.
