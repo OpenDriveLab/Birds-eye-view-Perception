@@ -248,6 +248,14 @@ If you find this project useful in your research, please consider cite:
   year={2022}
 }
 ```
+```BibTeX
+@misc{bev-toolbox2022,
+  title={{BEVPerceptionx-Survey-Recipe} toolbox for general BEV perception},
+  author={BEV-Toolbox Contributors},
+  howpublished={\url{https://github.com/OpenPerceptionX/BEVPerception-Survey-Recipe}},
+  year={2022}
+}
+```
 
 # Acknowledgement
 
