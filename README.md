@@ -8,7 +8,7 @@ Awesome BEV perception papers and toolbox for achieving SOTA results
 [👀Bag of Tricks](#tricks) |
 [🚀Ongoing Features](#todo) |
 [🤔Reporting Issues](https://github.com/OpenPerceptionX/BEV-toolbox-private/issues) |
-[fundamentalvision](https://github.com/fundamentalvision)
+[🤝Fundamental Vision](https://github.com/fundamentalvision)
 
 ## <div id='intro'>BEV-Toolbox</div>
 
