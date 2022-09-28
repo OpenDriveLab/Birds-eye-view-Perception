@@ -7,7 +7,8 @@ Awesome BEV perception papers and toolbox for achieving SOTA results
 [🛠️Toolbox Tutorial](#tutorial) |
 [👀Bag of Tricks](#tricks) |
 [🚀Ongoing Features](#todo) |
-[🤔Reporting Issues](https://github.com/OpenPerceptionX/BEV-toolbox-private/issues)
+[🤔Reporting Issues](https://github.com/OpenPerceptionX/BEV-toolbox-private/issues) |
+[🤝Fundamental Vision](https://github.com/fundamentalvision)
 
 ## <div id='intro'>BEV-Toolbox</div>
 
@@ -240,10 +241,18 @@ This project is released under the [Apache 2.0 license](LICENSE).
 If you find this project useful in your research, please consider cite:
 
 ```BibTeX
-@article{li2022delving,
+@article{li2022bevsurvey,
   title={Delving into the Devils of Bird's-eye-view Perception: A Review, Evaluation and Recipe},
   author={Li, Hongyang and Sima, Chonghao and Dai, Jifeng and Wang, Wenhai and Lu, Lewei and Wang, Huijie and Xie, Enze and Li, Zhiqi and Deng, Hanming and Tian, Hao and Zhu, Xizhou and Chen, Li and Gao, Yulu and Geng, Xiangwei and Zeng, Jia and Li, Yang and Yang, Jiazhi and Jia, Xiaosong and Yu, Bohan and Qiao, Yu and Lin, Dahua and Liu, Si and Yan, Junchi and Shi, Jianping and Luo, Ping},
   journal={arXiv preprint arXiv:2209.05324},
+  year={2022}
+}
+```
+```BibTeX
+@misc{bevtoolbox2022,
+  title={{BEVPerceptionx-Survey-Recipe} toolbox for general BEV perception},
+  author={BEV-Toolbox Contributors},
+  howpublished={\url{https://github.com/OpenPerceptionX/BEVPerception-Survey-Recipe}},
   year={2022}
 }
 ```
