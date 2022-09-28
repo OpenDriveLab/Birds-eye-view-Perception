@@ -69,7 +69,7 @@ def scale_image_multiple_view(imgs: List[np.ndarray],
         for idx, img in enumerate(imgs)
     ]
     cam_intrinsics_new = [scale_factor @ cam_intrinsic for cam_intrinsic in cam_intrinsics]
-    lidar2img_new = [intr @ extr for (intr, extr) in zip(cam_intrinsics_new, cam_extrinsics)]
+    lidar2img_new = [scale_factor @ l2i for l2i in lidar2img]
 
     return imgs_new, cam_intrinsics_new, lidar2img_new
 
