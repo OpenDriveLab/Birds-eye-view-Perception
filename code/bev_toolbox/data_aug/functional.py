@@ -69,6 +69,45 @@ def scale_image_multiple_view(imgs: List[np.ndarray],
         for idx, img in enumerate(imgs)
     ]
     cam_intrinsics_new = [scale_factor @ cam_intrinsic for cam_intrinsic in cam_intrinsics]
-    lidar2img = [intr @ extr for (intr, extr) in zip(cam_intrinsics_new, cam_extrinsics)]
+    lidar2img_new = [intr @ extr for (intr, extr) in zip(cam_intrinsics_new, cam_extrinsics)]
 
-    return imgs_new, cam_intrinsics_new, lidar2img
+    return imgs_new, cam_intrinsics_new, lidar2img_new
+
+
+def horizontal_flip_image_multiview(imgs):
+    imgs_new = [np.flip(img, axis=1) for img in imgs]
+    return imgs_new
+
+
+def vertical_flip_image_multiview(imgs):
+    imgs_new = [np.flip(img, axis=0) for img in imgs]
+    return imgs_new
+
+
+def flip_canbus(canbus, dataset):
+    if dataset == 'nuScenes':
+        # results['can_bus'][1] = -results['can_bus'][1]  # flip location
+        # results['can_bus'][-2] = -results['can_bus'][-2]  # flip direction
+        canbus[-1] = -canbus[-1]  # flip direction
+    elif dataset == 'waymo':
+        # results['can_bus'][1] = -results['can_bus'][-1]  # flip location
+        # results['can_bus'][-2] = -results['can_bus'][-2]  # flip direction
+        canbus[-1] = -canbus[-1]  # flip direction
+    else:
+        raise NotImplementedError((f"Not support {dataset} dataset"))
+    return canbus
+
+
+def horizaontal_flip_bbox(input_dict, dataset):
+
+    for key in input_dict['bbox3d_fields']:
+        if 'points' in input_dict:
+            assert False
+            input_dict['points'] = input_dict[key].flip(direction, points=input_dict['points'])
+        else:
+            if dataset == 'nuScenes':
+                input_dict[key].tensor[:, 0::7] = -input_dict[key].tensor[:, 0::7]
+                input_dict[key].tensor[:, 6] = -input_dict[key].tensor[:, 6]  #+ np.pi
+            elif dataset == 'waymo':
+                input_dict[key].tensor[:, 1::7] = -input_dict[key].tensor[:, 1::7]
+                input_dict[key].tensor[:, 6] = -input_dict[key].tensor[:, 6] + np.pi
