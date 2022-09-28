@@ -98,7 +98,7 @@ def vertical_flip_image_multiview(imgs: List[np.ndarray]) -> List[np.ndarray]:
     return imgs_new
 
 
-def horizaontal_flip_bbox(bboxes_3d: np.ndarray, dataset):
+def horizaontal_flip_bbox(bboxes_3d: np.ndarray, dataset: str) -> np.ndarray:
     """Flip bounding boxes horizontally.
     Args:
         bboxes_3d (np.ndarray): bounding boxes of shape [N * 7], N is the number of objects.
@@ -118,12 +118,20 @@ def horizaontal_flip_bbox(bboxes_3d: np.ndarray, dataset):
 def horizaontal_flip_cam_params(img_shape: np.ndarray, cam_intrinsics: List[np.ndarray],
                                 cam_extrinsics: List[np.ndarray], lidar2imgs: List[np.ndarray],
                                 dataset: str) -> Tuple[List[np.ndarray], List[np.ndarray], List[np.ndarray]]:
-    """Flip bounding boxes horizontally.
+    """Flip camera parameters horizontally.
     Args:
-        bboxes_3d:
+        img_shape (numpy.array) of shape [3].
+        cam_intrinsics (list of numpy.array): Intrinsic parameters of different cameras. Transformations from camera 
+                    to image. len(cam_intrinsics) is the number of camera. For each camera, shape is 4 * 4.
+        cam_extrinsics (list of numpy.array): Extrinsic parameters of different cameras. Transformations from
+                lidar to cameras. len(cam_extrinsics) is the number of camera. For each camera, shape is 4 * 4.
+        lidar2img (list of numpy.array): Transformations from lidar to images. len(lidar2img) is the number
+                of camera. For each camera, shape is 4 * 4.
         dataset (string): 'waymo' or 'nuscenes'
     Returns:
-        imgs_new (list of numpy.array): Flippd multiple-view images
+        cam_intrinsics (list of numpy.array): Updated intrinsic parameters of different cameras.
+        cam_extrinsics (list of numpy.array): Updated extrinsic parameters of different cameras.
+        lidar2img (list of numpy.array): Updated Transformations from lidar to images.
     """
     flip_factor = np.eye(4)
     lidar2imgs = []
@@ -149,13 +157,13 @@ def horizaontal_flip_cam_params(img_shape: np.ndarray, cam_intrinsics: List[np.n
     return cam_intrinsics, cam_extrinsics, lidar2imgs
 
 
-def horizaontal_flip_canbus(canbus, dataset):
-    """Flip bounding boxes horizontally.
+def horizaontal_flip_canbus(canbus: np.ndarray, dataset: str) -> np.ndarray:
+    """Flip can bus horizontally.
     Args:
-        bboxes_3d:
+        canbus (numpy.ndarray) of shape [18,]
         dataset (string): 'waymo' or 'nuscenes'
     Returns:
-        imgs_new (list of numpy.array): Flippd multiple-view images
+        canbus_new (list of numpy.array): Flippd canbus.
     """
     if dataset == 'nuScenes':
         # results['can_bus'][1] = -results['can_bus'][1]  # flip location

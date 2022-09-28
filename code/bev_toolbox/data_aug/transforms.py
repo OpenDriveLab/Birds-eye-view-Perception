@@ -94,25 +94,29 @@ class RandomHorizontalFlipMultiViewImage_naive(object):
         self.seed = 0
         self.dataset = dataset
 
-    def forward(self,
-                imgs: List[np.ndarray],
-                bboxes_3d,
-                cam_intrinsics: List[np.ndarray],
-                cam_extrinsics: List[np.ndarray],
-                lidar2imgs: List[np.ndarray],
-                canbus,
-                seed=None):
+    def forward(
+        self,
+        imgs: List[np.ndarray],
+        bboxes_3d: np.ndarray,
+        cam_intrinsics: List[np.ndarray],
+        cam_extrinsics: List[np.ndarray],
+        lidar2imgs: List[np.ndarray],
+        canbus: np.ndarray,
+        seed=None
+    ) -> Tuple[bool, List[np.ndarray], np.ndarray, List[np.ndarray], List[np.ndarray], List[np.ndarray], np.ndarray]:
         """
         Args:
-            imgs (list of numpy.array): Multiple-view images to be resized. len(img) is the number of cameras.
-                    img shape: [H, W, 3].
+        imgs (list of numpy.array): Multiple-view images to be resized. len(img) is the number of cameras.
+                img shape: [H, W, 3].
+        bboxes_3d (np.ndarray): bounding boxes of shape [N * 7], N is the number of objects.
         cam_intrinsics (list of numpy.array): Intrinsic parameters of different cameras. Transformations from camera 
-                    to image. len(cam_intrinsics) is the number of camera. For each camera, shape is 4 * 4.
+                to image. len(cam_intrinsics) is the number of camera. For each camera, shape is 4 * 4.
         cam_extrinsics (list of numpy.array): Extrinsic parameters of different cameras. Transformations from
                 lidar to cameras. len(cam_extrinsics) is the number of camera. For each camera, shape is 4 * 4.
         lidar2img (list of numpy.array): Transformations from lidar to images. len(lidar2img) is the number
                 of camera. For each camera, shape is 4 * 4.
-            seed (int): Seed for generating random number.
+        canbus (numpy.array): 
+        seed (int): Seed for generating random number.
         Returns:
             imgs_new (list of numpy.array): Updated multiple-view images
             cam_intrinsics_new (list of numpy.array): Updated intrinsic parameters of different cameras.
@@ -133,5 +137,14 @@ class RandomHorizontalFlipMultiViewImage_naive(object):
             canbus_flip = horizaontal_flip_canbus(canbus, self.dataset)
         return flip_flag, imgs_flip, bboxes_3d_flip, cam_intrinsics_flip, cam_extrinsics_flip, lidar2imgs_flip, canbus_flip
 
-    def __call__(self, imgs, bboxes_3d, cam_intrinsics, cam_extrinsics, lidar2imgs, canbus, seed=None):
+    def __call__(
+        self,
+        imgs: List[np.ndarray],
+        bboxes_3d: np.ndarray,
+        cam_intrinsics: List[np.ndarray],
+        cam_extrinsics: List[np.ndarray],
+        lidar2imgs: List[np.ndarray],
+        canbus: np.ndarray,
+        seed=None
+    ) -> Tuple[bool, List[np.ndarray], np.ndarray, List[np.ndarray], List[np.ndarray], List[np.ndarray], np.ndarray]:
         return self.forward(imgs, bboxes_3d, cam_intrinsics, cam_extrinsics, lidar2imgs, canbus, seed)
