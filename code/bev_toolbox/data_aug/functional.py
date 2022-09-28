@@ -84,7 +84,42 @@ def vertical_flip_image_multiview(imgs):
     return imgs_new
 
 
-def flip_canbus(canbus, dataset):
+def horizaontal_flip_bbox(bboxes_3d, dataset):
+    if dataset == 'nuScenes':
+        bboxes_3d.tensor[:, 0::7] = -bboxes_3d.tensor[:, 0::7]
+        bboxes_3d.tensor[:, 6] = -bboxes_3d.tensor[:, 6]  # + np.pi
+    elif dataset == 'waymo':
+        bboxes_3d.tensor[:, 1::7] = -bboxes_3d.tensor[:, 1::7]
+        bboxes_3d.tensor[:, 6] = -bboxes_3d.tensor[:, 6] + np.pi
+    return bboxes_3d
+
+
+def horizaontal_flip_cam_params(img_shape, cam_intrinsics, cam_extrinsics, dataset):
+    flip_factor = np.eye(4)
+    lidar2imgs = []
+
+    w = img_shape[1]
+    if dataset == 'nuScenes':
+        flip_factor[0, 0] = -1
+        cam_extrinsics = [l2c @ flip_factor for l2c in cam_extrinsics]
+        for cam_intrinsic, l2c in zip(cam_intrinsics, cam_extrinsics):
+            cam_intrinsic[0, 0] = -cam_intrinsic[0, 0]
+            cam_intrinsic[0, 2] = w - cam_intrinsic[0, 2]
+            lidar2imgs.append(cam_intrinsic @ l2c)
+    elif dataset == 'waymo':
+        flip_factor[1, 1] = -1
+        cam_extrinsics = [l2c @ flip_factor for l2c in cam_extrinsics]
+        for cam_intrinsic, l2c in zip(cam_intrinsics, cam_extrinsics):
+            cam_intrinsic[0, 0] = -cam_intrinsic[0, 0]
+            cam_intrinsic[0, 2] = w - cam_intrinsic[0, 2]
+            lidar2imgs.append(cam_intrinsic @ l2c)
+    else:
+        assert False
+
+    return cam_intrinsics, cam_extrinsics, lidar2imgs
+
+
+def horizaontal_flip_canbus(canbus, dataset):
     if dataset == 'nuScenes':
         # results['can_bus'][1] = -results['can_bus'][1]  # flip location
         # results['can_bus'][-2] = -results['can_bus'][-2]  # flip direction
@@ -96,18 +131,3 @@ def flip_canbus(canbus, dataset):
     else:
         raise NotImplementedError((f"Not support {dataset} dataset"))
     return canbus
-
-
-def horizaontal_flip_bbox(input_dict, dataset):
-
-    for key in input_dict['bbox3d_fields']:
-        if 'points' in input_dict:
-            assert False
-            input_dict['points'] = input_dict[key].flip(direction, points=input_dict['points'])
-        else:
-            if dataset == 'nuScenes':
-                input_dict[key].tensor[:, 0::7] = -input_dict[key].tensor[:, 0::7]
-                input_dict[key].tensor[:, 6] = -input_dict[key].tensor[:, 6]  #+ np.pi
-            elif dataset == 'waymo':
-                input_dict[key].tensor[:, 1::7] = -input_dict[key].tensor[:, 1::7]
-                input_dict[key].tensor[:, 6] = -input_dict[key].tensor[:, 6] + np.pi

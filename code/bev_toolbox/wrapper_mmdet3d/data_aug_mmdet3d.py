@@ -45,7 +45,11 @@ class RandomScaleImageMultiViewImage(RandomScaleImageMultiViewImage_naive):
         cam_intrinsics = results['cam_intrinsic']
         lidar2cam = results['lidar2cam']
         lidar2img = results['lidar2img']
-        imgs_new, cam_intrinsics_new, lidar2img_new = self.forward(imgs, cam_intrinsics, lidar2cam, lidar2img, seed=seed)
+        imgs_new, cam_intrinsics_new, lidar2img_new = self.forward(imgs,
+                                                                   cam_intrinsics,
+                                                                   lidar2cam,
+                                                                   lidar2img,
+                                                                   seed=seed)
         results['img'] = imgs_new
         # results['cam_intrinsic'] = cam_intrinsics_new
         results['lidar2img'] = lidar2img_new
@@ -55,17 +59,30 @@ class RandomScaleImageMultiViewImage(RandomScaleImageMultiViewImage_naive):
         return results
 
 
-# @PIPELINES.register_module()
-# class RandomHorizontalFlipMultiViewImage(RandomHorizontalFlipMultiViewImage_naive):
+@PIPELINES.register_module()
+class RandomHorizontalFlipMultiViewImage(RandomHorizontalFlipMultiViewImage_naive):
 
-#     def __call__(self, results, seed=None):
-#         if len(input_dict['bbox3d_fields']) == 0:  # test mode
-#             input_dict['bbox3d_fields'].append('empty_box3d')
-#             input_dict['empty_box3d'] = input_dict['box_type_3d'](np.array([], dtype=np.float32))
-#         assert len(input_dict['bbox3d_fields']) == 1
-#         imgs, xxx = results['xxx']
-#         xxx, xxx = self.forward(imgs, xxx, seed=seed)
-#         results['xxx'] = xxx
-#         results['xxx'] = xxx
+    def __call__(self, results, seed=None):
 
-#         return results
+        if len(results['bbox3d_fields']) == 0:  # test mode
+            results['bbox3d_fields'].append('empty_box3d')
+            results['empty_box3d'] = results['box_type_3d'](np.array([], dtype=np.float32))
+        assert len(results['bbox3d_fields']) == 1
+
+        imgs = results['img']
+        bboxes_3d = results['gt_bboxes_3d']
+        cam_intrinsics = results['cam_intrinsic']
+        cam_extrinsics = results['lidar2cam']
+        lidar2imgs = results['lidar2img']
+        canbus = results['can_bus']
+        flip_flag, imgs_flip, bboxes_3d_flip, cam_intrinsics_flip, cam_extrinsics_flip, lidar2imgs_flip, canbus_flip = self.forward(
+            imgs, bboxes_3d, cam_intrinsics, cam_extrinsics, lidar2imgs, canbus, seed=seed)
+        if flip_flag:
+            results['flip'] = True
+            results['img'] = imgs_flip
+            results['gt_bboxes_3d'] = bboxes_3d_flip
+            results['lidar2cam'] = cam_extrinsics_flip
+            results['lidar2img'] = lidar2imgs_flip
+            results['can_bus'] = canbus_flip
+
+        return results

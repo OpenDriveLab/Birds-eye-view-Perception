@@ -297,135 +297,135 @@ class CropMultiViewImage(object):
 #         return repr_str
 
 
-@PIPELINES.register_module()
-class HorizontalRandomFlipMultiViewImage(object):
+# @PIPELINES.register_module()
+# class HorizontalRandomFlipMultiViewImage(object):
 
-    def __init__(self, flip_ratio=0.5, dataset='nuScenes'):
-        self.flip_ratio = flip_ratio
-        # dataset = 'waymo'
-        self.seed = 0
-        self.dataset = dataset
+#     def __init__(self, flip_ratio=0.5, dataset='nuScenes'):
+#         self.flip_ratio = flip_ratio
+#         # dataset = 'waymo'
+#         self.seed = 0
+#         self.dataset = dataset
 
-    def __call__(self, results, seed=None):
-        if seed is not None: np.random.seed(int(seed))
-        if np.random.rand() >= self.flip_ratio:
-            return results
-        else:
-            # pass
-            results['flip'] = True
-            results = self.flip_bbox(results)
-            results = self.flip_cam_params(results)
-            results = self.flip_img(results)
-            results = self.flip_can_bus(results)
-        # for i in range(len(results['img'])):
-        #     # print(results['bbox3d_fields'])
-        #     # print(results['gt_bboxes_3d'].tensor)
-        #     # print(results['lidar2img'][i])
-        #     show_multi_modality_result(
-        #         results['img'][i],
-        #         results['gt_bboxes_3d'],
-        #         None,
-        #         results['lidar2img'][i],
-        #         '.',
-        #         f'aug2_{i}.png',
-        #         box_mode='lidar',
-        #         show=True,
-        #         scores=None,
-        # )
-        # bev_img = np.zeros([1500, 1100, 3], dtype=np.float32)
-        #
-        # def world2bev_vis(x, y):
-        #     return int((x + 35) * 10), int((-y + 75) * 10)
-        #
-        # for corners in results['gt_bboxes_3d'].corners[:, [4, 7, 3, 0], :2]:
-        #     corners = np.array([world2bev_vis(*corner) for corner in corners])
-        #
-        #     _img = np.zeros([1500, 1100, 3], dtype=np.float32)
-        #     cv2.circle(_img, corners[0], 5, (61, 102, 255))
-        #     _img = cv2.fillPoly(_img, [corners], (61, 102, 255))
-        #     bev_img = cv2.addWeighted(bev_img, 1, _img, 0.5, 0)
-        #
-        # bev_img = cv2.circle(bev_img, world2bev_vis(0, 0), 5, (0, 255, 0), thickness=-1)
-        #
-        # mmcv.imwrite(bev_img, f'aug3_bev.png',)
-        # exit()
-        return results
+#     def __call__(self, results, seed=None):
+#         if seed is not None: np.random.seed(int(seed))
+#         if np.random.rand() >= self.flip_ratio:
+#             return results
+#         else:
+#             # pass
+#             results['flip'] = True
+#             results = self.flip_bbox(results)
+#             results = self.flip_cam_params(results)
+#             results = self.flip_img(results)
+#             results = self.flip_can_bus(results)
+#         # for i in range(len(results['img'])):
+#         #     # print(results['bbox3d_fields'])
+#         #     # print(results['gt_bboxes_3d'].tensor)
+#         #     # print(results['lidar2img'][i])
+#         #     show_multi_modality_result(
+#         #         results['img'][i],
+#         #         results['gt_bboxes_3d'],
+#         #         None,
+#         #         results['lidar2img'][i],
+#         #         '.',
+#         #         f'aug2_{i}.png',
+#         #         box_mode='lidar',
+#         #         show=True,
+#         #         scores=None,
+#         # )
+#         # bev_img = np.zeros([1500, 1100, 3], dtype=np.float32)
+#         #
+#         # def world2bev_vis(x, y):
+#         #     return int((x + 35) * 10), int((-y + 75) * 10)
+#         #
+#         # for corners in results['gt_bboxes_3d'].corners[:, [4, 7, 3, 0], :2]:
+#         #     corners = np.array([world2bev_vis(*corner) for corner in corners])
+#         #
+#         #     _img = np.zeros([1500, 1100, 3], dtype=np.float32)
+#         #     cv2.circle(_img, corners[0], 5, (61, 102, 255))
+#         #     _img = cv2.fillPoly(_img, [corners], (61, 102, 255))
+#         #     bev_img = cv2.addWeighted(bev_img, 1, _img, 0.5, 0)
+#         #
+#         # bev_img = cv2.circle(bev_img, world2bev_vis(0, 0), 5, (0, 255, 0), thickness=-1)
+#         #
+#         # mmcv.imwrite(bev_img, f'aug3_bev.png',)
+#         # exit()
+#         return results
 
-    def flip_can_bus(self, results, direction='horizontal'):
-        # TODO location
-        if self.dataset == 'nuScenes':
-            # results['can_bus'][1] = -results['can_bus'][1]  # flip location
-            # results['can_bus'][-2] = -results['can_bus'][-2]  # flip direction
-            results['can_bus'][-1] = -results['can_bus'][-1]  # flip direction
-        # results['can_bus']
-        elif self.dataset == 'waymo':
-            # print(results['can_bus'])
-            # results['can_bus'][1] = -results['can_bus'][-1]  # flip location
-            # results['can_bus'][-2] = -results['can_bus'][-2]  # flip direction
-            results['can_bus'][-1] = -results['can_bus'][-1]  # flip direction
-        return results
+#     def flip_can_bus(self, results, direction='horizontal'):
+#         # TODO location
+#         if self.dataset == 'nuScenes':
+#             # results['can_bus'][1] = -results['can_bus'][1]  # flip location
+#             # results['can_bus'][-2] = -results['can_bus'][-2]  # flip direction
+#             results['can_bus'][-1] = -results['can_bus'][-1]  # flip direction
+#         # results['can_bus']
+#         elif self.dataset == 'waymo':
+#             # print(results['can_bus'])
+#             # results['can_bus'][1] = -results['can_bus'][-1]  # flip location
+#             # results['can_bus'][-2] = -results['can_bus'][-2]  # flip direction
+#             results['can_bus'][-1] = -results['can_bus'][-1]  # flip direction
+#         return results
 
-    def flip_img(self, results, direction='horizontal'):
-        results['img'] = [mmcv.imflip(img, direction) for img in results['img']]
-        return results
+#     def flip_img(self, results, direction='horizontal'):
+#         results['img'] = [mmcv.imflip(img, direction) for img in results['img']]
+#         return results
 
-    def flip_cam_params(self, results):
-        flip_factor = np.eye(4)
+#     def flip_cam_params(self, results):
+#         flip_factor = np.eye(4)
 
-        # print(results['img_shape'])
-        # print(results.keys())
-        lidar2img = []
+#         # print(results['img_shape'])
+#         # print(results.keys())
+#         lidar2img = []
 
-        w = results['img_shape'][1]
-        # print(w)
-        if self.dataset == 'nuScenes':
-            flip_factor[0, 0] = -1
-            lidar2cam = [l2c @ flip_factor for l2c in results['lidar2cam']]
-            for cam_intrinsic, l2c in zip(results['cam_intrinsic'], lidar2cam):
-                cam_intrinsic[0, 0] = -cam_intrinsic[0, 0]
-                cam_intrinsic[0, 2] = w - cam_intrinsic[0, 2]
-                lidar2img.append(cam_intrinsic @ l2c)
-        elif self.dataset == 'waymo':
-            # flip_factor[0, 0] = -1
-            flip_factor[1, 1] = -1
-            lidar2cam = [l2c @ flip_factor for l2c in results['lidar2cam']]
-            for cam_intrinsic, l2c in zip(results['cam_intrinsic'], lidar2cam):
-                cam_intrinsic[0, 0] = -cam_intrinsic[0, 0]
+#         w = results['img_shape'][1]
+#         # print(w)
+#         if self.dataset == 'nuScenes':
+#             flip_factor[0, 0] = -1
+#             lidar2cam = [l2c @ flip_factor for l2c in results['lidar2cam']]
+#             for cam_intrinsic, l2c in zip(results['cam_intrinsic'], lidar2cam):
+#                 cam_intrinsic[0, 0] = -cam_intrinsic[0, 0]
+#                 cam_intrinsic[0, 2] = w - cam_intrinsic[0, 2]
+#                 lidar2img.append(cam_intrinsic @ l2c)
+#         elif self.dataset == 'waymo':
+#             # flip_factor[0, 0] = -1
+#             flip_factor[1, 1] = -1
+#             lidar2cam = [l2c @ flip_factor for l2c in results['lidar2cam']]
+#             for cam_intrinsic, l2c in zip(results['cam_intrinsic'], lidar2cam):
+#                 cam_intrinsic[0, 0] = -cam_intrinsic[0, 0]
 
-                cam_intrinsic[0, 2] = w - cam_intrinsic[0, 2]
-                lidar2img.append(cam_intrinsic @ l2c)
-        else:
-            assert False
-        results['lidar2cam'] = lidar2cam
-        results['lidar2img'] = lidar2img
+#                 cam_intrinsic[0, 2] = w - cam_intrinsic[0, 2]
+#                 lidar2img.append(cam_intrinsic @ l2c)
+#         else:
+#             assert False
+#         results['lidar2cam'] = lidar2cam
+#         results['lidar2img'] = lidar2img
 
-        return results
+#         return results
 
-    def flip_bbox(self, input_dict, direction='horizontal'):
-        assert direction in ['horizontal', 'vertical']
-        if len(input_dict['bbox3d_fields']) == 0:  # test mode
-            input_dict['bbox3d_fields'].append('empty_box3d')
-            input_dict['empty_box3d'] = input_dict['box_type_3d'](np.array([], dtype=np.float32))
-        assert len(input_dict['bbox3d_fields']) == 1
-        for key in input_dict['bbox3d_fields']:
-            if 'points' in input_dict:
-                assert False
-                input_dict['points'] = input_dict[key].flip(direction, points=input_dict['points'])
-            else:
-                if direction == 'horizontal':
-                    if self.dataset == 'nuScenes':
-                        input_dict[key].tensor[:, 0::7] = -input_dict[key].tensor[:, 0::7]
-                        input_dict[key].tensor[:, 6] = -input_dict[key].tensor[:, 6]  #+ np.pi
-                    elif self.dataset == 'waymo':
-                        input_dict[key].tensor[:, 1::7] = -input_dict[key].tensor[:, 1::7]
-                        input_dict[key].tensor[:, 6] = -input_dict[key].tensor[:, 6] + np.pi
+#     def flip_bbox(self, input_dict, direction='horizontal'):
+#         assert direction in ['horizontal', 'vertical']
+#         if len(input_dict['bbox3d_fields']) == 0:  # test mode
+#             input_dict['bbox3d_fields'].append('empty_box3d')
+#             input_dict['empty_box3d'] = input_dict['box_type_3d'](np.array([], dtype=np.float32))
+#         assert len(input_dict['bbox3d_fields']) == 1
+#         for key in input_dict['bbox3d_fields']:
+#             if 'points' in input_dict:
+#                 assert False
+#                 input_dict['points'] = input_dict[key].flip(direction, points=input_dict['points'])
+#             else:
+#                 if direction == 'horizontal':
+#                     if self.dataset == 'nuScenes':
+#                         input_dict[key].tensor[:, 0::7] = -input_dict[key].tensor[:, 0::7]
+#                         input_dict[key].tensor[:, 6] = -input_dict[key].tensor[:, 6]  #+ np.pi
+#                     elif self.dataset == 'waymo':
+#                         input_dict[key].tensor[:, 1::7] = -input_dict[key].tensor[:, 1::7]
+#                         input_dict[key].tensor[:, 6] = -input_dict[key].tensor[:, 6] + np.pi
 
-                elif bev_direction == 'vertical':
-                    assert False
-                    input_dict[key].tensor[:, 0::7] = -input_dict[key].tensor[:, 0::7]
-                    input_dict[key].tensor[:, 6] = -input_dict[key].tensor[:, 6]
-                # input_dict[key].flip(direction)
-        return input_dict
+#                 elif bev_direction == 'vertical':
+#                     assert False
+#                     input_dict[key].tensor[:, 0::7] = -input_dict[key].tensor[:, 0::7]
+#                     input_dict[key].tensor[:, 6] = -input_dict[key].tensor[:, 6]
+#                 # input_dict[key].flip(direction)
+#         return input_dict
 
 
 @PIPELINES.register_module()
