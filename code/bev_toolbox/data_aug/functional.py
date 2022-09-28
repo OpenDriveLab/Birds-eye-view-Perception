@@ -44,12 +44,12 @@ def scale_image_multiple_view(imgs: List[np.ndarray],
     Args:
         imgs (list of numpy.array): Multiple-view images to be resized. len(img) is the number of cameras.
                     img shape: [H, W, 3].
-        cam_intrinsics (list of numpy.array): Intrinsic parameters of different cameras. len(cam_intrinsics)
-                is the number of camera. For each camera, shape is 4 x 4.
-        cam_extrinsics (list of numpy.array): Extrinsic parameters of different cameras that transform from
-                lidar to cameras. len(cam_extrinsics) is the number of camera. For each camera, shape is 4 x 4.
-        lidar2img (list of numpy.array): Transformations from lidar to images. len(lidar2img) is the number 
-                of camera. For each camera, shape is 4 x 4.
+        cam_intrinsics (list of numpy.array): Intrinsic parameters of different cameras. Transformations from camera 
+                    to image. len(cam_intrinsics) is the number of camera. For each camera, shape is 4 * 4.
+        cam_extrinsics (list of numpy.array): Extrinsic parameters of different cameras. Transformations from
+                lidar to cameras. len(cam_extrinsics) is the number of camera. For each camera, shape is 4 * 4.
+        lidar2img (list of numpy.array): Transformations from lidar to images. len(lidar2img) is the number
+                of camera. For each camera, shape is 4 * 4.
         rand_scale (float): resize ratio
         interpolation (string): mode for interpolation in opencv.
     Returns:

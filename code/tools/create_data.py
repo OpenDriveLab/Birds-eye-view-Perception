@@ -172,24 +172,22 @@ def waymo_data_prep(root_path,
             save_dir = osp.join(out_dir, 'kitti_format', 'training')
         else:
             save_dir = osp.join(out_dir, 'kitti_format', split)
-        converter = waymo.Waymo2KITTI(
-            load_dir,
-            save_dir,
-            prefix=str(i),
-            workers=workers,
-            test_mode=(split == 'test'))
+        converter = waymo.Waymo2KITTI(load_dir,
+                                      save_dir,
+                                      prefix=str(i),
+                                      workers=workers,
+                                      test_mode=(split == 'testing'))
         converter.convert()
     # # Generate waymo infos
-    # out_dir = osp.join(out_dir, 'kitti_format')
-    # kitti.create_waymo_info_file(out_dir, info_prefix, max_sweeps=max_sweeps)
+    out_dir = osp.join(out_dir, 'kitti_format')
+    kitti.create_waymo_info_file(out_dir, info_prefix, max_sweeps=max_sweeps)
 
-    # create_groundtruth_database(
-    #     'WaymoDataset',
-    #     out_dir,
-    #     info_prefix,
-    #     f'{out_dir}/{info_prefix}_infos_train.pkl',
-    #     relative_path=False,
-    #     with_mask=False)
+    create_groundtruth_database('WaymoDataset',
+                                out_dir,
+                                info_prefix,
+                                f'{out_dir}/{info_prefix}_infos_train.pkl',
+                                relative_path=False,
+                                with_mask=False)
 
 def mv_waymo_data_prep(root_path,
                     info_prefix,
