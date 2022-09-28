@@ -74,27 +74,57 @@ def scale_image_multiple_view(imgs: List[np.ndarray],
     return imgs_new, cam_intrinsics_new, lidar2img_new
 
 
-def horizontal_flip_image_multiview(imgs):
+def horizontal_flip_image_multiview(imgs: List[np.ndarray]) -> List[np.ndarray]:
+    """Flip every image horizontally.
+    Args:
+        imgs (list of numpy.array): Multiple-view images to be resized. len(img) is the number of cameras.
+                    img shape: [H, W, 3].
+    Returns:
+        imgs_new (list of numpy.array): Flippd multiple-view images
+    """
     imgs_new = [np.flip(img, axis=1) for img in imgs]
     return imgs_new
 
 
-def vertical_flip_image_multiview(imgs):
+def vertical_flip_image_multiview(imgs: List[np.ndarray]) -> List[np.ndarray]:
+    """Flip every image vertically.
+    Args:
+        imgs (list of numpy.array): Multiple-view images to be resized. len(img) is the number of cameras.
+                    img shape: [H, W, 3].
+    Returns:
+        imgs_new (list of numpy.array): Flippd multiple-view images
+    """
     imgs_new = [np.flip(img, axis=0) for img in imgs]
     return imgs_new
 
 
-def horizaontal_flip_bbox(bboxes_3d, dataset):
+def horizaontal_flip_bbox(bboxes_3d: np.ndarray, dataset):
+    """Flip bounding boxes horizontally.
+    Args:
+        bboxes_3d (np.ndarray): bounding boxes of shape [N * 7], N is the number of objects.
+        dataset (string): 'waymo' or 'nuscenes'
+    Returns:
+        bboxes_3d (numpy.array): Flippd bounding boxes.
+    """
     if dataset == 'nuScenes':
-        bboxes_3d.tensor[:, 0::7] = -bboxes_3d.tensor[:, 0::7]
-        bboxes_3d.tensor[:, 6] = -bboxes_3d.tensor[:, 6]  # + np.pi
+        bboxes_3d[:, 0::7] = -bboxes_3d[:, 0::7]
+        bboxes_3d[:, 6] = -bboxes_3d[:, 6]  # + np.pi
     elif dataset == 'waymo':
-        bboxes_3d.tensor[:, 1::7] = -bboxes_3d.tensor[:, 1::7]
-        bboxes_3d.tensor[:, 6] = -bboxes_3d.tensor[:, 6] + np.pi
+        bboxes_3d[:, 1::7] = -bboxes_3d[:, 1::7]
+        bboxes_3d[:, 6] = -bboxes_3d[:, 6] + np.pi
     return bboxes_3d
 
 
-def horizaontal_flip_cam_params(img_shape, cam_intrinsics, cam_extrinsics, dataset):
+def horizaontal_flip_cam_params(img_shape: np.ndarray, cam_intrinsics: List[np.ndarray],
+                                cam_extrinsics: List[np.ndarray], lidar2imgs: List[np.ndarray],
+                                dataset: str) -> Tuple[List[np.ndarray], List[np.ndarray], List[np.ndarray]]:
+    """Flip bounding boxes horizontally.
+    Args:
+        bboxes_3d:
+        dataset (string): 'waymo' or 'nuscenes'
+    Returns:
+        imgs_new (list of numpy.array): Flippd multiple-view images
+    """
     flip_factor = np.eye(4)
     lidar2imgs = []
 
@@ -120,6 +150,13 @@ def horizaontal_flip_cam_params(img_shape, cam_intrinsics, cam_extrinsics, datas
 
 
 def horizaontal_flip_canbus(canbus, dataset):
+    """Flip bounding boxes horizontally.
+    Args:
+        bboxes_3d:
+        dataset (string): 'waymo' or 'nuscenes'
+    Returns:
+        imgs_new (list of numpy.array): Flippd multiple-view images
+    """
     if dataset == 'nuScenes':
         # results['can_bus'][1] = -results['can_bus'][1]  # flip location
         # results['can_bus'][-2] = -results['can_bus'][-2]  # flip direction

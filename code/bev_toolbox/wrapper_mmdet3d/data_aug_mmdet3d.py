@@ -21,6 +21,8 @@
 ######################################################################
 
 from typing import Dict
+import numpy as np
+import torch
 from mmdet.datasets.builder import PIPELINES
 from ..data_aug.transforms import RandomScaleImageMultiViewImage_naive
 from ..data_aug.transforms import RandomHorizontalFlipMultiViewImage_naive
@@ -61,8 +63,20 @@ class RandomScaleImageMultiViewImage(RandomScaleImageMultiViewImage_naive):
 
 @PIPELINES.register_module()
 class RandomHorizontalFlipMultiViewImage(RandomHorizontalFlipMultiViewImage_naive):
+    """Horizontally flip the multiple-view images with bounding boxes, camera parameters and can bus randomly.  .
+    Wrapper for mmdet3d
+    Args:
+        flip_ratio (float 0~1): probability of the images being flipped. Default value is 0.5.
+        dataset (string): 'waymo' or 'nuscenes'.
+    """
 
-    def __call__(self, results, seed=None):
+    def __call__(self, results: Dict, seed=None) -> Dict:
+        """Call function to randomly horizontally flip the multiple-view images.
+        Args:
+            results (dict): Result dict from loading pipeline.
+        Returns:
+            results (dict): Updated result dict.
+        """
 
         if len(results['bbox3d_fields']) == 0:  # test mode
             results['bbox3d_fields'].append('empty_box3d')
@@ -70,7 +84,7 @@ class RandomHorizontalFlipMultiViewImage(RandomHorizontalFlipMultiViewImage_naiv
         assert len(results['bbox3d_fields']) == 1
 
         imgs = results['img']
-        bboxes_3d = results['gt_bboxes_3d']
+        bboxes_3d = results['gt_bboxes_3d'].tensor.numpy()
         cam_intrinsics = results['cam_intrinsic']
         cam_extrinsics = results['lidar2cam']
         lidar2imgs = results['lidar2img']
@@ -80,7 +94,8 @@ class RandomHorizontalFlipMultiViewImage(RandomHorizontalFlipMultiViewImage_naiv
         if flip_flag:
             results['flip'] = True
             results['img'] = imgs_flip
-            results['gt_bboxes_3d'] = bboxes_3d_flip
+            bboxes_3d_flip = torch.Tensor(bboxes_3d_flip).to(results['gt_bboxes_3d'].tensor.device)
+            results['gt_bboxes_3d'].tensor = bboxes_3d_flip
             results['lidar2cam'] = cam_extrinsics_flip
             results['lidar2img'] = lidar2imgs_flip
             results['can_bus'] = canbus_flip

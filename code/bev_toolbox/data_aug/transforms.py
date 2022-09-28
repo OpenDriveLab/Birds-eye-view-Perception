@@ -82,18 +82,47 @@ class RandomScaleImageMultiViewImage_naive(object):
 
 
 class RandomHorizontalFlipMultiViewImage_naive(object):
+    """Horizontally flip the multiple-view images with bounding boxes, camera parameters and can bus randomly.  .
+    Wrapper for mmdet3d
+    Args:
+        flip_ratio (float 0~1): probability of the images being flipped. Default value is 0.5.
+        dataset (string): 'waymo' or 'nuscenes'.
+    """
 
     def __init__(self, flip_ratio=0.5, dataset='waymo'):
         self.flip_ratio = flip_ratio
         self.seed = 0
         self.dataset = dataset
 
-    def forward(self, imgs, bboxes_3d, cam_intrinsics, cam_extrinsics, lidar2imgs, canbus, seed=None):
+    def forward(self,
+                imgs: List[np.ndarray],
+                bboxes_3d,
+                cam_intrinsics: List[np.ndarray],
+                cam_extrinsics: List[np.ndarray],
+                lidar2imgs: List[np.ndarray],
+                canbus,
+                seed=None):
+        """
+        Args:
+            imgs (list of numpy.array): Multiple-view images to be resized. len(img) is the number of cameras.
+                    img shape: [H, W, 3].
+        cam_intrinsics (list of numpy.array): Intrinsic parameters of different cameras. Transformations from camera 
+                    to image. len(cam_intrinsics) is the number of camera. For each camera, shape is 4 * 4.
+        cam_extrinsics (list of numpy.array): Extrinsic parameters of different cameras. Transformations from
+                lidar to cameras. len(cam_extrinsics) is the number of camera. For each camera, shape is 4 * 4.
+        lidar2img (list of numpy.array): Transformations from lidar to images. len(lidar2img) is the number
+                of camera. For each camera, shape is 4 * 4.
+            seed (int): Seed for generating random number.
+        Returns:
+            imgs_new (list of numpy.array): Updated multiple-view images
+            cam_intrinsics_new (list of numpy.array): Updated intrinsic parameters of different cameras.
+            lidar2img_new (list of numpy.array): Updated Transformations from lidar to images.
+        """
         if seed is not None:
             np.random.seed(int(seed))
         if np.random.rand() >= self.flip_ratio:
             flip_flag = False
-            return imgs, bboxes_3d, cam_intrinsics, cam_extrinsics, lidar2imgs, canbus,
+            return flip_flag, imgs, bboxes_3d, cam_intrinsics, cam_extrinsics, lidar2imgs, canbus,
         else:
             flip_flag = True
             imgs_flip = horizontal_flip_image_multiview(imgs)
