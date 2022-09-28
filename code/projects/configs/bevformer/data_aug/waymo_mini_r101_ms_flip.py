@@ -149,7 +149,7 @@ train_pipeline = [
     dict(type='LoadAnnotations3D', with_bbox_3d=True, with_label_3d=True, with_attr_label=False),
     dict(type='ObjectRangeFilter', point_cloud_range=point_cloud_range),
     dict(type='ObjectNameFilter', classes=class_names),
-    dict(type='HorizontalRandomFlipMultiViewImage', dataset='waymo'),
+    dict(type='RandomHorizontalFlipMultiViewImage', dataset='waymo'),
     dict(type='RandomScaleImageMultiViewImage', scales=[0.9, 1.0, 1.1]),
     dict(type='NormalizeMultiviewImage', **img_norm_cfg),
     dict(type='PadMultiViewImage', size='same2max'),
