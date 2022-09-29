@@ -193,7 +193,7 @@ data = dict(samples_per_gpu=1,
             shuffler_sampler=dict(type='OriginDistributedGroupSampler'),
             nonshuffler_sampler=dict(type='DistributedSampler'))
 
-evaluation = dict(interval=1, pipeline=test_pipeline)
+evaluation = dict(interval=12, pipeline=test_pipeline)
 
 fp16 = dict(loss_scale=512.)
 load_from = 'ckpts/fcos3d.pth'
