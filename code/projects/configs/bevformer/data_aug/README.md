@@ -8,20 +8,20 @@ Since BEVFormer uses sequence input, we ensure that the transformations are cons
 
 ### Multi-scale Resize
 
-[config](waymo_mini_r101_ms_flip.py#L153) | [code](../../../../bev_toolbox/data_aug/transforms.py#L20)
+[config](waymo_mini_r101_ms_flip.py#L21) | [code](../../../../bev_toolbox/data_aug/transforms.py#L28)
 
 The input image is scaled by a factor between 0.5 and 1.2.
 Coresponding Config: dict(type='RandomScaleImageMultiViewImage', scales=[0.9, 1.0, 1.1]) in train_pipeline.
 
 ### Flip
 
-[config](waymo_mini_r101_ms_flip.py#L152) | [code](../../../mmdet3d_plugin/datasets/pipelines/transform_3d.py#L301)
+[config](waymo_mini_r101_ms_flip.py#L20) | [code](../../../../bev_toolbox/data_aug/transforms.py#L84)
 
 The input is fliped by a ratio of 0.5. We simply flip images, image orders, ground truth and camera parameters accordingly to maintain coherence in overlappedvarea between images, which resembles to flip the whole 3D space symmetrically.
 
 ### Grid Mask
 
-[config](waymo_mini_r101_ms_flip.py#L28) | [code](../../../mmdet3d_plugin/models/detectors/bevformer.py#L143)
+[config](../../_base_/models/bevformer.py#L10) | [code](../../../mmdet3d_plugin/models/detectors/bevformer.py#L143)
 
 The maximum 30% of total area is randomly masked with square masks.
 
