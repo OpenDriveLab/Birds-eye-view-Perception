@@ -67,7 +67,7 @@ class RandomHorizontalFlipMultiViewImage(RandomHorizontalFlipMultiViewImage):
     Wrapper for mmdet3d
     Args:
         flip_ratio (float 0~1): probability of the images being flipped. Default value is 0.5.
-        dataset (string): 'waymo' or 'nuscenes'.
+        dataset (string): 'waymo' coordinate system or 'nuscenes' coordinate system.
     """
 
     def __call__(self, results: Dict, seed=None) -> Dict:

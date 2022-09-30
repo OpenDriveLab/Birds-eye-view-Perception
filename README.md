@@ -135,7 +135,7 @@ pip install bev-toolbox
 ```python
 import cv2
 import numpy as np
-from bev-toolbox.data_aug import RandomScaleImageMultiViewImage
+from bev_toolbox.data_aug import RandomScaleImageMultiViewImage
 
 # Declare an augmentation pipeline
 transform = RandomScaleImageMultiViewImage(scales=[0.9, 1.0, 1.1])
@@ -159,7 +159,7 @@ We provide wrappers of this BEV toolbox for mmdet3d and detectron2.
 
 1. Add the following code to [train_video.py](experiments/tools/train_video.py#L93) or [test_video.py](experiments/tools/test_video.py#L110).
 ```
-from bev-toolbox.init_toolbox import init_toolbox_mmdet3d
+from bev_toolbox.init_toolbox import init_toolbox_mmdet3d
 init_toolbox_mmdet3d()
 ```
 2. Use functions in the toolbox just like mmdet3d. For example, you can just add ```RandomScaleImageMultiViewImage``` to the configure file.

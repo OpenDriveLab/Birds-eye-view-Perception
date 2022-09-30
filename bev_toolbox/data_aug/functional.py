@@ -102,7 +102,7 @@ def horizontal_flip_bbox(bboxes_3d: np.ndarray, dataset: str) -> np.ndarray:
     """Flip bounding boxes horizontally.
     Args:
         bboxes_3d (np.ndarray): bounding boxes of shape [N * 7], N is the number of objects.
-        dataset (string): 'waymo' or 'nuscenes'
+        dataset (string): 'waymo' coordinate system or 'nuscenes' coordinate system.
     Returns:
         bboxes_3d (numpy.array): Flippd bounding boxes.
     """
