@@ -123,8 +123,6 @@ data
 *.log.json
 *.npy
 work_dirs/
-exps/
-experiments
 ckpts
 notebooks
 *~
