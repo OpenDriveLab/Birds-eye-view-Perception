@@ -21,8 +21,8 @@ Awesome BEV perception papers and toolbox for achieving SOTA results
   - [<div id='guideline'>Get Started</div>](#div-idguidelineget-starteddiv)
     - [<div id='example'>Installation</div>](#div-idexampleinstallationdiv)
     - [<div id='example'>A simple example</div>](#div-idexamplea-simple-examplediv)
-      - [Use BEV toolbox with mmdet3d](#use-bev-toolbox-with-mmdet3d)
-      - [Use BEV-toolbox with detectron2](#use-bev-toolbox-with-detectron2)
+      - [Use BEV toolbox with `mmdet3d`](#use-bev-toolbox-with-mmdet3d)
+      - [Use BEV-toolbox with `detectron2`](#use-bev-toolbox-with-detectron2)
   - [Testbed](#testbed)
     - [Setup](#setup)
       - [1. Installation](#1-installation)
@@ -168,7 +168,7 @@ lidar2img = [np.load(f'example/cam{i}_lidar2img.npy') for i in range(5)]
 imgs_new, cam_intr_new, lidar2img_new = transform(imgs, cam_intr, cam_extr, lidar2img)
 ```
 
-#### Use BEV toolbox with mmdet3d
+#### Use BEV toolbox with `mmdet3d`
 
 We provide wrappers of this BEV toolbox for mmdet3d and detectron2. 
 
@@ -186,7 +186,7 @@ train_pipeline = [
 ]
 ```
 
-#### Use BEV-toolbox with detectron2
+#### Use BEV-toolbox with `detectron2`
 
 We plan to make this toolbox compatible with detectron2 in the future.
 
