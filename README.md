@@ -1,35 +1,24 @@
 # BEVPerception-Survey-Recipe
 
-Awesome BEV perception papers and toolbox for achieving SOTA results
-
-[🆕Update News](#update) |
-[📘Awesome Papers](#papers) |
-[🛠️Toolbox Tutorial](#tutorial) |
-[👀Bag of Tricks](#tricks) |
-[🚀Ongoing Features](#todo) |
-[🤔Reporting Issues](https://github.com/OpenPerceptionX/BEV-toolbox-private/issues) |
-[🤝Fundamental Vision](https://github.com/fundamentalvision)
+Awesome BEV perception papers and toolbox for achieving SOTA results. [🤝Fundamental Vision](https://github.com/fundamentalvision)
 
 ## Table of contents
 - [BEVPerception-Survey-Recipe](#bevperception-survey-recipe)
   - [Table of contents](#table-of-contents)
-  - [<div id='intro'>Introduction of BEV Toolbox</div>](#div-idintrointroduction-of-bev-toolboxdiv)
+  - [<div id='intro'>Introduction</div>](#div-idintrointroductiondiv)
     - [Major Features](#major-features)
-  - [<div id='update'>What's New</div>](#div-idupdatewhats-newdiv)
-  - [<div id='overview'>Overview of BEV Perception</div>](#div-idoverviewoverview-of-bev-perceptiondiv)
-    - [<div id='papers'>Awesome Papers</div>](#div-idpapersawesome-papersdiv)
-  - [<div id='guideline'>Get Started</div>](#div-idguidelineget-starteddiv)
-    - [<div id='example'>Installation</div>](#div-idexampleinstallationdiv)
-    - [<div id='example'>A simple example</div>](#div-idexamplea-simple-examplediv)
+  - [<div id='update'>🆕 What's New</div>](#div-idupdatewhats-newdiv)
+  - [<div id='overview'>📘 Literature Survey</div>](#div-idoverviewliterature-surveydiv)
+  - [<div id='guideline'>🛠️ BEV Toolbox</div>](#div-idguidelinebev-toolboxdiv)
+    - [<div id='guideline'>Get Started</div>](#div-idguidelineget-starteddiv)
+      - [<div id='example'>Installation</div>](#div-idexampleinstallationdiv)
+      - [<div id='example'>A simple example</div>](#div-idexamplea-simple-examplediv)
       - [Use BEV toolbox with `mmdet3d`](#use-bev-toolbox-with-mmdet3d)
       - [Use BEV-toolbox with `detectron2`](#use-bev-toolbox-with-detectron2)
-  - [Testbed](#testbed)
-    - [Setup](#setup)
-      - [1. Installation](#1-installation)
-      - [2. Data Preparation](#2-data-preparation)
-      - [3. Running Experiments](#3-running-experiments)
-    - [Config with Performance](#config-with-performance)
-  - [<div id='todo'>Ongoing Features</div>](#div-idtodoongoing-featuresdiv)
+    - [Playground on Waymo](#playground-on-waymo)
+      - [Setup](#setup)
+      - [Config with Performance](#config-with-performance)
+  - [<div id='todo'>🚀 Ongoing Features</div>](#div-idtodoongoing-featuresdiv)
   - [<div id='license'>License</div>](#div-idlicenselicensediv)
   - [<div id='cite'>Citation</div>](#div-idcitecitationdiv)
   - [Acknowledgement](#acknowledgement)
@@ -37,14 +26,14 @@ Awesome BEV perception papers and toolbox for achieving SOTA results
     - [&#8627; Forkers](#-forkers)
 
 
-## <div id='intro'>Introduction of BEV Toolbox</div>
+## <div id='intro'>Introduction</div>
 
-This is an open source BEV 3D object detection toolbox based on PyTorch, associated with the survey paper "[Delving into the Devils of Bird’s-eye-view Perception: A Review, Evaluation and Recipe](https://arxiv.org/abs/2209.05324)". This toolbox provides useful recipe for BEV camera-based 3D object detection, including solid data augmentation strategies, efficient BEV encoder design, perception heads and loss function family, useful test-time augmentation and ensemble policy, and so on. We hope this toolbox can not only be a good starting point for new beginners but also help current researchers in the BEV perception community.
+This repo is associated with the survey paper "[Delving into the Devils of Bird’s-eye-view Perception: A Review, Evaluation and Recipe](https://arxiv.org/abs/2209.05324)", which provides an up-to-date literature survey for BEVPercption and an open source BEV toolbox based on PyTorch. In the literature survey, it includes different modalities (camera, lidar and fusion) and tasks (detection and segmentation). As for the toolbox, it provides useful recipe for BEV camera-based 3D object detection, including solid data augmentation strategies, efficient BEV encoder design, loss function family, useful test-time augmentation, ensemble policy, and so on. We hope this repo can not only be a good starting point for new beginners but also help current researchers in the BEV perception community.
 
 ### Major Features
 
-We plan to add bag of practical tricks to this toolbox, which can be grouped as four types -- data augmentation, design of BEV encoder, loss family and post-process policy. Please click the link of each trick for more details. We also offer their corresponding configs and performance in the table below for the convenience of users.
-
+* **Up-to-date Literature Survey for BEV Perception** <br> We summarized important methods in recent years about BEV perception including different modalities and tasks.
+* **Convenient BEVPerception Toolbox** <br> We integrate bag of tricks in the BEV toolbox that help us achieve 1st in the camera-based detection track of the Waymo Open Challenge 2022, which can be grouped as four types -- data augmentation, design of BEV encoder, loss family and post-process policy. This toolbox can be used indedependly or as a plug-in for `mmdet3d` and `detectron2`. 
 <div align="center">
   <b>Bag of Tricks</b>
 </div>
@@ -69,7 +58,7 @@ We plan to add bag of practical tricks to this toolbox, which can be grouped as 
         <ul>
           <li><a href="code/projects/configs/bevformer/data_aug">Random Flip</a></li>
           <li><a href="code/projects/configs/bevformer/data_aug">Random Multi-scale Resize</a></li>
-          <li><a href="code/projects/configs/bevformer/data_aug">Grid Mask</a></li>
+          <li>Grid Mask</li>
         </ul>
       </td>
       <td>
@@ -86,9 +75,9 @@ We plan to add bag of practical tricks to this toolbox, which can be grouped as 
       </td>
       <td>
         <ul>
-          <li><a href="tba">Test-time Augmentation</a></li>
-          <li><a href="tba">Weighted Box Fusion</a></li>
-          <li><a href="tba">Two-stage Ensemble</a></li>
+          <li>Test-time Augmentation</li>
+          <li>Weighted Box Fusion</li>
+          <li>Two-stage Ensemble</li>
         </ul>
       </ul>
       </td>
@@ -99,8 +88,6 @@ We plan to add bag of practical tricks to this toolbox, which can be grouped as 
 </table>
 
 
-* **Integration with bag of tricks** <br> We integrate bag of tricks that help us achieve 1st in the camera-based detection track of the Waymo Open Challenge 2022. 
-* **Convenient BEVPerception Toolbox** <br> We provide a convenient toolbox including these tricks that can be used indedependly or as a plug-in for mmdet3d and detectron2. 
 * **Support Waymo Open Dataset (WOD) for camera-only detection** <br> We provide a suitable playground for new-beginners in this area, including hands-on tutorial and small-scale dataset (1/5 WOD in kitti format) to validate idea.
 
 
@@ -113,13 +100,10 @@ v0 was released in 09/30/2022.
 
 Please refer to [changelog.md](docs/changelog.md) for details and release history.
 
-## <div id='overview'>Overview of BEV Perception</div>
+## <div id='overview'>Literature Survey</div>
 
 ![](figs/general_overview.jpg)
 The general picture of BEV perception at a glance, where consists of three sub-parts based on the input modality. BEV perception is a general task built on top of a series of fundamental tasks. For better completeness of the whole perception algorithms in autonomous driving, we list other topics as well. More detail can be found in the [survey paper](https://arxiv.org/abs/2209.05324).
-
-
-### <div id='papers'>Awesome Papers</div>
 
 We have summarized important datasets and methods in recent years about BEV perception in academia and also different roadmaps used in industry. 
 * [Academic Summary of BEV Perception](docs/paper_list/academia.md)
@@ -135,17 +119,18 @@ We have also summarized some conventional methods for different tasks.
 * [Conventional Methods LiDAR Segmentation](docs/paper_list/lidar_segmentation.md)
 * [Conventional Methods Sensor Fusion](docs/paper_list/sensor_fusion.md)
 
+## <div id='guideline'>BEV Toolbox</div>
 
-## <div id='guideline'>Get Started</div>
+### <div id='guideline'>Get Started</div>
 
-### <div id='example'>Installation</div>
+#### <div id='example'>Installation</div>
 
 ```shell
 pip install numpy opencv-python
 pip install bev-toolbox
 ```
 
-### <div id='example'>A simple example</div>
+#### <div id='example'>A simple example</div>
 
 ```python
 import cv2
@@ -172,12 +157,12 @@ imgs_new, cam_intr_new, lidar2img_new = transform(imgs, cam_intr, cam_extr, lida
 
 We provide wrappers of this BEV toolbox for mmdet3d and detectron2. 
 
-1. Add the following code to [train_video.py](code/tools/train_video.py#L93) or [test_video.py](code/tools/test_video.py#L110).
+1. Add the following code to [train_video.py](experiments/tools/train_video.py#L93) or [test_video.py](experiments/tools/test_video.py#L110).
 ```
 from bev-toolbox.init_toolbox import init_toolbox_mmdet3d
 init_toolbox_mmdet3d()
 ```
-2. Then you can directly use functions in the toolbox just like the usage of mmdet3d. For example, you can just add ```RandomScaleImageMultiViewImage``` to the configure file.
+2. Use functions in the toolbox just like mmdet3d. For example, you can just add ```RandomScaleImageMultiViewImage``` to the configure file.
 ```python
 train_pipeline = [
     ...
@@ -190,22 +175,14 @@ train_pipeline = [
 
 We plan to make this toolbox compatible with detectron2 in the future.
 
-## Testbed
+### Playground on Waymo
 
-We provide a suitable playground for new-beginners in this area, including hands-on tutorial and small-scale dataset (1/5 WOD in kitti format) to validate idea.
+We provide a suitable playground on the Waymo dataset, including hands-on tutorial and small-scale dataset (1/5 WOD in kitti format) to validate idea.
 
-### Setup
-#### 1. Installation
-Please refer to [instatllation.md](docs/installation.md) for installation of environment.
+#### Setup
+Please refer to [waymo_setup.md](docs/waymo_setup.md) about how to run experiments on Waymo.
 
-#### 2. Data Preparation
-
-Please refer to [data_preparation.md](docs/data_preparation.md) for preparation of dataset and pretrained model.
-
-#### 3. Running Experiments
-Please refer to [usage.md](docs/usage.md) for commands of training and evaluation.
-
-### Config with Performance
+#### Config with Performance
 
 We provide the improvement of each trick compared with the baseline on the Waymo validation set. All the models are trained with 1/5 training data of Waymo v1.3 which is represented as Waymo mini here. It's worthy noting that the results were run on data with *png* format. We are revalidating these results on the data with *jpg* format. So, the actual performance may be different.
 
@@ -230,29 +207,25 @@ We provide the improvement of each trick compared with the baseline on the Waymo
 
 ## <div id='todo'>Ongoing Features</div>
 
-**Integrate more tricks**
-- [ ] More data augmentation methods for BEV perception
-  - [ ] Horizontal random flip for multi-view images
-  - [ ] Random Crop for multi-view images
-- [ ] Post-process
-  - [ ] Test-time Augmentation
-  - [ ] Weighted Box Fusion
-  - [ ] Two-stage Ensemble
+**Literature Survey**
+- [ ] Add new papers.
 
-**Improve the docs**
+**BEV toolbox**
+- [x] Data augmentation methods for BEV perception
+  - [x] Random horizontal flip
+  - [x] Random scale
+  - [ ] Grid mask
+  - [ ] New data augmentation
+- [ ] Integrate more tricks
+  - [ ] Post-process
+    - [ ] Test-time Augmentation
+    - [ ] Weighted Box Fusion
+    - [ ] Two-stage Ensemble
+  - [ ] BEV Encoder
+  - [ ] Loss Family
+- [ ] Add Visualization in BEV
+- [ ] Improve the current implementations.
 - [ ] Add documentation to introduce the APIs of the toolbox
-- [ ] Add more detailed explaination of the bag of tricks
-
-**Visualization**
-- [ ] Visualization in BEV
-- [ ] Visualization of model's features 
-
-**Support other datasets**
-- [ ] Support Nuscenes dataset
-
-**Refactoring**
-- [ ] Disentangle the implementation of BEVFormer and bag of tricks
-- [ ] Make the tricks compatible with more detection algorithms
 
 
 ## <div id='license'>License</div>

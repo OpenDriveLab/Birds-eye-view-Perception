@@ -98,7 +98,7 @@ def vertical_flip_image_multiview(imgs: List[np.ndarray]) -> List[np.ndarray]:
     return imgs_new
 
 
-def horizaontal_flip_bbox(bboxes_3d: np.ndarray, dataset: str) -> np.ndarray:
+def horizontal_flip_bbox(bboxes_3d: np.ndarray, dataset: str) -> np.ndarray:
     """Flip bounding boxes horizontally.
     Args:
         bboxes_3d (np.ndarray): bounding boxes of shape [N * 7], N is the number of objects.
@@ -115,7 +115,7 @@ def horizaontal_flip_bbox(bboxes_3d: np.ndarray, dataset: str) -> np.ndarray:
     return bboxes_3d
 
 
-def horizaontal_flip_cam_params(img_shape: np.ndarray, cam_intrinsics: List[np.ndarray],
+def horizontal_flip_cam_params(img_shape: np.ndarray, cam_intrinsics: List[np.ndarray],
                                 cam_extrinsics: List[np.ndarray], lidar2imgs: List[np.ndarray],
                                 dataset: str) -> Tuple[List[np.ndarray], List[np.ndarray], List[np.ndarray]]:
     """Flip camera parameters horizontally.
@@ -157,21 +157,21 @@ def horizaontal_flip_cam_params(img_shape: np.ndarray, cam_intrinsics: List[np.n
     return cam_intrinsics, cam_extrinsics, lidar2imgs
 
 
-def horizaontal_flip_canbus(canbus: np.ndarray, dataset: str) -> np.ndarray:
+def horizontal_flip_canbus(canbus: np.ndarray, dataset: str) -> np.ndarray:
     """Flip can bus horizontally.
     Args:
         canbus (numpy.ndarray) of shape [18,]
         dataset (string): 'waymo' or 'nuscenes'
     Returns:
-        canbus_new (list of numpy.array): Flippd canbus.
+        canbus_new (list of numpy.array): Flipped canbus.
     """
     if dataset == 'nuScenes':
-        # results['can_bus'][1] = -results['can_bus'][1]  # flip location
-        # results['can_bus'][-2] = -results['can_bus'][-2]  # flip direction
+        # results['canbus'][1] = -results['canbus'][1]  # flip location
+        # results['canbus'][-2] = -results['canbus'][-2]  # flip direction
         canbus[-1] = -canbus[-1]  # flip direction
     elif dataset == 'waymo':
-        # results['can_bus'][1] = -results['can_bus'][-1]  # flip location
-        # results['can_bus'][-2] = -results['can_bus'][-2]  # flip direction
+        # results['canbus'][1] = -results['canbus'][-1]  # flip location
+        # results['canbus'][-2] = -results['canbus'][-2]  # flip direction
         canbus[-1] = -canbus[-1]  # flip direction
     else:
         raise NotImplementedError((f"Not support {dataset} dataset"))

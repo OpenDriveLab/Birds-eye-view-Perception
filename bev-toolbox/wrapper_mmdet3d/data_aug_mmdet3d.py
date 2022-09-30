@@ -33,7 +33,7 @@ class RandomScaleImageMultiViewImage(RandomScaleImageMultiViewImage):
     """Resize the multiple-view images with the same scale selected randomly.  .
     Wrapper for mmdet3d
     Args:
-        scales (tuple of float): ratio for resizing the images. Every time, select one ratio randonly.
+        scales (tuple of float): ratio for resizing the images. Every time, select one ratio randomly.
     """
 
     def __call__(self, results: Dict, seed=None) -> Dict:

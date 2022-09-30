@@ -22,7 +22,7 @@
 from typing import List, Tuple
 import numpy as np
 from .functional import scale_image_multiple_view
-from .functional import horizontal_flip_image_multiview, horizaontal_flip_bbox, horizaontal_flip_cam_params, horizaontal_flip_canbus
+from .functional import horizontal_flip_image_multiview, horizontal_flip_bbox, horizontal_flip_cam_params, horizontal_flip_canbus
 
 
 class RandomScaleImageMultiViewImage(object):
@@ -130,11 +130,11 @@ class RandomHorizontalFlipMultiViewImage(object):
         else:
             flip_flag = True
             imgs_flip = horizontal_flip_image_multiview(imgs)
-            bboxes_3d_flip = horizaontal_flip_bbox(bboxes_3d, self.dataset)
+            bboxes_3d_flip = horizontal_flip_bbox(bboxes_3d, self.dataset)
             img_shape = imgs[0].shape
-            cam_intrinsics_flip, cam_extrinsics_flip, lidar2imgs_flip = horizaontal_flip_cam_params(
+            cam_intrinsics_flip, cam_extrinsics_flip, lidar2imgs_flip = horizontal_flip_cam_params(
                 img_shape, cam_intrinsics, cam_extrinsics, lidar2imgs, self.dataset)
-            canbus_flip = horizaontal_flip_canbus(canbus, self.dataset)
+            canbus_flip = horizontal_flip_canbus(canbus, self.dataset)
         return flip_flag, imgs_flip, bboxes_3d_flip, cam_intrinsics_flip, cam_extrinsics_flip, lidar2imgs_flip, canbus_flip
 
     def __call__(

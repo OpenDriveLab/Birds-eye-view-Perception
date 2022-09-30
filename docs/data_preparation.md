@@ -42,14 +42,3 @@ The folder structure should like this.
 |   |   filter_waymo.txt
 ...
 ```
-
-
-<!-- # 这个命令会最后生成一个bin的文件，代码会输出这个bin的路径，会在test/$CONFIG_NAME 下面
-./tools/dist_test_video.sh ./projects/configs/waymo/waymo_imp.py ./path/to/ckpt.pth 8
-
-# 然后用下面的命令获得最终结果
-
-python ./projects/mmdet3d_plugin/datasets/eval_waymo.py  -b path/to/bin
-
-# note:两个代码串在一起，一直跑不起来
-``` -->
