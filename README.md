@@ -89,7 +89,7 @@ Please refer to [usage.md](docs/usage.md) for commands of training and evaluatio
 
 ## <div id='guideline'>User Guidelines</div>
 
-### For beginners
+### For New Beginners
 We provide a baseline experiment for beginners to run bevformer on Waymo 1/5 training data.
 ```shell
 cd code
@@ -101,11 +101,11 @@ After training, run the following command for evaluation.
 sh ./tools/dist_test_video.sh projects/configs/bevformer/waymo_mini_r101_baseline.py work_dirs/waymo_mini_r101_baseline/latest.pth 8
 ```
 
-### For expert
+### For Experienced Users
 
 We provide wrappers of this BEV toolbox for mmdet3d and detectron2(ongoing feature). 
 
-#### Use BEV-toolbox with mmdet3d
+#### Use BEV-toolbox with `mmdet3d`
 
 Add the following code to [train_video.py](code/tools/train_video.py#L93) or [test_video.py](code/tools/test_video.py#L110).
 ```
@@ -123,7 +123,7 @@ train_pipeline = [
 
 We also provide bag of tricks to boost the performance of the baseline below implemented by our toolbox and mmdet3d.
 
-#### Use BEV-toolbox with detectron2
+#### Use BEV-toolbox with `detectron2`
 
 We plan to make this toolbox compatible with detectron2 in the future.
 
