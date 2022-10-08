@@ -4,7 +4,6 @@ Awesome BEV perception papers and toolbox for achieving SOTA results. [🤝Funda
 
 ## Table of contents
 - [BEVPerception-Survey-Recipe](#bevperception-survey-recipe)
-  - [Table of contents](#table-of-contents)
   - [<div id='intro'>Introduction</div>](#div-idintrointroductiondiv)
     - [Major Features](#major-features)
   - [<div id='update'>What's New</div>](#div-idupdatewhats-newdiv)
@@ -21,9 +20,7 @@ Awesome BEV perception papers and toolbox for achieving SOTA results. [🤝Funda
   - [<div id='todo'>Ongoing Features</div>](#div-idtodoongoing-featuresdiv)
   - [<div id='license'>License</div>](#div-idlicenselicensediv)
   - [<div id='cite'>Citation</div>](#div-idcitecitationdiv)
-  - [Acknowledgement](#acknowledgement)
-    - [&#8627; Stargazers](#-stargazers)
-    - [&#8627; Forkers](#-forkers)
+
 
 
 ## <div id='intro'>Introduction</div>
