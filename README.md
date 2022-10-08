@@ -4,12 +4,11 @@ Awesome BEV perception papers and toolbox for achieving SOTA results. [🤝Funda
 
 ## Table of contents
 - [BEVPerception-Survey-Recipe](#bevperception-survey-recipe)
-  - [Table of contents](#table-of-contents)
   - [<div id='intro'>Introduction</div>](#div-idintrointroductiondiv)
     - [Major Features](#major-features)
-  - [<div id='update'>🆕 What's New</div>](#div-idupdatewhats-newdiv)
-  - [<div id='overview'>📘 Literature Survey</div>](#div-idoverviewliterature-surveydiv)
-  - [<div id='guideline'>🛠️ BEV Toolbox</div>](#div-idguidelinebev-toolboxdiv)
+  - [<div id='update'>What's New</div>](#div-idupdatewhats-newdiv)
+  - [<div id='overview'>Literature Survey</div>](#div-idoverviewliterature-surveydiv)
+  - [<div id='guideline'>BEV Toolbox</div>](#div-idguidelinebev-toolboxdiv)
     - [<div id='guideline'>Get Started</div>](#div-idguidelineget-starteddiv)
       - [<div id='example'>Installation</div>](#div-idexampleinstallationdiv)
       - [<div id='example'>A simple example</div>](#div-idexamplea-simple-examplediv)
@@ -18,12 +17,9 @@ Awesome BEV perception papers and toolbox for achieving SOTA results. [🤝Funda
     - [Playground on Waymo](#playground-on-waymo)
       - [Setup](#setup)
       - [Config with Performance](#config-with-performance)
-  - [<div id='todo'>🚀 Ongoing Features</div>](#div-idtodoongoing-featuresdiv)
-  - [<div id='license'>License</div>](#div-idlicenselicensediv)
-  - [<div id='cite'>Citation</div>](#div-idcitecitationdiv)
-  - [Acknowledgement](#acknowledgement)
-    - [&#8627; Stargazers](#-stargazers)
-    - [&#8627; Forkers](#-forkers)
+  - [<div id='todo'>Ongoing Features</div>](#div-idtodoongoing-featuresdiv)
+  - [<div id='license'>License & Citation & Acknowledgement</div>](#div-idlicenselicensediv)
+
 
 
 ## <div id='intro'>Introduction</div>
@@ -44,10 +40,10 @@ This repo is associated with the survey paper "[Delving into the Devils of Bird�
         <b>Multiple View Data Augmentation</b>
       </td>
       <td>
-        <b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  BEV encoder  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </b>
+        <b>   BEV encoder   </b>
       </td>
       <td>
-        <b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  Loss family  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </b>
+        <b>   Loss & Heads family   </b>
       </td>
       <td>
         <b>Post-Process</b>
