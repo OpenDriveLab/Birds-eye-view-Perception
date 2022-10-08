@@ -1,9 +1,9 @@
 #### 1. Installation
-Please refer to [installation.md](docs/installation.md) for installation of environment.
+Please refer to [installation.md](./installation.md) for installation of environment.
 
 #### 2. Data Preparation
 
-Please refer to [data_preparation.md](docs/data_preparation.md) for preparation of dataset and pretrained model.
+Please refer to [data_preparation.md](./data_preparation.md) for preparation of dataset and pretrained model.
 
 #### 3. Running Experiments
 
