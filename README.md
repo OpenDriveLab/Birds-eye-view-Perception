@@ -18,8 +18,7 @@ Awesome BEV perception papers and toolbox for achieving SOTA results. [🤝Funda
       - [Setup](#setup)
       - [Config with Performance](#config-with-performance)
   - [<div id='todo'>Ongoing Features</div>](#div-idtodoongoing-featuresdiv)
-  - [<div id='license'>License</div>](#div-idlicenselicensediv)
-  - [<div id='cite'>Citation</div>](#div-idcitecitationdiv)
+  - [<div id='license'>License & Citation & Acknowledgement</div>](#div-idlicenselicensediv)
 
 
 
