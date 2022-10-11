@@ -83,10 +83,10 @@ class RandomScaleImageMultiViewImage(object):
 
 class RandomHorizontalFlipMultiViewImage(object):
     """Horizontally flip the multiple-view images with bounding boxes, camera parameters and can bus randomly.  .
-    Wrapper for mmdet3d
+    Support coordinate systems like Waymo (https://waymo.com/open/data/perception/) or Nuscenes (https://www.nuscenes.org/public/images/data.png).
     Args:
         flip_ratio (float 0~1): probability of the images being flipped. Default value is 0.5.
-        dataset (string): 'waymo' or 'nuscenes'.
+        dataset (string): Specify 'waymo' coordinate system or 'nuscenes' coordinate system.
     """
 
     def __init__(self, flip_ratio=0.5, dataset='waymo'):

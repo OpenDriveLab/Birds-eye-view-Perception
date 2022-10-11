@@ -128,6 +128,8 @@ pip install bev-toolbox
 
 #### <div id='example'>A simple example</div>
 
+We provide an example with a sample from Waymo dataset to introduce the usage of this toolbox.
+
 ```python
 import cv2
 import numpy as np
@@ -148,6 +150,8 @@ lidar2img = [np.load(f'example/cam{i}_lidar2img.npy') for i in range(5)]
 # Augment an image
 imgs_new, cam_intr_new, lidar2img_new = transform(imgs, cam_intr, cam_extr, lidar2img)
 ```
+
+For more details like the coordinate systems or visualization, please refer to [example.md](example/example.md)
 
 #### Use BEV toolbox with `mmdet3d`
 
@@ -186,8 +190,8 @@ We provide the improvement of each trick compared with the baseline on the Waymo
 
 | Backbone  | Head  | Train data | Trick and corresponding config           | LET-mAPL | LET-mAPH | L1/mAPH (Car) | Status |
 | :-------: | :---: | :--------: | :--------------------------------------- | :------: | :------: | :-----------: | :----: |
-| ResNet101 | DETR  | Waymo mini | Baseline                                 |   34.6   |   46.1   |     25.5      |   ✓    |
-| ResNet101 | DETR  | Waymo mini | Multi-scale resize, Flip                 |    -     |    -     |     26.8      |   ☐    |
+| ResNet101 | DETR  | Waymo mini | Baseline                                 |   34.9   |   46.3   |     25.5      |   ✓    |
+| ResNet101 | DETR  | Waymo mini | Multi-scale resize, Flip                 |   35.6   |   46.9   |     26.8      |   ✓    |
 | ResNet101 | DETR  | Waymo mini | Conv offset in TSA                       |   35.9   |   48.1   |     25.6      |   ☐    |
 | ResNet101 | DETR  | Waymo mini | Deformable view encoder                  |   36.1   |   48.1   |     25.9      |   ☐    |
 | ResNet101 | DETR  | Waymo mini | Corner pooling                           |   35.6   |   46.9   |     26.0      |   ☐    |

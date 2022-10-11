@@ -127,7 +127,7 @@ def horizontal_flip_cam_params(img_shape: np.ndarray, cam_intrinsics: List[np.nd
                 lidar to cameras. len(cam_extrinsics) is the number of camera. For each camera, shape is 4 * 4.
         lidar2img (list of numpy.array): Transformations from lidar to images. len(lidar2img) is the number
                 of camera. For each camera, shape is 4 * 4.
-        dataset (string): 'waymo' or 'nuscenes'
+        dataset (string): Specify 'waymo' coordinate system or 'nuscenes' coordinate system.
     Returns:
         cam_intrinsics (list of numpy.array): Updated intrinsic parameters of different cameras.
         cam_extrinsics (list of numpy.array): Updated extrinsic parameters of different cameras.

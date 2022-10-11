@@ -9,7 +9,7 @@ Please refer to [data_preparation.md](./data_preparation.md) for preparation of 
 
 We provide a baseline config to run BEVFormer on Waymo 1/5 training data.
 ```shell
-cd experiment
+cd waymo_playground
 sh ./tools/dist_train_video.sh projects/configs/bevformer/waymo_mini_r101_baseline.py 8
 ```
 Logs and checkpoints will be saved at ```work_dirs/waymo_mini_r101_baseline```. 

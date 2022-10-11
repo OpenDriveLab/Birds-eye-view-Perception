@@ -64,10 +64,11 @@ class RandomScaleImageMultiViewImage(RandomScaleImageMultiViewImage):
 @PIPELINES.register_module()
 class RandomHorizontalFlipMultiViewImage(RandomHorizontalFlipMultiViewImage):
     """Horizontally flip the multiple-view images with bounding boxes, camera parameters and can bus randomly.  .
-    Wrapper for mmdet3d
+    Wrapper for mmdet3d. Support coordinate systems like Waymo (https://waymo.com/open/data/perception/) or 
+    Nuscenes (https://www.nuscenes.org/public/images/data.png).
     Args:
         flip_ratio (float 0~1): probability of the images being flipped. Default value is 0.5.
-        dataset (string): 'waymo' coordinate system or 'nuscenes' coordinate system.
+        dataset (string): Specify 'waymo' coordinate system or 'nuscenes' coordinate system.
     """
 
     def __call__(self, results: Dict, seed=None) -> Dict:
