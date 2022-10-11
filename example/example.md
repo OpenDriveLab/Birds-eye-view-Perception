@@ -12,7 +12,5 @@ The ego-vehicle coordinate system is right handed and the x-axis points forward.
 We provide some visualization for our data augmentation strategies.
 
 
-**Random Scale**
-
-
 **Random horizontal Flip**
+![](flip.png)
