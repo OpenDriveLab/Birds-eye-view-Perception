@@ -15,4 +15,4 @@
 <!-- ### Bug Fixes -->
 
 ### Contributors
-A total of 7 developers contributed to this release.
+A total of 5 developers contributed to this release. Thanks @cyberknight42, @ChonghaoSima, @hli2020, @zhiqi-li, @wangruohui 
