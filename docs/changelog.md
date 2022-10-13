@@ -1,6 +1,6 @@
 # Changelog
 
-## V0 (09/30/2022)
+## V0 (10/13/2022)
 
 ### Highlights
 * First release of BEV-Toolbox
@@ -15,4 +15,4 @@
 <!-- ### Bug Fixes -->
 
 ### Contributors
-A total of xxx developers contributed to this release.
+A total of 7 developers contributed to this release.
