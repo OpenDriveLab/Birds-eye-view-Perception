@@ -59,13 +59,13 @@ This repo is associated with the survey paper "[Delving into the Devils of Birdâ
       </td>
       <td>
         <!-- <ul> -->
-            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  TBA  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+              TBA  
             <!-- <li><a href="tba">TBA</a></li> -->
       <!-- </ul> -->
       </td>
       <td>
         <!-- <ul> -->
-          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  TBA  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            TBA  
           <!-- <li><a href="tba">TBA</a></li> -->
         <!-- </ul> -->
       </td>
