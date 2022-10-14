@@ -157,7 +157,7 @@ For more details like the coordinate systems or visualization, please refer to [
 
 We provide wrappers of this BEV toolbox for mmdet3d and detectron2. 
 
-1. Add the following code to [train_video.py](experiments/tools/train_video.py#L93) or [test_video.py](experiments/tools/test_video.py#L110).
+1. Add the following code to [train_video.py](waymo_playground/tools/train_video.py#L93) or [test_video.py](waymo_playground/tools/test_video.py#L110).
 ```
 from bev_toolbox.init_toolbox import init_toolbox_mmdet3d
 init_toolbox_mmdet3d()

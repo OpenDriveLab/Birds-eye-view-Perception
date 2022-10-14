@@ -17,7 +17,7 @@ if __name__ == "__main__":
         description="Toolbox for BEV Perception",
         license="Apache 2.0",
         # Package info
-        packages=find_packages(exclude=('docs', 'example', 'experiments', 'figs')),
+        packages=find_packages(exclude=('docs', 'example', 'waymo_playground', 'figs')),
         # packages=find_packages('bev_toolbox'),
         # package_dir={'': 'bev_toolbox'},
         zip_safe=False,
