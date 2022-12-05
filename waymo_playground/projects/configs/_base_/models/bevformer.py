@@ -1,4 +1,4 @@
-_base_ = ['../datasets/custom_waymo-3d.py', '../../../../mmdetection3d/configs/_base_/default_runtime.py']
+_base_ = ['../datasets/custom_waymo-3d.py', '../default_runtime.py']
 
 plugin = True
 plugin_dir = 'projects/mmdet3d_plugin/'
