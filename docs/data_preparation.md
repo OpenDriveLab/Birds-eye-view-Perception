@@ -21,7 +21,8 @@ Download pretrained model from [here](https://github.com/zhiqi-li/storage/releas
 The folder structure should like this.
 ```
 |── docs
-├── code
+|── bev_toolbox
+├── waymo_playground/
 |   ├── projects
 │   |   ├── configs
 │   |   ├── mmdet3d_plugin
