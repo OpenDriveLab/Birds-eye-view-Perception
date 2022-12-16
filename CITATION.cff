@@ -1,0 +1,8 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+  - name: "BEVPerception-Survey-Recipe Contributors"
+title: "BEVPerception-Survey-Recipe: Awesome BEV perception papers and toolbox for achieving SOTA results"
+date-released: 2022-10-14
+url: "https://github.com/OpenPerceptionX/BEVPerception-Survey-Recipe"
+license: Apache-2.0
