@@ -26,13 +26,27 @@ Awesome BEV perception papers and toolbox for achieving SOTA results. [🤝Funda
 This repo is associated with the survey paper "[Delving into the Devils of Bird’s-eye-view Perception: A Review, Evaluation and Recipe](https://arxiv.org/abs/2209.05324)", which provides an up-to-date literature survey for BEVPercption and an open source BEV toolbox based on PyTorch. In the literature survey, it includes different modalities (camera, lidar and fusion) and tasks (detection and segmentation). As for the toolbox, it provides useful recipe for BEV camera-based 3D object detection, including solid data augmentation strategies, efficient BEV encoder design, loss function family, useful test-time augmentation, ensemble policy, and so on. We hope this repo can not only be a good starting point for new beginners but also help current researchers in the BEV perception community.
 
 Currently, the BEV perception community is very active and growing fast. There are also some good repos of BEV Perception, e.g.
-* [BEVFormer](https://github.com/fundamentalvision/BEVFormer) ★ 1.4k. A cutting-edge baseline for camera-based detection via spatiotemporal transformers.
-* [BEVDet](https://github.com/HuangJunJie2017/BEVDet) ★ 557. Official codes for the camera-based detection methods - BEVDet series, including BEVDet, BEVDet4D and BEVPoolv2.
-* [PETR](https://github.com/megvii-research/PETR) ★ 413. Implicit BEV representation for camera-based detection and Segmentation, including PETR and PETRv2.
-* [BEVDepth](https://github.com/Megvii-BaseDetection/BEVDepth) ★ 326. Official codes for the BEVDepth and BEVStereo, which use LiDAR or temporal stereo to enhance depth estimation.
-* [Lift-splat-shoot](https://github.com/nv-tlabs/lift-splat-shoot) ★ 514. Implicitly Unprojecting camera image features to 3D for the segmentation task. 
-* [BEVFusion (MIT)](https://github.com/mit-han-lab/bevfusion) ★ 905. Unifies camera and LiDAR features in the shared bird's-eye view (BEV) representation space for the detection and map segmentation tasks.
-* [BEVFusion (ADLab)](https://github.com/ADLab-AutoDrive/BEVFusion) ★ 326. A simple and robust LiDAR-Camera fusion framework for the detection task. 
+* [BEVFormer](https://github.com/fundamentalvision/BEVFormer) <img src="https://img.shields.io/github/stars/fundamentalvision/BEVFormer?style=social"/>
+                <!-- <a class="github-button" href="https://github.com/fundamentalvision/BEVFormer" data-icon="octicon-star"
+                    data-show-count="true" aria-label="Star ntkme/github-buttons on GitHub">Star</a> -->. A cutting-edge baseline for camera-based detection via spatiotemporal transformers.
+* [BEVDet](https://github.com/HuangJunJie2017/BEVDet) <img src="https://img.shields.io/github/stars/HuangJunJie2017/BEVDet?style=social"/>
+                <!-- <a class="github-button" href="https://github.com/HuangJunJie2017/BEVDet" data-icon="octicon-star"
+                    data-show-count="true" aria-label="Star ntkme/github-buttons on GitHub">Star</a> -->. Official codes for the camera-based detection methods - BEVDet series, including BEVDet, BEVDet4D and BEVPoolv2.
+* [PETR](https://github.com/megvii-research/PETR) <img src="https://img.shields.io/github/stars/megvii-research/PETR?style=social"/>
+                <!-- <a class="github-button" href="https://github.com/megvii-research/PETR" data-icon="octicon-star"
+                    data-show-count="true" aria-label="Star ntkme/github-buttons on GitHub">Star</a> -->. Implicit BEV representation for camera-based detection and Segmentation, including PETR and PETRv2.
+* [BEVDepth](https://github.com/Megvii-BaseDetection/BEVDepth) <img src="https://img.shields.io/github/stars/Megvii-BaseDetection/BEVDepth?style=social"/>
+                <!-- <a class="github-button" href="https://github.com/Megvii-BaseDetection/BEVDepth" data-icon="octicon-star"
+                    data-show-count="true" aria-label="Star ntkme/github-buttons on GitHub">Star</a> -->. Official codes for the BEVDepth and BEVStereo, which use LiDAR or temporal stereo to enhance depth estimation.
+* [Lift-splat-shoot](https://github.com/nv-tlabs/lift-splat-shoot) <img src="https://img.shields.io/github/stars/nv-tlabs/lift-splat-shoot?style=social"/>
+                <!-- <a class="github-button" href="https://github.com/nv-tlabs/lift-splat-shoot" data-icon="octicon-star"
+                    data-show-count="true" aria-label="Star ntkme/github-buttons on GitHub">Star</a> -->. Implicitly Unprojecting camera image features to 3D for the segmentation task. 
+* [BEVFusion (MIT)](https://github.com/mit-han-lab/bevfusion) <img src="https://img.shields.io/github/stars/mit-han-lab/bevfusion?style=social"/>
+                <!-- <a class="github-button" href="https://github.com/mit-han-lab/bevfusion" data-icon="octicon-star"
+                    data-show-count="true" aria-label="Star ntkme/github-buttons on GitHub">Star</a> -->. Unifies camera and LiDAR features in the shared bird's-eye view (BEV) representation space for the detection and map segmentation tasks.
+* [BEVFusion (ADLab)](https://github.com/ADLab-AutoDrive/BEVFusion) <img src="https://img.shields.io/github/stars/ADLab-AutoDrive/BEVFusion?style=social"/>
+                <!-- <a class="github-button" href="https://github.com/ADLab-AutoDrive/BEVFusion" data-icon="octicon-star"
+                    data-show-count="true" aria-label="Star ntkme/github-buttons on GitHub">Star</a> -->. A simple and robust LiDAR-Camera fusion framework for the detection task. 
 
 ### Major Features
 
