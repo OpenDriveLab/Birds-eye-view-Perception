@@ -1,6 +1,6 @@
-# BEVPerception-Survey-Recipe
+# Bird's-eye-view Perception: A Survey and Collection
 
-Awesome BEV perception papers and toolbox for achieving SOTA results. [🤝Fundamental Vision](https://github.com/fundamentalvision)
+Awesome BEV perception papers and toolbox for achieving SOTA results by OpenDriveLab.
 
 ## Table of contents
 - [<div id='intro'>Introduction</div>](#div-idintrointroductiondiv)
@@ -24,7 +24,11 @@ Awesome BEV perception papers and toolbox for achieving SOTA results. [🤝Funda
 
 This repo is associated with the survey paper "[Delving into the Devils of Bird’s-eye-view Perception: A Review, Evaluation and Recipe](https://arxiv.org/abs/2209.05324)", which provides an up-to-date literature survey for BEVPercption and an open source BEV toolbox based on PyTorch. In the literature survey, it includes different modalities (camera, lidar and fusion) and tasks (detection and segmentation). As for the toolbox, it provides useful recipe for BEV camera-based 3D object detection, including solid data augmentation strategies, efficient BEV encoder design, loss function family, useful test-time augmentation, ensemble policy, and so on. We hope this repo can not only be a good starting point for new beginners but also help current researchers in the BEV perception community.
 
-Currently, the BEV perception community is very active and growing fast. There are also some good repos of BEV Perception, e.g.
+
+`If you find some work popular enough to be cited below, shoot us email or simply open a PR!`
+
+Currently, the BEV perception community is very active and growing fast. There are also some good repos of BEV Perception, _e.g_.
+
 * [BEVFormer](https://github.com/fundamentalvision/BEVFormer) <img src="https://img.shields.io/github/stars/fundamentalvision/BEVFormer?style=social"/>
                 <!-- <a class="github-button" href="https://github.com/fundamentalvision/BEVFormer" data-icon="octicon-star"
                     data-show-count="true" aria-label="Star ntkme/github-buttons on GitHub">Star</a> -->. A cutting-edge baseline for camera-based detection via spatiotemporal transformers.
@@ -272,17 +276,3 @@ If you find this project useful in your research, please consider cite:
   year={2022}
 }
 ```
-
-## Acknowledgement
-
-Many thanks to these excellent open source projects and also the stargazers and forkers:
-- [detr3d](https://github.com/WangYueFt/detr3d) 
-- [BEVFormer](https://github.com/zhiqi-li/BEVFormer)
-- [mmdet3d](https://github.com/open-mmlab/mmdetection3d)
-
-
-### &#8627; Stargazers
-[![Stargazers repo roster for @OpenPerceptionX/BEVPerception-Survey-Recipe](https://reporoster.com/stars/OpenPerceptionX/BEVPerception-Survey-Recipe)](https://github.com/OpenPerceptionX/BEVPerception-Survey-Recipe/stargazers)
-
-### &#8627; Forkers
-[![Forkers repo roster for @OpenPerceptionX/BEVPerception-Survey-Recipe](https://reporoster.com/forks/OpenPerceptionX/BEVPerception-Survey-Recipe)](https://github.com/OpenPerceptionX/BEVPerception-Survey-Recipe/network/members)
