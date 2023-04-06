@@ -8,7 +8,7 @@
   - [Playground on Waymo](#playground-on-waymo)
     - [Setup](#setup)
     - [Config with Performance](#config-with-performance)
-
+- [<div id='todo'>Ongoing Features</div>](#div-idtodoongoing-featuresdiv)
 
 ## <div id='guideline'>BEV Toolbox</div>
 
@@ -98,3 +98,25 @@ We provide the improvement of each trick compared with the baseline on the Waymo
 | ResNet101 | DETR  | Waymo mini | Smooth L1 loss                           |    -     |    -     |     26.2      |   ☐    |
 | ResNet101 | DETR  | Waymo mini | Label smoothing                          |   36.0   |   46.7   |       -       |   ☐    |
 
+
+## <div id='todo'>Ongoing Features</div>
+
+**Literature Survey**
+- [ ] Add new papers.
+
+**BEV toolbox**
+- [x] Data augmentation methods for BEV perception
+  - [x] Random horizontal flip
+  - [x] Random scale
+  - [ ] Grid mask
+  - [ ] New data augmentation
+- [ ] Integrate more tricks
+  - [ ] Post-process
+    - [ ] Test-time Augmentation
+    - [ ] Weighted Box Fusion
+    - [ ] Two-stage Ensemble
+  - [ ] BEV Encoder
+  - [ ] Loss Family
+- [ ] Add Visualization in BEV
+- [ ] Improve the current implementations.
+- [ ] Add documentation to introduce the APIs of the toolbox

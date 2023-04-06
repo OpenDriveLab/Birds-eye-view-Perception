@@ -8,7 +8,6 @@ Awesome BEV perception papers and toolbox for achieving SOTA results by OpenDriv
 - [<div id='update'>What's New</div>](#div-idupdatewhats-newdiv)
 - [<div id='guideline'>Playground on nuScenes</div>](#playground-on-nuscenes)
 - [<div id='guideline'>BEV Toolbox</div>](#div-idguidelinebev-toolboxdiv)
-- [<div id='todo'>Ongoing Features</div>](#div-idtodoongoing-featuresdiv)
 - [<div id='license'>License & Citation & Acknowledgement</div>](#div-idlicenselicensediv)
 
 
@@ -105,7 +104,7 @@ Currently, the BEV perception community is very active and growing fast. There a
 
 
 ## <div id='update'>What's New</div>
-[2023/04/06]: A new paper [Geometric-aware Pretraining for Vision-centric 3D Object Detection]() is comming soon.
+[2023/04/06]: A new paper GAPretrain is comming soon.
 
 [2022/10/13]: v0.1 was released.
 * Integrate some practical data augmentation methods for BEV camera-based 3D detection in the toolbox.
@@ -137,37 +136,11 @@ We have also summarized some conventional methods for different tasks.
 The nuScenes playground provides new advancements for BEV camera-based 3D object detection, such as plug-and-play distillation methods that enhance the performance of camera-based detectors and pre-training distillation methods that effectively utilize geometry information from the LiDAR BEV feature.
 
 **GAPretrain**
-* [Geometric-aware Pretraining for Vision-centric 3D Object Detection]().
+* Geometric-aware Pretraining for Vision-centric 3D Object Detection.
 (paper coming soon)
 
 ## <div id='guideline'>BEV Toolbox</div>
 The toolbox provides useful recipe for BEV camera-based 3D object detection, including solid data augmentation strategies, efficient BEV encoder design, loss function family, useful test-time augmentation, ensemble policy, and so on. Please refer to [README.md](bev_toolbox/README.md) for more details.
-
-## <div id='todo'>Ongoing Features</div>
-
-**Literature Survey**
-- [ ] Add new papers.
-
-**BEV toolbox**
-- [x] Data augmentation methods for BEV perception
-  - [x] Random horizontal flip
-  - [x] Random scale
-  - [ ] Grid mask
-  - [ ] New data augmentation
-- [ ] Integrate more tricks
-  - [ ] Post-process
-    - [ ] Test-time Augmentation
-    - [ ] Weighted Box Fusion
-    - [ ] Two-stage Ensemble
-  - [ ] BEV Encoder
-  - [ ] Loss Family
-- [ ] Add Visualization in BEV
-- [ ] Improve the current implementations.
-- [ ] Add documentation to introduce the APIs of the toolbox
-
-**nuScences playGround**
-- [ ] Add the code of the paper GAPretrain.
-
 
 
 ## <div id='license'>License</div>
