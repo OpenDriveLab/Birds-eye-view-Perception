@@ -107,7 +107,7 @@ Currently, the BEV perception community is very active and growing fast. There a
 ## <div id='update'>What's New</div>
 [2023/04/06]: A new paper [Geometric-aware Pretraining for Vision-centric 3D Object Detection]() is comming soon.
 
-[2022/10/13] v0.1 was released.
+[2022/10/13]: v0.1 was released.
 * Integrate some practical data augmentation methods for BEV camera-based 3D detection in the toolbox.
 * Offer a pipeline to process the Waymo dataset (camera-based 3D detection).
 * Release a baseline (with config) for Waymo dataset and also 1/5 Waymo dataset in Kitti format.
@@ -141,8 +141,7 @@ The nuScenes playground provides new advancements for BEV camera-based 3D object
 (paper coming soon)
 
 ## <div id='guideline'>BEV Toolbox</div>
-
-Please refer to [README.md](bev_toolbox/README.md) for more details.
+The toolbox provides useful recipe for BEV camera-based 3D object detection, including solid data augmentation strategies, efficient BEV encoder design, loss function family, useful test-time augmentation, ensemble policy, and so on. Please refer to [README.md](bev_toolbox/README.md) for more details.
 
 ## <div id='todo'>Ongoing Features</div>
 
