@@ -200,6 +200,9 @@ train_pipeline = [
 
 We plan to make this toolbox compatible with detectron2 in the future.
 
+### Playground on nuScenes
+* [Geometric-aware Pretraining for Vision-centric 3D Object Detection](https://github.com/OpenDriveLab/BEVPerception-Survey-Recipe/tree/master/nuScenes_playground)
+
 ### Playground on Waymo
 
 We provide a suitable playground on the Waymo dataset, including hands-on tutorial and small-scale dataset (1/5 WOD in kitti format) to validate idea.
