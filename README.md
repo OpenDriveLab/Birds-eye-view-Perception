@@ -3,12 +3,14 @@
 Awesome BEV perception papers and toolbox for achieving SOTA results by OpenDriveLab.
 
 ## Table of contents
-- [<div id='intro'>Introduction</div>](#div-idintrointroductiondiv)
-  - [Major Features](#major-features)
-- [<div id='update'>What's New</div>](#div-idupdatewhats-newdiv)
-- [<div id='guideline'>Playground on nuScenes</div>](#playground-on-nuscenes)
-- [<div id='guideline'>BEV Toolbox</div>](#div-idguidelinebev-toolboxdiv)
-- [<div id='license'>License & Citation & Acknowledgement</div>](#div-idlicenselicensediv)
+- [Bird's-eye-view Perception: A Survey and Collection](#birds-eye-view-perception-a-survey-and-collection)
+  - [Table of contents](#table-of-contents)
+  - [Introduction](#introduction)
+    - [Major Features](#major-features)
+  - [What's New](#whats-new)
+  - [BEV Toolbox](#bev-toolbox)
+  - [BEV Algorithm Family](#bev-algorithm-family)
+  - [License and Citation](#license-and-citation)
 
 
 ## <div id='intro'>Introduction</div>
@@ -132,21 +134,21 @@ We have also summarized some conventional methods for different tasks.
 * [Conventional Methods LiDAR Segmentation](docs/paper_list/lidar_segmentation.md)
 * [Conventional Methods Sensor Fusion](docs/paper_list/sensor_fusion.md) -->
 
-## Playground on nuScenes
-The nuScenes playground provides new advancements for BEV camera-based 3D object detection, such as plug-and-play distillation methods that enhance the performance of camera-based detectors and pre-training distillation methods that effectively utilize geometry information from the LiDAR BEV feature.
+## <div id='guideline'>BEV Toolbox</div>
+The BEV toolbox provides useful recipe for BEV camera-based 3D object detection, including solid data augmentation strategies, efficient BEV encoder design, loss function family, useful test-time augmentation, ensemble policy, and so on. Please refer to [bev_toolbox/README.md](bev_toolbox/README.md) for more details.
 
+## <div id='algo_family'>BEV Algorithm Family</div>
+The BEV algorithm family includes follow-up works of BEVFormer in different aspects, ranging from plug-and-play tricks to pre-training distillation. All the implementation and paper summary is in [nuscenes_playground](./nuscenes_playground/README.md), check it out!
+
+<!-- 
 **GAPretrain**
 * Geometric-aware Pretraining for Vision-centric 3D Object Detection.
-(paper coming soon)
+(paper coming soon) 
+The nuScenes playground provides new advancements for BEV camera-based 3D object detection, such as plug-and-play distillation methods that enhance the performance of camera-based detectors and pre-training distillation methods that effectively utilize geometry information from the LiDAR BEV feature.
+-->
 
-## <div id='guideline'>BEV Toolbox</div>
-The toolbox provides useful recipe for BEV camera-based 3D object detection, including solid data augmentation strategies, efficient BEV encoder design, loss function family, useful test-time augmentation, ensemble policy, and so on. Please refer to [README.md](bev_toolbox/README.md) for more details.
-
-
-## <div id='license'>License</div>
+## <div id='license & citation'>License and Citation</div>
 This project is released under the [Apache 2.0 license](LICENSE).
-
-## <div id='cite'>Citation</div>
 
 If you find this project useful in your research, please consider cite:
 
