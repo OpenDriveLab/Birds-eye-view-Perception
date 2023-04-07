@@ -106,7 +106,7 @@ Currently, the BEV perception community is very active and growing fast. There a
 
 
 ## <div id='update'>What's New</div>
-[2023/04/06]: A new paper GAPretrain is comming soon.
+[2023/04/06]: A new paper [GAPretrain](https://arxiv.org/abs/2304.03105) is comming soon.
 
 [2022/10/13]: v0.1 was released.
 * Integrate some practical data augmentation methods for BEV camera-based 3D detection in the toolbox.
