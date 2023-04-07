@@ -138,7 +138,7 @@ We have also summarized some conventional methods for different tasks.
 The BEV toolbox provides useful recipe for BEV camera-based 3D object detection, including solid data augmentation strategies, efficient BEV encoder design, loss function family, useful test-time augmentation, ensemble policy, and so on. Please refer to [bev_toolbox/README.md](bev_toolbox/README.md) for more details.
 
 ## <div id='algo_family'>BEV Algorithm Family</div>
-The BEV algorithm family includes follow-up works of BEVFormer in different aspects, ranging from plug-and-play tricks to pre-training distillation. All the implementation and paper summary is in [nuscenes_playground/README.md](nuScenes_playground/README.md), check it out!
+The BEV algorithm family includes follow-up works of BEVFormer in different aspects, ranging from plug-and-play tricks to pre-training distillation. All paper summary is in [nuscenes_playground/README.md](nuScenes_playground/README.md) alongwith official implementation, check it out!
 
 <!-- 
 **GAPretrain**
