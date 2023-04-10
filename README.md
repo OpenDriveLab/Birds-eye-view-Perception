@@ -8,6 +8,7 @@ Awesome BEV perception papers and toolbox for achieving SOTA results by OpenDriv
   - [Introduction](#introduction)
     - [Major Features](#major-features)
   - [What's New](#whats-new)
+  - [Literature Survey](#literature-survey)
   - [BEV Toolbox](#bev-toolbox)
   - [BEV Algorithm Family](#bev-algorithm-family)
   - [License and Citation](#license-and-citation)
@@ -15,7 +16,7 @@ Awesome BEV perception papers and toolbox for achieving SOTA results by OpenDriv
 
 ## <div id='intro'>Introduction</div>
 
-This repo is associated with the survey paper "[Delving into the Devils of Bird’s-eye-view Perception: A Review, Evaluation and Recipe](https://arxiv.org/abs/2209.05324)", which provides an up-to-date literature survey for BEVPercption and an open source BEV toolbox based on PyTorch. In the literature survey, it includes different modalities (camera, lidar and fusion) and tasks (detection and segmentation). As for the toolbox, it provides useful recipe for BEV camera-based 3D object detection, including solid data augmentation strategies, efficient BEV encoder design, loss function family, useful test-time augmentation, ensemble policy, and so on. We hope this repo can not only be a good starting point for new beginners but also help current researchers in the BEV perception community.
+This repo is associated with the survey paper "[Delving into the Devils of Bird’s-eye-view Perception: A Review, Evaluation and Recipe](https://arxiv.org/abs/2209.05324)", which provides an up-to-date literature survey for BEV percption and an open source BEV toolbox based on PyTorch. In the literature survey, it includes different modalities (camera, lidar and fusion) and tasks (detection and segmentation). As for the toolbox, it provides useful recipe for BEV camera-based 3D object detection, including solid data augmentation strategies, efficient BEV encoder design, loss function family, useful test-time augmentation, ensemble policy, and so on. We also provide BEV algorithm family, incluidng follow-up work on BEV percepton. We hope this repo can not only be a good starting point for new beginners but also help current researchers in the BEV perception community.
 
 
 `If you find some work popular enough to be cited below, shoot us email or simply open a PR!`
@@ -115,7 +116,7 @@ Currently, the BEV perception community is very active and growing fast. There a
 
 Please refer to [changelog.md](docs/changelog.md) for details and release history.
 
-<!-- ## <div id='overview'>Literature Survey</div>
+## <div id='overview'>Literature Survey</div>
 
 ![](figs/general_overview.jpg)
 The general picture of BEV perception at a glance, where consists of three sub-parts based on the input modality. BEV perception is a general task built on top of a series of fundamental tasks. For better completeness of the whole perception algorithms in autonomous driving, we list other topics as well. More detail can be found in the [survey paper](https://arxiv.org/abs/2209.05324).
@@ -132,7 +133,7 @@ We have also summarized some conventional methods for different tasks.
 * [Conventional Methods Camera 3D Object Detection](docs/paper_list/camera_detection.md)
 * [Conventional Methods LiDAR Detection](docs/paper_list/lidar_detection.md)
 * [Conventional Methods LiDAR Segmentation](docs/paper_list/lidar_segmentation.md)
-* [Conventional Methods Sensor Fusion](docs/paper_list/sensor_fusion.md) -->
+* [Conventional Methods Sensor Fusion](docs/paper_list/sensor_fusion.md)
 
 ## <div id='guideline'>BEV Toolbox</div>
 The BEV toolbox provides useful recipe for BEV camera-based 3D object detection, including solid data augmentation strategies, efficient BEV encoder design, loss function family, useful test-time augmentation, ensemble policy, and so on. Please refer to [bev_toolbox/README.md](bev_toolbox/README.md) for more details.
