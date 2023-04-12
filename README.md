@@ -88,7 +88,7 @@ This repo is associated with the survey paper "[Delving into the Devils of Birdâ
 </table>
 
 * **BEV Algorithm Family** <br> We include important follow-up works of BEVFormer/BEVDet/BEVDepth in different aspects, ranging from plug-and-play tricks(FocalDistiller, paper coming soon) to pre-training distillation([GAPretrain](https://arxiv.org/abs/2304.03105)). More detail of each paper can be found in each README.md file under [here](./nuScenes_playground/).
-* **Up-to-date Literature Survey for BEV Perception** <br> We summarize important methods in recent years about BEV perception including different modalities(camera, LIDAR, Fusion) and tasks(Detection, Segmentation, Occupancy). More detail of the survey paper list can be found [here](./docs/paper_list/).
+* **Up-to-date Literature Survey for BEV Perception** <br> We summarize important methods in recent years about BEV perception including different modalities (camera, LIDAR, Fusion) and tasks (Detection, Segmentation, Occupancy). More detail of the survey paper list can be found [here](./docs/paper_list/).
 
 ## <div id='update'>What's New</div>
 [2023/04/06]: Two new paper [GAPretrain](https://arxiv.org/abs/2304.03105) and FocalDistiller are comming soon with official implementation.
