@@ -8,8 +8,8 @@ Awesome BEV perception papers and toolbox for achieving SOTA results by OpenDriv
   - [Introduction](#introduction)
     - [Major Features](#major-features)
   - [What's New](#whats-new)
-  - [BEV Toolbox](#bev-toolbox)
   - [BEV Algorithm Family](#bev-algorithm-family)
+  - [BEV Toolbox](#bev-toolbox)
   - [Literature Survey](#literature-survey)
   - [License and Citation](#license-and-citation)
 
@@ -33,6 +33,7 @@ This repo is associated with the survey paper "[Delving into the Devils of Birdâ
 
 ### Major Features
 
+* **BEV Algorithm Family** <br> We include important follow-up works of BEVFormer/BEVDet/BEVDepth in different aspects, ranging from plug-and-play tricks(FocalDistiller, paper coming soon) to pre-training distillation([GAPretrain](https://arxiv.org/abs/2304.03105)). More detail of each paper can be found in each README.md file under [here](./nuScenes_playground/).
 * **Convenient BEVPerception Toolbox** <br> We integrate bag of tricks in the BEV toolbox that help us achieve 1st in the camera-based detection track of the Waymo Open Challenge 2022, which can be used indedependly or as a plug-in for `mmdet3d` and `detectron2`. Moreover, we provide a suitable playground for new-beginners in this area, including hands-on tutorial and small-scale dataset (1/5 WOD in kitti format) to validate idea. More detail can be found [here](./bev_toolbox/README.md).
 <div align="center">
   <b>Bag of Tricks</b>
@@ -87,7 +88,6 @@ This repo is associated with the survey paper "[Delving into the Devils of Birdâ
   </tbody>
 </table>
 
-* **BEV Algorithm Family** <br> We include important follow-up works of BEVFormer/BEVDet/BEVDepth in different aspects, ranging from plug-and-play tricks(FocalDistiller, paper coming soon) to pre-training distillation([GAPretrain](https://arxiv.org/abs/2304.03105)). More detail of each paper can be found in each README.md file under [here](./nuScenes_playground/).
 * **Up-to-date Literature Survey for BEV Perception** <br> We summarize important methods in recent years about BEV perception including different modalities (camera, LIDAR, Fusion) and tasks (Detection, Segmentation, Occupancy). More detail of the survey paper list can be found [here](./docs/paper_list/).
 
 ## <div id='update'>What's New</div>
@@ -100,13 +100,13 @@ This repo is associated with the survey paper "[Delving into the Devils of Birdâ
 
 Please refer to [changelog.md](docs/changelog.md) for details and release history of the toolbox code.
 
-## <div id='guideline'>BEV Toolbox</div>
-The BEV toolbox provides useful recipe for BEV camera-based 3D object detection, including solid data augmentation strategies, efficient BEV encoder design, loss function family, useful test-time augmentation, ensemble policy, and so on. Please refer to [bev_toolbox/README.md](bev_toolbox/README.md) for more details.
-
 ## <div id='algo_family'>BEV Algorithm Family</div>
 The BEV algorithm family includes follow-up works of BEVFormer in different aspects, ranging from plug-and-play tricks to pre-training distillation. All paper summary is under [nuscenes_playground](nuScenes_playground) alongwith official implementation, check it out!
 * **GAPretrain** <br> [Geometric-aware Pretraining for Vision-centric 3D Object Detection](https://arxiv.org/abs/2304.03105) (code coming soon). More detail can be found in [nuScenes_playground/GAPretrain.md](./nuScenes_playground/GAPretrain.md).
 * **FocalDistiller** <br> Distilling Focal Knowledge from Imperfect Expert for 3D object Detection (paper and code coming soon). More detail can be found in [nuScenes_playground/FocalDistiller.md](./nuScenes_playground/FocalDistiller.md).
+## <div id='guideline'>BEV Toolbox</div>
+The BEV toolbox provides useful recipe for BEV camera-based 3D object detection, including solid data augmentation strategies, efficient BEV encoder design, loss function family, useful test-time augmentation, ensemble policy, and so on. Please refer to [bev_toolbox/README.md](bev_toolbox/README.md) for more details.
+
 <!-- The BEV algorithm family includes follow-up works of BEVFormer in different aspects, ranging from plug-and-play tricks to pre-training distillation. All paper summary is in [nuscenes_playground/README.md](nuScenes_playground/README.md) alongwith official implementation, check it out! -->
 
 <!-- 
