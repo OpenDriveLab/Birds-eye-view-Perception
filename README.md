@@ -16,7 +16,7 @@ Awesome BEV perception papers and toolbox for achieving SOTA results by OpenDriv
 
 ## <div id='intro'>Introduction</div>
 
-This repo is associated with the survey paper "[Delving into the Devils of Bird’s-eye-view Perception: A Review, Evaluation and Recipe](https://arxiv.org/abs/2209.05324)", which provides an up-to-date literature survey for BEV percption and an open source BEV toolbox based on PyTorch. We also provide BEV algorithm family, incluidng follow-up work on BEV percepton such as [GAPretrain](https://arxiv.org/abs/2304.03105) and FocalDistiller(paper coming soon). We hope this repo can not only be a good starting point for new beginners but also help current researchers in the BEV perception community.
+This repo is associated with the survey paper "[Delving into the Devils of Bird’s-eye-view Perception: A Review, Evaluation and Recipe](https://arxiv.org/abs/2209.05324)", which provides an up-to-date literature survey for BEV percption and an open source BEV toolbox based on PyTorch. We also introduce BEV algorithm family, incluidng follow-up work on BEV percepton such as [GAPretrain](https://arxiv.org/abs/2304.03105) and FocalDistiller(paper coming soon). We hope this repo can not only be a good starting point for new beginners but also help current researchers in the BEV perception community.
 <!-- In the literature survey, it includes different modalities (camera, lidar and fusion) and tasks (detection and segmentation). As for the toolbox, it provides useful recipe for BEV camera-based 3D object detection, including solid data augmentation strategies, efficient BEV encoder design, loss function family, useful test-time augmentation, ensemble policy, and so on. -->
 
 `If you find some work popular enough to be cited below, shoot us email or simply open a PR!`
@@ -105,6 +105,7 @@ Please refer to [changelog.md](docs/changelog.md) for details and release histor
 The BEV toolbox provides useful recipe for BEV camera-based 3D object detection, including solid data augmentation strategies, efficient BEV encoder design, loss function family, useful test-time augmentation, ensemble policy, and so on. Please refer to [bev_toolbox/README.md](bev_toolbox/README.md) for more details.
 
 ## <div id='algo_family'>BEV Algorithm Family</div>
+The BEV algorithm family includes follow-up works of BEVFormer in different aspects, ranging from plug-and-play tricks to pre-training distillation. All paper summary is under [nuscenes_playground](nuScenes_playground) alongwith official implementation, check it out!
 * **GAPretrain** <br> [Geometric-aware Pretraining for Vision-centric 3D Object Detection](https://arxiv.org/abs/2304.03105) (code coming soon). More detail can be found in [nuScenes_playground/GAPretrain.md](./nuScenes_playground/GAPretrain.md).
 * **FocalDistiller** <br> Distilling Focal Knowledge from Imperfect Expert for 3D object Detection (paper and code coming soon). More detail can be found in [nuScenes_playground/FocalDistiller.md](./nuScenes_playground/FocalDistiller.md).
 <!-- The BEV algorithm family includes follow-up works of BEVFormer in different aspects, ranging from plug-and-play tricks to pre-training distillation. All paper summary is in [nuscenes_playground/README.md](nuScenes_playground/README.md) alongwith official implementation, check it out! -->
