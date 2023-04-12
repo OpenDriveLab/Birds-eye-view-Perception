@@ -8,9 +8,9 @@ Awesome BEV perception papers and toolbox for achieving SOTA results by OpenDriv
   - [Introduction](#introduction)
     - [Major Features](#major-features)
   - [What's New](#whats-new)
-  - [Literature Survey](#literature-survey)
   - [BEV Toolbox](#bev-toolbox)
   - [BEV Algorithm Family](#bev-algorithm-family)
+  - [Literature Survey](#literature-survey)
   - [License and Citation](#license-and-citation)
 
 
@@ -33,7 +33,6 @@ This repo is associated with the survey paper "[Delving into the Devils of Birdâ
 
 ### Major Features
 
-* **Up-to-date Literature Survey for BEV Perception** <br> We summarize important methods in recent years about BEV perception including different modalities(camera, LIDAR, Fusion) and tasks(Detection, Segmentation, Occupancy).
 * **Convenient BEVPerception Toolbox** <br> We integrate bag of tricks in the BEV toolbox that help us achieve 1st in the camera-based detection track of the Waymo Open Challenge 2022, which can be grouped as four types -- data augmentation, design of BEV encoder, loss family and post-process policy. This toolbox can be used indedependly or as a plug-in for `mmdet3d` and `detectron2`. 
 <div align="center">
   <b>Bag of Tricks</b>
@@ -89,19 +88,33 @@ This repo is associated with the survey paper "[Delving into the Devils of Birdâ
 </table>
 
 * **Support Waymo Open Dataset (WOD) for camera-only detection** <br> We provide a suitable playground for new-beginners in this area, including hands-on tutorial and small-scale dataset (1/5 WOD in kitti format) to validate idea.
-  
-* **BEV Algorithm Family** <br> We include important follow-up works in recent years about BEV perception including different modalities and tasks.
+* **BEV Algorithm Family** <br> We include important follow-up works of BEVFormer/BEVDet/BEVDepth in different aspects, ranging from plug-and-play tricks to pre-training distillation.
+* **Up-to-date Literature Survey for BEV Perception** <br> We summarize important methods in recent years about BEV perception including different modalities(camera, LIDAR, Fusion) and tasks(Detection, Segmentation, Occupancy).
 
 ## <div id='update'>What's New</div>
-[2023/04/06]: A new paper [GAPretrain](https://arxiv.org/abs/2304.03105) is comming soon.
+[2023/04/06]: Two new paper [GAPretrain](https://arxiv.org/abs/2304.03105) and FocalDistiller are comming soon with official implementation.
 
 [2022/10/13]: v0.1 was released.
 * Integrate some practical data augmentation methods for BEV camera-based 3D detection in the toolbox.
 * Offer a pipeline to process the Waymo dataset (camera-based 3D detection).
 * Release a baseline (with config) for Waymo dataset and also 1/5 Waymo dataset in Kitti format.
 
-Please refer to [changelog.md](docs/changelog.md) for details and release history.
+Please refer to [changelog.md](docs/changelog.md) for details and release history of the toolbox code.
 
+## <div id='guideline'>BEV Toolbox</div>
+The BEV toolbox provides useful recipe for BEV camera-based 3D object detection, including solid data augmentation strategies, efficient BEV encoder design, loss function family, useful test-time augmentation, ensemble policy, and so on. Please refer to [bev_toolbox/README.md](bev_toolbox/README.md) for more details.
+
+## <div id='algo_family'>BEV Algorithm Family</div>
+* **GAPretrain** <br> [Geometric-aware Pretraining for Vision-centric 3D Object Detection](https://arxiv.org/abs/2304.03105) (code coming soon). More detail can be found in [nuScenes_playground/GAPretrain.md](./nuScenes_playground/GAPretrain.md).
+* **FocalDistiller** <br> Distilling Focal Knowledge from Imperfect Expert for 3D object Detection (paper and code coming soon). More detail can be found in [nuScenes_playground/FocalDistiller.md](./nuScenes_playground/FocalDistiller.md).
+<!-- The BEV algorithm family includes follow-up works of BEVFormer in different aspects, ranging from plug-and-play tricks to pre-training distillation. All paper summary is in [nuscenes_playground/README.md](nuScenes_playground/README.md) alongwith official implementation, check it out! -->
+
+<!-- 
+**GAPretrain**
+* Geometric-aware Pretraining for Vision-centric 3D Object Detection.
+(paper coming soon) 
+The nuScenes playground provides new advancements for BEV camera-based 3D object detection, such as plug-and-play distillation methods that enhance the performance of camera-based detectors and pre-training distillation methods that effectively utilize geometry information from the LiDAR BEV feature.
+-->
 ## <div id='overview'>Literature Survey</div>
 
 ![](figs/general_overview.jpg)
@@ -120,19 +133,6 @@ We have also summarized some conventional methods for different tasks.
 * [Conventional Methods LiDAR Detection](docs/paper_list/lidar_detection.md)
 * [Conventional Methods LiDAR Segmentation](docs/paper_list/lidar_segmentation.md)
 * [Conventional Methods Sensor Fusion](docs/paper_list/sensor_fusion.md)
-
-## <div id='guideline'>BEV Toolbox</div>
-The BEV toolbox provides useful recipe for BEV camera-based 3D object detection, including solid data augmentation strategies, efficient BEV encoder design, loss function family, useful test-time augmentation, ensemble policy, and so on. Please refer to [bev_toolbox/README.md](bev_toolbox/README.md) for more details.
-
-## <div id='algo_family'>BEV Algorithm Family</div>
-The BEV algorithm family includes follow-up works of BEVFormer in different aspects, ranging from plug-and-play tricks to pre-training distillation. All paper summary is in [nuscenes_playground/README.md](nuScenes_playground/README.md) alongwith official implementation, check it out!
-
-<!-- 
-**GAPretrain**
-* Geometric-aware Pretraining for Vision-centric 3D Object Detection.
-(paper coming soon) 
-The nuScenes playground provides new advancements for BEV camera-based 3D object detection, such as plug-and-play distillation methods that enhance the performance of camera-based detectors and pre-training distillation methods that effectively utilize geometry information from the LiDAR BEV feature.
--->
 
 ## <div id='license & citation'>License and Citation</div>
 This project is released under the [Apache 2.0 license](LICENSE).
