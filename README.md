@@ -33,7 +33,7 @@ This repo is associated with the survey paper "[Delving into the Devils of Birdâ
 
 ### Major Features
 
-* **BEV Algorithm Family** <br> We include important follow-up works of BEVFormer/BEVDet/BEVDepth in different aspects, ranging from plug-and-play tricks(FocalDistiller, paper coming soon) to pre-training distillation([GAPretrain](https://arxiv.org/abs/2304.03105)). More detail of each paper can be found in each README.md file under [here](./nuScenes_playground/).
+* **SOTA BEV Algorithm Family** <br> We include important follow-up works of BEVFormer/BEVDet/BEVDepth in different aspects, ranging from plug-and-play tricks(FocalDistiller, paper coming soon) to pre-training distillation([GAPretrain](https://arxiv.org/abs/2304.03105)). More detail of each paper can be found in each README.md file under [here](./nuScenes_playground/).
 * **Convenient BEVPerception Toolbox** <br> We integrate bag of tricks in the BEV toolbox that help us achieve 1st in the camera-based detection track of the Waymo Open Challenge 2022, which can be used indedependly or as a plug-in for `mmdet3d` and `detectron2`. Moreover, we provide a suitable playground for new-beginners in this area, including hands-on tutorial and small-scale dataset (1/5 WOD in kitti format) to validate idea. More detail can be found [here](./bev_toolbox/README.md).
 <div align="center">
   <b>Bag of Tricks</b>
