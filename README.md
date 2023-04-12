@@ -33,7 +33,7 @@ This repo is associated with the survey paper "[Delving into the Devils of Birdâ
 
 ### Major Features
 
-* **Convenient BEVPerception Toolbox** <br> We integrate bag of tricks in the BEV toolbox that help us achieve 1st in the camera-based detection track of the Waymo Open Challenge 2022, which can be grouped as four types -- data augmentation, design of BEV encoder, loss family and post-process policy. This toolbox can be used indedependly or as a plug-in for `mmdet3d` and `detectron2`. Moreover, we provide a suitable playground for new-beginners in this area, including hands-on tutorial and small-scale dataset (1/5 WOD in kitti format) to validate idea. More detail can be found [here](./bev_toolbox/README.md).
+* **Convenient BEVPerception Toolbox** <br> We integrate bag of tricks in the BEV toolbox that help us achieve 1st in the camera-based detection track of the Waymo Open Challenge 2022, which can be used indedependly or as a plug-in for `mmdet3d` and `detectron2`. Moreover, we provide a suitable playground for new-beginners in this area, including hands-on tutorial and small-scale dataset (1/5 WOD in kitti format) to validate idea. More detail can be found [here](./bev_toolbox/README.md).
 <div align="center">
   <b>Bag of Tricks</b>
 </div>
