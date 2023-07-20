@@ -1,6 +1,6 @@
-# Bird's-eye-view Perception: A Survey and Collection
+# Bird's-eye-view (BEV) Perception: A Survey and Collection
 
-Awesome BEV perception papers and toolbox for achieving SOTA results by OpenDriveLab.
+Awesome BEV perception papers and toolbox for achieving state-of-the-arts performance.
 
 ## Table of contents
 - [Bird's-eye-view Perception: A Survey and Collection](#birds-eye-view-perception-a-survey-and-collection)
