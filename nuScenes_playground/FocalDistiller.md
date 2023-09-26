@@ -34,12 +34,13 @@ All assets and code are under the [Apache 2.0 license](https://github.com/increa
 Please consider citing our paper if the project helps your research with the following BibTex:
 
 ```bibtex
-@inproceedings{Zeng2023Distilling,
- title={Distilling focal knowledge from imperfect
-expert for 3D object detection}, 
- author={Jia Zeng and Li Chen and Hanming Deng and Lewei Lu and Junchi Yan and Yu Qiao and Hongyang Li},
- booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
- year={2023},
+@inproceedings{zeng2023distilling,
+  title={Distilling Focal Knowledge from Imperfect Expert for 3D Object Detection},
+  author={Zeng, Jia and Chen, Li and Deng, Hanming and Lu, Lewei and Yan, Junchi and Qiao, Yu and Li, Hongyang},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={992--1001},
+  year={2023}
+}
 }
 ```
 ## Acknowledgement

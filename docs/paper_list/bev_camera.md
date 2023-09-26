@@ -2,7 +2,7 @@
 
 A general pipeline in BEV Camera.
 
-![](../../figs/cam_pipeline.jpg)
+![](../../figs/cam_pipeline_v2.jpg)
 
 
 - Lift, Splat, Shoot: Encoding Images from Arbitrary Camera Rigs by Implicitly Unprojecting to 3D / [paper](https://arxiv.org/pdf/2008.05711.pdf) / [project](https://github.com/nv-tlabs/lift-splat-shoot) / ECCV 2020 / LSS 
@@ -37,3 +37,6 @@ A general pipeline in BEV Camera.
 - FIERY: Future Instance Prediction in Bird's-Eye View From Surround Monocular Cameras / [paper](https://openaccess.thecvf.com/content/ICCV2021/papers/Hu_FIERY_Future_Instance_Prediction_in_Birds-Eye_View_From_Surround_Monocular_ICCV_2021_paper.pdf) / [supplemental](https://openaccess.thecvf.com/content/ICCV2021/supplemental/Hu_FIERY_Future_Instance_ICCV_2021_supplemental.pdf) / [paper](https://github.com/wayveai/fiery) / ICCV 2021
 - BEVerse: Unified Perception and Prediction in Birds-Eye-View for Vision-Centric Autonomous Driving / [paper](https://arxiv.org/pdf/2205.09743.pdf) / [project](https://github.com/zhangyp15/BEVerse) / arXiv
 - LaRa: Latents and Rays for Multi-Camera Bird's-Eye-View Semantic Segmentation / [paper](https://arxiv.org/abs/2206.13294) / [project](https://valeoai.github.io/blog/publications/lara/) / [code](https://github.com/valeoai/LaRa) / CoRL 2022 / LaRa
+- HDMapNet: An Online HD Map Construction and Evaluation Framework / [paper](https://arxiv.org/abs/2107.06307) / [project](https://tsinghua-mars-lab.github.io/HDMapNet/) / [code](https://github.com/Tsinghua-MARS-Lab/HDMapNet) / ICRA 2022 
+- BEVSegFormer: Bird's Eye View Semantic Segmentation From Arbitrary Camera Rigs / [paper](https://openaccess.thecvf.com/content/WACV2023/html/Peng_BEVSegFormer_Birds_Eye_View_Semantic_Segmentation_From_Arbitrary_Camera_Rigs_WACV_2023_paper.html) / WACV 2023
+- Cross-view Transformers for real-time Map-view Semantic Segmentation / [paper](https://openaccess.thecvf.com/content/CVPR2022/html/Zhou_Cross-View_Transformers_for_Real-Time_Map-View_Semantic_Segmentation_CVPR_2022_paper.html) / [code](https://github.com/bradyz/cross_view_transformers) / CVPR 2022
