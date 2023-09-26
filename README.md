@@ -33,7 +33,7 @@ This repo is associated with the survey paper "[Delving into the Devils of Birdâ
 
 ### Major Features
 
-* **SOTA BEV Algorithm Family** <br> We include important follow-up works of BEVFormer/BEVDet/BEVDepth in different aspects, ranging from plug-and-play tricks(FocalDistiller, paper coming soon) to pre-training distillation([GAPretrain](https://arxiv.org/abs/2304.03105)). More detail of each paper can be found in each README.md file under [here](./nuScenes_playground/).
+* **SOTA BEV Algorithm Family** <br> We include important follow-up works of BEVFormer/BEVDet/BEVDepth in different aspects, ranging from plug-and-play tricks to knowledge distillation([GAPretrain](https://arxiv.org/abs/2304.03105), [FocalDistiller]((https://openaccess.thecvf.com/content/CVPR2023/html/Zeng_Distilling_Focal_Knowledge_From_Imperfect_Expert_for_3D_Object_Detection_CVPR_2023_paper.html))). More detail of each paper can be found in each README.md file under [here](./nuScenes_playground/).
 * **Convenient BEVPerception Toolbox** <br> We integrate bag of tricks in the BEV toolbox that help us achieve 1st in the camera-based detection track of the Waymo Open Challenge 2022, which can be used indedependly or as a plug-in for `mmdet3d` and `detectron2`. Moreover, we provide a suitable playground for new-beginners in this area, including hands-on tutorial and small-scale dataset (1/5 WOD in kitti format) to validate idea. More detail can be found [here](./bev_toolbox/README.md).
 <div align="center">
   <b>Bag of Tricks</b>
@@ -121,8 +121,8 @@ Please refer to [changelog.md](docs/changelog.md) for details and release histor
 
 ## <div id='algo_family'>BEV Algorithm Family</div>
 The BEV algorithm family includes follow-up works of BEVFormer in different aspects, ranging from plug-and-play tricks to pre-training distillation. All paper summary is under [nuscenes_playground](nuScenes_playground) alongwith official implementation, check it out!
-* **GAPretrain** <br> Geometric-aware Pretraining for Vision-centric 3D Object Detection. ([paper](https://arxiv.org/abs/2304.03105), code coming soon). More detail can be found in [nuScenes_playground/GAPretrain.md](./nuScenes_playground/GAPretrain.md).
-* **FocalDistiller** <br> Distilling Focal Knowledge from Imperfect Expert for 3D object Detection. ([paper](https://openaccess.thecvf.com/content/CVPR2023/html/Zeng_Distilling_Focal_Knowledge_From_Imperfect_Expert_for_3D_Object_Detection_CVPR_2023_paper.html) and code coming soon). More detail can be found in [nuScenes_playground/FocalDistiller.md](./nuScenes_playground/FocalDistiller.md).
+* **GAPretrain** <br> [Geometric-aware Pretraining for Vision-centric 3D Object Detection](https://arxiv.org/abs/2304.03105). More detail can be found in [nuScenes_playground/GAPretrain.md](./nuScenes_playground/GAPretrain.md).
+* **FocalDistiller** <br> [Distilling Focal Knowledge from Imperfect Expert for 3D object Detection](https://openaccess.thecvf.com/content/CVPR2023/html/Zeng_Distilling_Focal_Knowledge_From_Imperfect_Expert_for_3D_Object_Detection_CVPR_2023_paper.html). More detail can be found in [nuScenes_playground/FocalDistiller.md](./nuScenes_playground/FocalDistiller.md).
 ## <div id='guideline'>BEV Toolbox</div>
 The BEV toolbox provides useful recipe for BEV camera-based 3D object detection, including solid data augmentation strategies, efficient BEV encoder design, loss function family, useful test-time augmentation, ensemble policy, and so on. Please refer to [bev_toolbox/README.md](bev_toolbox/README.md) for more details.
 

@@ -1,5 +1,5 @@
 ## FocalDistiller
-> This repository is the official implementation of the CVPR 2023 paper ["Distilling Focal Knowledge from Imperfect Expert for 3D object Detection"]() (code and paper coming soon). 
+> This repository is the official implementation of the CVPR 2023 paper ["Distilling Focal Knowledge from Imperfect Expert for 3D object Detection"](https://openaccess.thecvf.com/content/CVPR2023/html/Zeng_Distilling_Focal_Knowledge_From_Imperfect_Expert_for_3D_Object_Detection_CVPR_2023_paper.html). 
 >
 > Authors: Jia Zeng, [Li Chen](https://scholar.google.com/citations?user=ulZxvY0AAAAJ&hl=en&authuser=1), Hanming Deng, Lewei Lu, Junchi Yan, Yu Qiao, [Hongyang Li](https://lihongyang.info/)
 
@@ -40,7 +40,6 @@ Please consider citing our paper if the project helps your research with the fol
   booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
   pages={992--1001},
   year={2023}
-}
 }
 ```
 ## Acknowledgement
