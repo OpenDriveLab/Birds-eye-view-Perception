@@ -91,7 +91,7 @@ This repo is associated with the survey paper "[Delving into the Devils of Birdâ
 * **Up-to-date Literature Survey for BEV Perception** <br> We summarize important methods in recent years about BEV perception including different modalities (camera, LIDAR, Fusion) and tasks (Detection, Segmentation, Occupancy). More detail of the survey paper list can be found [here](./docs/paper_list/).
 
 ## <div id='update'>What's New</div>
-[2023/09/06]: We have a new version of the [surver](https://arxiv.org/abs/2209.05324). Check it out!
+[2023/09/06]: We have a new version of the [survey](https://arxiv.org/abs/2209.05324). Check it out!
 
 [2023/04/06]: Two new paper [GAPretrain](https://arxiv.org/abs/2304.03105) and FocalDistiller are comming soon with official implementation.
 
