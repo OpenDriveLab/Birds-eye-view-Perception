@@ -16,7 +16,7 @@ Awesome BEV perception papers and toolbox for achieving state-of-the-arts perfor
 
 ## <div id='intro'>Introduction</div>
 
-This repo is associated with the survey paper "[Delving into the Devils of Bird’s-eye-view Perception: A Review, Evaluation and Recipe](https://arxiv.org/abs/2209.05324)", which provides an up-to-date literature survey for BEV percption and an open source BEV toolbox based on PyTorch. We also introduce BEV algorithm family, incluidng follow-up work on BEV percepton such as [GAPretrain](https://arxiv.org/abs/2304.03105) and [FocalDistiller](https://openaccess.thecvf.com/content/CVPR2023/html/Zeng_Distilling_Focal_Knowledge_From_Imperfect_Expert_for_3D_Object_Detection_CVPR_2023_paper.html). We hope this repo can not only be a good starting point for new beginners but also help current researchers in the BEV perception community.
+This repo is associated with the survey paper "[Delving into the Devils of Bird’s-eye-view Perception: A Review, Evaluation and Recipe](https://arxiv.org/abs/2209.05324)", which provides an up-to-date literature survey for BEV percption and an open source BEV toolbox based on PyTorch. We also introduce BEV algorithm family, incluidng follow-up work on BEV percepton such as [VCD](https://arxiv.org/abs/2310.15670), [GAPretrain](https://arxiv.org/abs/2304.03105) and [FocalDistiller](https://openaccess.thecvf.com/content/CVPR2023/html/Zeng_Distilling_Focal_Knowledge_From_Imperfect_Expert_for_3D_Object_Detection_CVPR_2023_paper.html). We hope this repo can not only be a good starting point for new beginners but also help current researchers in the BEV perception community.
 <!-- In the literature survey, it includes different modalities (camera, lidar and fusion) and tasks (detection and segmentation). As for the toolbox, it provides useful recipe for BEV camera-based 3D object detection, including solid data augmentation strategies, efficient BEV encoder design, loss function family, useful test-time augmentation, ensemble policy, and so on. -->
 
 `If you find some work popular enough to be cited below, shoot us email or simply open a PR!`
@@ -108,6 +108,8 @@ This repo is associated with the survey paper "[Delving into the Devils of Bird�
 * **Up-to-date Literature Survey for BEV Perception** <br> We summarize important methods in recent years about BEV perception including different modalities (camera, LIDAR, Fusion) and tasks (Detection, Segmentation, Occupancy). More detail of the survey paper list can be found [here](./docs/paper_list/).
 
 ## <div id='update'>What's New</div>
+[2023/10/26]: A new paper [VCD](https://arxiv.org/abs/2310.15670) are comming soon with official implementation.
+
 [2023/09/06]: We have a new version of the [survey](https://arxiv.org/abs/2209.05324). Check it out!
 
 [2023/04/06]: Two new paper [GAPretrain](https://arxiv.org/abs/2304.03105) and [FocalDistiller](https://openaccess.thecvf.com/content/CVPR2023/html/Zeng_Distilling_Focal_Knowledge_From_Imperfect_Expert_for_3D_Object_Detection_CVPR_2023_paper.html) are comming soon with official implementation.
