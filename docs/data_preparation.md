@@ -11,10 +11,9 @@ python tools/create_data.py waymo --root-path ./data/waymo --out-dir ./data/waym
 
 ### Waymo mini dataset
 We also provide a mini Waymo dataset in Kitti format which includes 1/5 Waymo v1.3 dataset.
-You can download the Waymo mini dataset from [Google Drive](https://drive.google.com/drive/folders/1CPbAzr4l4lhf2URHovXsP7JDNRIdxTGV?usp=sharing) and extract the data following the [folder structure](#structure). As for the extraction, you can use the commands below.
+You can download the Waymo mini dataset from [Google Drive](https://drive.google.com/drive/folders/1gOz4XcyaKQFKCnD4TAY1vREt82_QsHPM?usp=sharing) and extract the data following the [folder structure](#structure). As for the extraction, you can use the commands below.
 ```
-cat waymo_mini*>waymo_mini.tar.gz
-tar xzvf waymo_mini.tar.gz 
+cat training.tar.gz* | tar -xzv
 ```
 
 ## Pretrained Model

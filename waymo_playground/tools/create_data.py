@@ -161,12 +161,13 @@ def waymo_data_prep(root_path,
     """
     from tools.data_converter import waymo_converter as waymo
 
-    splits = ['training', 'validation', 'testing', 'testing_camera']
+    # splits = ['training', 'validation', 'testing', 'testing_camera']
     #splits = ['training', 'validation', 'testing']
     # splits = ['training']
+    splits = ['training', 'validation']
     for i, split in enumerate(splits):
-        if i < 3:
-            continue
+        # if i < 3:
+        #     continue
         load_dir = osp.join(root_path, 'waymo_format', split)
         if split == 'validation':
             save_dir = osp.join(out_dir, 'kitti_format', 'training')
