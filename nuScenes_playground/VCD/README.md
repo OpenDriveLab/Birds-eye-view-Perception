@@ -1,5 +1,4 @@
 <div align="center">
-<h1>VCD</h1>
 <h3>[NeurIPS2023] Leveraging Vision-Centric Multi-Modal Expertise for 3D Object Detection</h3>
 </div>
 
