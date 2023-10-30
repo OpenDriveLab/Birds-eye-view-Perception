@@ -1,5 +1,5 @@
 <div align="center">
-<h3>[NeurIPS2023] Leveraging Vision-Centric Multi-Modal Expertise for 3D Object Detection</h3>
+<h2>[NeurIPS2023] Leveraging Vision-Centric Multi-Modal Expertise for 3D Object Detection</h2>
 </div>
 
 ## Introduction
