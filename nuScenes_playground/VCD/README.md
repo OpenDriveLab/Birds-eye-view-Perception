@@ -1,21 +1,32 @@
-## VCD
-> This repository is the official implementation of the NeurIPS 2023 paper ["Leveraging Vision-Centric Multi-Modal Expertise for 3D Object Detection"](https://arxiv.org/abs/2310.15670). 
->
-> Authors: Linyan Huang, Zhiqi Li, Chonghao Sima, Wenhai Wang, Jingdong Wang, Yu Qiao, Hongyang Li
+<div align="center">
+<h1>VCD</h1>
+<h3>[NeurIPS2023] Leveraging Vision-Centric Multi-Modal Expertise for 3D Object Detection</h3>
+</div>
 
-### Abstract
-Current research is primarily dedicated to advancing the accuracy of camera-only 3D object detectors (apprentice) through the knowledge transferred from LiDAR- or multi-modal-based counterparts (expert). However, the presence of the domain gap between LiDAR and camera features, coupled with the inherent incompatibility in temporal fusion, significantly hinders the effectiveness of distillation-based enhancements for apprentices. Motivated by the success of uni-modal distillation, an apprentice-friendly expert model would predominantly rely on camera features, while still achieving comparable performance to multi-modal models. To this end, we introduce VCD, a framework to improve the camera-only apprentice model, including an apprentice-friendly multi-modal expert and temporal-fusion-friendly distillation supervision. The multi-modal expert VCD-E adopts an identical structure as that of the camera-only apprentice in order to alleviate the feature disparity, and leverages LiDAR input as a depth prior to reconstruct the 3D scene, achieving the performance on par with other heterogeneous multi-modal experts. Additionally, a fine-grained trajectory-based distillation module is introduced with the purpose of individually rectifying the motion misalignment for each object in the scene. With those improvements, our camera-only apprentice VCD-A sets new state-of-the-art on nuScenes with a score of 63.1% NDS.
+## Introduction
 
-### Main results
+This repository is an official implementation of VCD.
 
-Models and results under main metrics are provided below.
 
+## Results on NuScenes Val Set.
+
+$^*$ depicts that the size of BEV feature is 256 $\times$ 256.
 | Methods     | Backbone        | Image Size     | Frames    | mAP    | NDS  |
 |--------------------------------------|-----------------|------------------------|-----------|---------------------|---------------------
 | Baseline | ResNet-50    | 256 $\times$ 704       | 8+1       | 0.401               | 0.515               | 
 | VCD-A    | ResNet-50    | 256 $\times$ 704       | 8+1       | 0.426               | 0.540               | 
-| Baseline | ResNet-50    | 256 $\times$ 704       | 8+1       | 0.418               | 0.542               | 
-| VCD-A    | ResNet-50    | 256 $\times$ 704       | 8+1       | 0.446               | 0.566               |
+| Baseline $^*$ | ResNet-50    | 256 $\times$ 704       | 8+1       | 0.418               | 0.542               | 
+| VCD-A $^*$   | ResNet-50    | 256 $\times$ 704       | 8+1       | 0.446               | 0.566               |
+
+
+
+
+## Currently Supported Features
+
+- [x] VCD online code
+- [ ] Checkpoints
+- [ ] VCD offline code
+
 
 
 
@@ -27,14 +38,15 @@ All assets and code are under the [Apache 2.0 license](https://github.com/increa
 
 Please consider citing our paper if the project helps your research with the following BibTex:
 
-```bibtex
-@article{huang2023leveraging,
-  title={Leveraging Vision-Centric Multi-Modal Expertise for 3D Object Detection},
-  author={Huang, Linyan and Li, Zhiqi and Sima, Chonghao and Wang, Wenhai and Wang, Jingdong and Qiao, Yu and Li, Hongyang},
-  journal={arXiv preprint arXiv:2310.15670},
+<!-- ```bibtex
+@inproceedings{zeng2023distilling,
+  title={Distilling Focal Knowledge from Imperfect Expert for 3D Object Detection},
+  author={Zeng, Jia and Chen, Li and Deng, Hanming and Lu, Lewei and Yan, Junchi and Qiao, Yu and Li, Hongyang},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={992--1001},
   year={2023}
 }
-```
+``` -->
 ## Acknowledgement
 
 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
