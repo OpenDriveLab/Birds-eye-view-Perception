@@ -37,15 +37,14 @@ All assets and code are under the [Apache 2.0 license](https://github.com/increa
 
 Please consider citing our paper if the project helps your research with the following BibTex:
 
-<!-- ```bibtex
-@inproceedings{zeng2023distilling,
-  title={Distilling Focal Knowledge from Imperfect Expert for 3D Object Detection},
-  author={Zeng, Jia and Chen, Li and Deng, Hanming and Lu, Lewei and Yan, Junchi and Qiao, Yu and Li, Hongyang},
-  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
-  pages={992--1001},
+ ```bibtex
+@article{huang2023leveraging,
+  title={Leveraging Vision-Centric Multi-Modal Expertise for 3D Object Detection},
+  author={Huang, Linyan and Li, Zhiqi and Sima, Chonghao and Wang, Wenhai and Wang, Jingdong and Qiao, Yu and Li, Hongyang},
+  journal={arXiv preprint arXiv:2310.15670},
   year={2023}
 }
-``` -->
+``` 
 ## Acknowledgement
 
 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
