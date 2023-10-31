@@ -7,7 +7,7 @@
 This repository is an official implementation of VCD.
 
 
-## Results on NuScenes Val Set.
+## Offline Results on NuScenes Val Set.
 
 $^*$ depicts that the size of BEV feature is 256 $\times$ 256.
 | Methods     | Backbone        | Image Size     | Frames    | mAP    | NDS  |
@@ -23,8 +23,9 @@ $^*$ depicts that the size of BEV feature is 256 $\times$ 256.
 ## Currently Supported Features
 
 - [x] VCD online code
-- [ ] Checkpoints
+- [ ] VCD online checkpoints
 - [ ] VCD offline code
+- [ ] VCD offline checkpoints
 
 
 
