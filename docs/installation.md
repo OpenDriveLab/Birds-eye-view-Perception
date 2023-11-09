@@ -2,7 +2,7 @@
 
 ## Install
 
-1.Basically follow https://mmdetection3d.readthedocs.io/en/latest/getting_started.html#installation
+1.Basically follow [Getting started](https://mmdetection3d.readthedocs.io/). 
 ```angular2html
 wget https://repo.anaconda.com/miniconda/Miniconda3-py38_4.11.0-Linux-x86_64.sh
 chmod 777 Miniconda3-py38_4.11.0-Linux-x86_64.sh

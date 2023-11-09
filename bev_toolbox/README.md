@@ -1,27 +1,27 @@
 # Table of contents
-- [<div id='guideline'>BEV Toolbox</div>](#div-idguidelinebev-toolboxdiv)
-  - [<div id='guideline'>Get Started</div>](#div-idguidelineget-starteddiv)
-    - [<div id='example'>Installation</div>](#div-idexampleinstallationdiv)
-    - [<div id='example'>A simple example</div>](#div-idexamplea-simple-examplediv)
+- [BEV Toolbox](#bev-toolbox)
+  - [Get Started](#get-started)
+    - [Installation](#installation)
+    - [A simple example](#a-simple-example)
     - [Use BEV toolbox with `mmdet3d`](#use-bev-toolbox-with-mmdet3d)
     - [Use BEV-toolbox with `detectron2`](#use-bev-toolbox-with-detectron2)
   - [Playground on Waymo](#playground-on-waymo)
     - [Setup](#setup)
     - [Config with Performance](#config-with-performance)
-- [<div id='todo'>Ongoing Features</div>](#div-idtodoongoing-featuresdiv)
+- [Ongoing Features](#ongoing-features)
 
-## <div id='guideline'>BEV Toolbox</div>
+## BEV Toolbox
 
-### <div id='guideline'>Get Started</div>
+### Get Started
 
-#### <div id='example'>Installation</div>
+#### Installation
 
 ```shell
 pip install numpy opencv-python
 pip install bev-toolbox
 ```
 
-#### <div id='example'>A simple example</div>
+#### A simple example
 
 We provide an example with a sample from Waymo dataset to introduce the usage of this toolbox.
 
@@ -46,13 +46,13 @@ lidar2img = [np.load(f'example/cam{i}_lidar2img.npy') for i in range(5)]
 imgs_new, cam_intr_new, lidar2img_new = transform(imgs, cam_intr, cam_extr, lidar2img)
 ```
 
-For more details like the coordinate systems or visualization, please refer to [example.md](example/example.md)
+For more details like the coordinate systems or visualization, please refer to [example.md](../example/example.md)
 
 #### Use BEV toolbox with `mmdet3d`
 
 We provide wrappers of this BEV toolbox for mmdet3d and detectron2. 
 
-1. Add the following code to [train_video.py](waymo_playground/tools/train_video.py#L93) or [test_video.py](waymo_playground/tools/test_video.py#L110).
+1. Add the following code to [train_video.py](../waymo_playground/tools/train_video.py#L93) or [test_video.py](../waymo_playground/tools/test_video.py#L110).
 ```
 from bev_toolbox.init_toolbox import init_toolbox_mmdet3d
 init_toolbox_mmdet3d()
@@ -75,7 +75,7 @@ We plan to make this toolbox compatible with detectron2 in the future.
 We provide a suitable playground on the Waymo dataset, including hands-on tutorial and small-scale dataset (1/5 WOD in kitti format) to validate idea.
 
 #### Setup
-Please refer to [waymo_setup.md](docs/waymo_setup.md) about how to run experiments on Waymo.
+Please refer to [waymo_setup.md](../docs/waymo_setup.md) about how to run experiments on Waymo.
 
 #### Config with Performance
 
@@ -99,7 +99,7 @@ We provide the improvement of each trick compared with the baseline on the Waymo
 | ResNet101 | DETR  | Waymo mini | Label smoothing                          |   36.0   |   46.7   |       -       |   ☐    |
 
 
-## <div id='todo'>Ongoing Features</div>
+## Ongoing Features
 
 **Literature Survey**
 - [ ] Add new papers.
