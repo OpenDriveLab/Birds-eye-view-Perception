@@ -20,7 +20,7 @@ cat training.tar.gz* | tar -xzv
 
 Download pretrained model from [here](https://github.com/zhiqi-li/storage/releases/download/v1.0/r101_dcn_fcos3d_pretrain.pth).
 
-## <div id='structure'>Folder Structure</div>
+## Folder Structure
 The folder structure should like this.
 ```
 |── docs

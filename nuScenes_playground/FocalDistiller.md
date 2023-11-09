@@ -27,7 +27,7 @@ Models and results under main metrics are provided below.
 
 ## License
 
-All assets and code are under the [Apache 2.0 license](https://github.com/increase24/FocalDistiller/blob/master/LICENSE) unless specified otherwise.
+All assets and code are under the [Apache 2.0 license](../LICENSE) unless specified otherwise.
 
 ## Citation
 
@@ -38,7 +38,6 @@ Please consider citing our paper if the project helps your research with the fol
   title={Distilling Focal Knowledge from Imperfect Expert for 3D Object Detection},
   author={Zeng, Jia and Chen, Li and Deng, Hanming and Lu, Lewei and Yan, Junchi and Qiao, Yu and Li, Hongyang},
   booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
-  pages={992--1001},
   year={2023}
 }
 ```

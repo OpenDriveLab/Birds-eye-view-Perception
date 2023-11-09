@@ -9,7 +9,7 @@ Multi-camera 3D object detection for autonomous driving is a challenging problem
 
 ## License
 
-All assets and code are under the [Apache 2.0 license](https://github.com/increase24/FocalDistiller/blob/master/LICENSE) unless specified otherwise.
+All assets and code are under the [Apache 2.0 license](../LICENSE) unless specified otherwise.
 
 ## Citation
 

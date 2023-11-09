@@ -1,5 +1,5 @@
 <div align="center">
-<h2>[NeurIPS2023] Leveraging Vision-Centric Multi-Modal Expertise for 3D Object Detection</h2>
+<h2>[NeurIPS 2023] Leveraging Vision-Centric Multi-Modal Expertise for 3D Object Detection</h2>
 </div>
 
 ## Introduction
@@ -32,7 +32,7 @@ $^*$ depicts that the size of BEV feature is 256 $\times$ 256.
 
 ## License
 
-All assets and code are under the [Apache 2.0 license](https://github.com/increase24/FocalDistiller/blob/master/LICENSE) unless specified otherwise.
+All assets and code are under the [Apache 2.0 license](../../LICENSE) unless specified otherwise.
 
 ## Citation
 
@@ -42,7 +42,7 @@ Please consider citing our paper if the project helps your research with the fol
 @article{huang2023leveraging,
   title={Leveraging Vision-Centric Multi-Modal Expertise for 3D Object Detection},
   author={Huang, Linyan and Li, Zhiqi and Sima, Chonghao and Wang, Wenhai and Wang, Jingdong and Qiao, Yu and Li, Hongyang},
-  journal={arXiv preprint arXiv:2310.15670},
+  journal={Advances in Neural Information Processing Systems},
   year={2023}
 }
 ``` 
