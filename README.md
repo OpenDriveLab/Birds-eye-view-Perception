@@ -14,7 +14,7 @@ Awesome BEV perception papers and toolbox for achieving state-of-the-arts perfor
 
 ## Introduction
 
-This repo is associated with the survey paper "[Delving into the Devils of Bird’s-eye-view Perception: A Review, Evaluation and Recipe](https://arxiv.org/abs/2209.05324)", which provides an up-to-date literature survey for BEV perception and an open-source BEV toolbox based on PyTorch. We also introduce the BEV algorithm family, including follow-up work on BEV percepton such as [VCD](https://arxiv.org/abs/2310.15670), [GAPretrain](https://arxiv.org/abs/2304.03105), and [FocalDistiller](https://openaccess.thecvf.com/content/CVPR2023/html/Zeng_Distilling_Focal_Knowledge_From_Imperfect_Expert_for_3D_Object_Detection_CVPR_2023_paper.html). We hope this repo can not only be a good starting point for new beginners but also help current researchers in the BEV perception community.
+This repo is associated with the survey paper "[Delving into the Devils of Bird’s-eye-view Perception: A Review, Evaluation and Recipe](https://ieeexplore.ieee.org/document/10321736)", which provides an up-to-date literature survey for BEV perception and an open-source BEV toolbox based on PyTorch. We also introduce the BEV algorithm family, including follow-up work on BEV percepton such as [VCD](https://arxiv.org/abs/2310.15670), [GAPretrain](https://arxiv.org/abs/2304.03105), and [FocalDistiller](https://openaccess.thecvf.com/content/CVPR2023/html/Zeng_Distilling_Focal_Knowledge_From_Imperfect_Expert_for_3D_Object_Detection_CVPR_2023_paper.html). We hope this repo can not only be a good starting point for new beginners but also help current researchers in the BEV perception community.
 <!-- In the literature survey, it includes different modalities (camera, lidar and fusion) and tasks (detection and segmentation). As for the toolbox, it provides useful recipe for BEV camera-based 3D object detection, including solid data augmentation strategies, efficient BEV encoder design, loss function family, useful test-time augmentation, ensemble policy, and so on. -->
 
 `If you find some work popular enough to be cited below, email us or simply open a PR!`
@@ -111,7 +111,7 @@ This repo is associated with the survey paper "[Delving into the Devils of Bird�
 
 ```2023/10/26``` A new paper [VCD](https://arxiv.org/abs/2310.15670) is coming soon with official implementation.
 
-```2023/09/06``` We have a new version of the [survey](https://arxiv.org/abs/2209.05324). Check it out!
+```2023/09/06``` We have a new version of the [survey](https://ieeexplore.ieee.org/document/10321736). Check it out!
 
 ```2023/04/06``` Two new papers [GAPretrain](https://arxiv.org/abs/2304.03105) and [FocalDistiller](https://openaccess.thecvf.com/content/CVPR2023/html/Zeng_Distilling_Focal_Knowledge_From_Imperfect_Expert_for_3D_Object_Detection_CVPR_2023_paper.html) are coming soon with official implementation.
 
@@ -144,7 +144,7 @@ The nuScenes playground provides new advancements for BEV camera-based 3D object
 ## Literature Survey
 
 ![](figs/general_overview.jpg)
-The general picture of BEV perception at a glance, where consists of three sub-parts based on the input modality. BEV perception is a general task built on top of a series of fundamental tasks. For better completeness of the whole perception algorithms in autonomous driving, we list other topics as well. More details can be found in the [survey paper](https://arxiv.org/abs/2209.05324).
+The general picture of BEV perception at a glance, where consists of three sub-parts based on the input modality. BEV perception is a general task built on top of a series of fundamental tasks. For better completeness of the whole perception algorithms in autonomous driving, we list other topics as well. More details can be found in the [survey paper](https://ieeexplore.ieee.org/document/10321736).
 
 We have summarized important datasets and methods in recent years about BEV perception in academia and also different roadmaps used in industry. 
 * [Academic Summary of BEV Perception](docs/paper_list/academia.md)
