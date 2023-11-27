@@ -125,7 +125,7 @@ This repo is associated with the survey paper "[Delving into the Devils of Birdâ
 The BEV algorithm family includes follow-up works of BEVFormer in different aspects, ranging from plug-and-play tricks to pre-training distillation. All paper summary is under [nuscenes_playground](nuScenes_playground) along with official implementation, check it out!
 * **VCD (NeurIPS 2023)** <br> [Leveraging Vision-Centric Multi-Modal Expertise for 3D Object Detection](https://arxiv.org/abs/2310.15670). More details can be found in [nuScenes_playground/VCD](./nuScenes_playground/VCD/README.md).
 * **GAPretrain (arXiv)** <br> [Geometric-aware Pretraining for Vision-centric 3D Object Detection](https://arxiv.org/abs/2304.03105). More details can be found in [nuScenes_playground/GAPretrain.md](./nuScenes_playground/GAPretrain.md).
-* **FocalDistiller (CVPR 2023)** <br> [Distilling Focal Knowledge from Imperfect Expert for 3D object Detection](https://openaccess.thecvf.com/content/CVPR2023/html/Zeng_Distilling_Focal_Knowledge_From_Imperfect_Expert_for_3D_Object_Detection_CVPR_2023_paper.html). More details can be found in [nuScenes_playground/FocalDistiller.md](./nuScenes_playground/FocalDistiller.md).
+* **FocalDistiller (CVPR 2023)** <br> [Distilling Focal Knowledge from Imperfect Expert for 3D object Detection](https://openaccess.thecvf.com/content/CVPR2023/html/Zeng_Distilling_Focal_Knowledge_From_Imperfect_Expert_for_3D_Object_Detection_CVPR_2023_paper.html). More details can be found in [nuScenes_playground/FocalDistiller](nuScenes_playground\FocalDistiller\README.md).
 
 
 ## BEV Toolbox
@@ -168,10 +168,14 @@ If you find this project useful in your research, please consider cite:
 
 ```BibTeX
 @article{li2022bevsurvey,
-  title={Delving into the Devils of Bird's-eye-view Perception: A Review, Evaluation and Recipe},
   author={Li, Hongyang and Sima, Chonghao and Dai, Jifeng and Wang, Wenhai and Lu, Lewei and Wang, Huijie and Zeng, Jia and Li, Zhiqi and Yang, Jiazhi and Deng, Hanming and Tian, Hao and Xie, Enze and Xie, Jiangwei and Chen, Li and Li, Tianyu and Li, Yang and Gao, Yulu and Jia, Xiaosong and Liu, Si and Shi, Jianping and Lin, Dahua and Qiao, Yu},
-  journal={IEEE TPAMI},
-  year={2023}
+  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence}, 
+  title={Delving Into the Devils of Bird's-Eye-View Perception: A Review, Evaluation and Recipe}, 
+  year={2023},
+  volume={},
+  number={},
+  pages={1-20},
+  doi={10.1109/TPAMI.2023.3333838}
 }
 ```
 ```BibTeX

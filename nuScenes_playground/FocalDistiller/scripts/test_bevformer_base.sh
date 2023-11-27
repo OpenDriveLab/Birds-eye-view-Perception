@@ -1,0 +1,1 @@
+PYTHONPATH=".":$PYTHONPATH python -m torch.distributed.launch --nproc_per_node=1 tools/test.py projects/configs/bevformer/bevformer_base.py  ckpts/bevformer_r101_dcn_24ep.pth --launcher pytorch --eval bbox
