@@ -31,80 +31,17 @@ This repo is associated with the survey paper "[Delving into the Devils of Birdâ
 
 ### Major Features
 
-* **SOTA BEV Algorithm Family** <br> We include important follow-up works of BEVFormer/BEVDet/BEVDepth in different aspects, ranging from plug-and-play tricks to knowledge distillation([VCD](https://arxiv.org/abs/2310.15670), [GAPretrain](https://arxiv.org/abs/2304.03105), [FocalDistiller](https://openaccess.thecvf.com/content/CVPR2023/html/Zeng_Distilling_Focal_Knowledge_From_Imperfect_Expert_for_3D_Object_Detection_CVPR_2023_paper.html)). More details of each paper can be found in each README.md file under [here](./nuScenes_playground/).
-* **Convenient BEVPerception Toolbox** <br> We integrate a bag of tricks in the BEV toolbox that helps us achieve 1st in the camera-based detection track of the Waymo Open Challenge 2022, which can be used independently or as a plug-in for popular deep learning libraries. Moreover, we provide a suitable playground for beginners in this area, including a hands-on tutorial and a small-scale dataset (1/5 WOD in kitti format) to validate ideas. More details can be found [here](./bev_toolbox/README.md).
-<div align="center">
-  <b>Bag of Tricks</b>
-</div>
-<table align="center">
-  <tbody>
-    <tr align="center" valign="middle">
-      <td>
-        <b>Multiple View Data Augmentation</b>
-      </td>
-      <td>
-        <b>   BEV Encoder   </b>
-      </td>
-      <td>
-        <b>   Heads Family   </b>
-      </td>
-      <td>
-        <b>   Loss   </b>
-      </td>
-      <td>
-        <b>Post-Process</b>
-      </td>
-    </tr>
-    <tr valign="top">
-      <td>
-        <ul>
-          <li><a href="bev_toolbox/data_aug">Random flip</a></li>
-          <li><a href="bev_toolbox/data_aug">Random multi-scale resize</a></li>
-          <li>Grid mask</li>
-        </ul>
-      </td>
-      <td>
-        <!-- <ul> -->
-          <li>BEVFormer encoder</li>
-          <li>Voxel-SPVCNN encoder</li>
-            <!-- <li><a href="tba">TBA</a></li> -->
-      <!-- </ul> -->
-      </td>
-      <td>
-        <!-- <ul> -->
-          <li>Deformable DETR head</li>
-          <li>FreeAnchor head</li>
-          <li>Centerpoint head</li>
-            <!-- <li><a href="tba">TBA</a></li> -->
-      <!-- </ul> -->
-      </td>
-      <td>
-        <!-- <ul> -->
-          Camera-only detection:
-          <li>auxiliary 2D detection loss</li>
-          <li>auxiliary depth supervision</li>
-          LiDAR segmentation:
-          <li>Geo loss</li>
-          <li>Lovasz loss</li>
-          <!-- <li><a href="tba">TBA</a></li> -->
-        <!-- </ul> -->
-      </td>
-      <td>
-        <ul>
-          <li>Test-time augmentation</li>
-          <li>Weighted box fusion</li>
-          <li>Two-stage ensemble</li>
-        </ul>
-      </ul>
-      </td>
-    </tr>
-</td>
-    </tr>
-  </tbody>
-</table>
-
 * **Up-to-date Literature Survey for BEV Perception** <br> We summarize important methods in recent years about BEV perception, including different modalities (camera, LIDAR, Fusion) and tasks (Detection, Segmentation, Occupancy). More details of the survey paper list can be found [here](./docs/paper_list/).
 
+* **Convenient BEVPerception Toolbox** <br> We integrate a bag of tricks in the BEV toolbox that helps us achieve 1st in the camera-based detection track of the Waymo Open Challenge 2022, which can be used independently or as a plug-in for popular deep learning libraries. Moreover, we provide a suitable playground for beginners in this area, including a hands-on tutorial and a small-scale dataset (1/5 WOD in kitti format) to validate ideas. More details can be found [here](./bev_toolbox/README.md).
+
+* **SOTA BEV Knowledge Distillation Algorithms** <br> We include important follow-up works of BEVFormer/BEVDepth/SOLOFusion in the perspective of knowledge distillation([VCD](https://arxiv.org/abs/2310.15670), [GAPretrain](https://arxiv.org/abs/2304.03105), [FocalDistiller](https://openaccess.thecvf.com/content/CVPR2023/html/Zeng_Distilling_Focal_Knowledge_From_Imperfect_Expert_for_3D_Object_Detection_CVPR_2023_paper.html)). More details of each paper can be found in each README.md file under [here](./nuScenes_playground/).
+
+| Method | Expert | Apprentice |
+| :---: | :---: | :---: |
+| VCD | Vision-centric multi-modal detector | Camera-only detector |
+| GAPretrain  | Lidar-only detector  | Camera-only detector  |
+| FocalDistiller   | Camera-only detector  | Camera-only detector  |
 
 ## What's New
 ```2023/11/04``` Our Survey is accepted by IEEE T-PAMI.
@@ -119,27 +56,6 @@ This repo is associated with the survey paper "[Delving into the Devils of Birdâ
 * Integrate some practical data augmentation methods for BEV camera-based 3D detection in the toolbox.
 * Offer a pipeline to process the Waymo dataset (camera-based 3D detection).
 * Release a baseline (with config) for the Waymo dataset and also 1/5 of the Waymo dataset in Kitti format.
-
-
-## BEV Algorithm Family
-The BEV algorithm family includes follow-up works of BEVFormer in different aspects, ranging from plug-and-play tricks to pre-training distillation. All paper summary is under [nuscenes_playground](nuScenes_playground) along with official implementation, check it out!
-* **VCD (NeurIPS 2023)** <br> [Leveraging Vision-Centric Multi-Modal Expertise for 3D Object Detection](https://arxiv.org/abs/2310.15670). More details can be found in [nuScenes_playground/VCD](./nuScenes_playground/VCD/README.md).
-* **GAPretrain (arXiv)** <br> [Geometric-aware Pretraining for Vision-centric 3D Object Detection](https://arxiv.org/abs/2304.03105). More details can be found in [nuScenes_playground/GAPretrain.md](./nuScenes_playground/GAPretrain.md).
-* **FocalDistiller (CVPR 2023)** <br> [Distilling Focal Knowledge from Imperfect Expert for 3D object Detection](https://openaccess.thecvf.com/content/CVPR2023/html/Zeng_Distilling_Focal_Knowledge_From_Imperfect_Expert_for_3D_Object_Detection_CVPR_2023_paper.html). More details can be found in [nuScenes_playground/FocalDistiller](nuScenes_playground\FocalDistiller\README.md).
-
-
-## BEV Toolbox
-The BEV toolbox provides useful recipes for BEV camera-based 3D object detection, including solid data augmentation strategies, efficient BEV encoder design, loss function family, useful test-time augmentation, ensemble policy, and so on. Please refer to [bev_toolbox/README.md](bev_toolbox/README.md) for more details.
-
-<!-- The BEV algorithm family includes follow-up works of BEVFormer in different aspects, ranging from plug-and-play tricks to pre-training distillation. All paper summary is in [nuscenes_playground/README.md](nuScenes_playground/README.md) alongwith official implementation, check it out! -->
-
-<!-- 
-**GAPretrain**
-* Geometric-aware Pretraining for Vision-centric 3D Object Detection.
-(paper coming soon) 
-The nuScenes playground provides new advancements for BEV camera-based 3D object detection, such as plug-and-play distillation methods that enhance the performance of camera-based detectors and pre-training distillation methods that effectively utilize geometry information from the LiDAR BEV feature.
--->
-
 
 ## Literature Survey
 
@@ -159,6 +75,15 @@ We have also summarized some conventional methods for different tasks.
 * [Conventional Methods LiDAR Detection](docs/paper_list/lidar_detection.md)
 * [Conventional Methods LiDAR Segmentation](docs/paper_list/lidar_segmentation.md)
 * [Conventional Methods Sensor Fusion](docs/paper_list/sensor_fusion.md)
+
+## BEV Toolbox
+The BEV toolbox provides useful recipes for BEV camera-based 3D object detection, including solid data augmentation strategies, efficient BEV encoder design, loss function family, useful test-time augmentation, ensemble policy, and so on. Please refer to [bev_toolbox/README.md](bev_toolbox/README.md) for more details.
+
+## BEV Knowledge Distillation Algorithms
+The BEV algorithm family includes follow-up works of BEVFormer in different aspects, ranging from plug-and-play tricks to pre-training distillation. All paper summary is under [nuscenes_playground](nuScenes_playground) along with official implementation, check it out!
+* **VCD (NeurIPS 2023)** <br> [Leveraging Vision-Centric Multi-Modal Expertise for 3D Object Detection](https://arxiv.org/abs/2310.15670). More details can be found in [nuScenes_playground/VCD](./nuScenes_playground/VCD/README.md).
+* **GAPretrain (arXiv)** <br> [Geometric-aware Pretraining for Vision-centric 3D Object Detection](https://arxiv.org/abs/2304.03105). More details can be found in [nuScenes_playground/GAPretrain.md](./nuScenes_playground/GAPretrain.md).
+* **FocalDistiller (CVPR 2023)** <br> [Distilling Focal Knowledge from Imperfect Expert for 3D object Detection](https://openaccess.thecvf.com/content/CVPR2023/html/Zeng_Distilling_Focal_Knowledge_From_Imperfect_Expert_for_3D_Object_Detection_CVPR_2023_paper.html). More details can be found in [nuScenes_playground/FocalDistiller](nuScenes_playground/FocalDistiller/README.md).
 
 
 ## License and Citation
