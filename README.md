@@ -59,7 +59,7 @@ This repo is associated with the survey paper "[Delving into the Devils of Birdâ
 
 ## Literature Survey
 
-![](figs/general_overview.jpg)
+![](figs/general_overview.png)
 The general picture of BEV perception at a glance, where consists of three sub-parts based on the input modality. BEV perception is a general task built on top of a series of fundamental tasks. For better completeness of the whole perception algorithms in autonomous driving, we list other topics as well. More details can be found in the [survey paper](https://ieeexplore.ieee.org/document/10321736).
 
 We have summarized important datasets and methods in recent years about BEV perception in academia and also different roadmaps used in industry. 
