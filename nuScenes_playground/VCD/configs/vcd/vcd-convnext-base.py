@@ -276,7 +276,6 @@ share_data_config = dict(
 test_data_config = dict(
     pipeline=test_pipeline,
     multi_adj_frame_id_cfg=multi_adj_frame_id_cfg,
-    # data_root = 'data/nuscenes-mini/',
     sequences_split_num=test_sequences_split_num,
     ann_file=data_root + 'bevdetv2-nuscenes_infos_val.pkl')
 
@@ -294,6 +293,7 @@ data = dict(
         use_valid_flag=True,
         modality=input_modality,
         img_info_prototype='bevdet',
+        multi_adj_frame_id_cfg=multi_adj_frame_id_cfg,
         sequences_split_num=train_sequences_split_num,
         use_sequence_group_flag=True,
         filter_empty_gt=filter_empty_gt,
