@@ -23,7 +23,7 @@ mmdet3d==0.17.1
 ```
 * We recommend you to follow the guide of [BEVFormer](https://github.com/fundamentalvision/BEVFormer) for environment configuration and dataset preparation.
 * Clone the repo [Birds-eye-view-Perception](https://github.com/OpenDriveLab/Birds-eye-view-Perception.git) and move **nuScenes_playground/FocalDistiller** under **mmdetection3d**.
-* Download the required [weights](https://drive.google.com/drive/folders/1h2XHWVJ7SkClRpgk2nANOVj6k_Ywglel?usp=sharing) and put them into folder **FocalDistiller/ckpts**
+* Download the required weights([Google disk](https://drive.google.com/drive/folders/1h2XHWVJ7SkClRpgk2nANOVj6k_Ywglel?usp=sharing)/[Baidu disk (code:8888)](https://pan.baidu.com/s/1_AD4Q1pCB2feB9hN1a6wsA?pwd=8888)) and put them into folder **FocalDistiller/ckpts**
 
 ### Training
 For training a teacher network or student network, run the script **tools/dist_train.sh**. For instance:
@@ -60,9 +60,9 @@ Models and results under main metrics are provided below.
 
 | Method | Back-bone | Image Res. | BEV Res. | NDS | mAP | GFLOPS | FPS | Config | ckpt |
 | :---: | :---: | :---: | :---: | :---:|:---:| :---: | :---: | :---: | :---: |
-| BEVFormer-Base (T) | R101-DCN | 900x1600 | 200x200 | 51.76  | 41.66 | 1323.41 | 1.8 | [config](projects/configs/bevformer/bevformer_base.py) | [weight](https://drive.google.com/file/d/1-QwiDW_IXisCO3JFnrjyB6ukeffQuhYB/view?usp=drive_link) |
+| BEVFormer-Base (T) | R101-DCN | 900x1600 | 200x200 | 51.76  | 41.66 | 1323.41 | 1.8 | [config](projects/configs/bevformer/bevformer_base.py) | [weight](https://drive.google.com/file/d/1UpscvQ85TvSZ4FlL4sHBNgZQLrJth93_/view?usp=sharing) |
 | BEVFormer-Small (S)  | R101-DCN  | 450x800  | 100x100 | 46.83 | 35.09 | 416.46  | 5.9  | [config](projects/configs/bevformer/bevformer_small.py) | [weight](https://drive.google.com/file/d/1ClTyExB5tBRfnmEC6EY73q5SKdeO5U8p/view?usp=drive_link) |
-| + HeatmapDistiller   | R101-DCN  | 450x800  | 100x100 | 48.98 | 37.27 | 416.46  | 5.9  | [config](projects\configs\distiller\base_distill_small_with_pv-cwd_bev-l2-heatmap.py) | [weight](https://drive.google.com/file/d/1wqDrnlfCHy4Fexilmo2C-kERZaNm0jAM/view?usp=drive_link) |
+| + HeatmapDistiller   | R101-DCN  | 450x800  | 100x100 | 48.98 | 37.27 | 416.46  | 5.9  | [config](projects/configs/distiller/base_distill_small_with_pv-cwd_bev-l2-heatmap.py) | [weight](https://drive.google.com/file/d/1wqDrnlfCHy4Fexilmo2C-kERZaNm0jAM/view?usp=drive_link) |
 
 * The metric FPS is measure on RTX 2080Ti. 
 
