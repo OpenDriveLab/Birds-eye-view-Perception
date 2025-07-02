@@ -1,3 +1,6 @@
+> [!IMPORTANT]
+> 🌟 Stay up to date at [opendrivelab.com](https://opendrivelab.com/#news)!
+
 # Bird's-eye-view (BEV) Perception: A Survey and Collection
 
 Awesome BEV perception papers and toolbox for achieving state-of-the-arts performance.
