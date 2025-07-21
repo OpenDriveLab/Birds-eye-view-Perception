@@ -19,3 +19,10 @@ A general pipeline in BEV lidar.
 - PointPillars: Fast Encoders for Object Detection From Point Clouds / [paper](https://openaccess.thecvf.com/content_CVPR_2019/papers/Lang_PointPillars_Fast_Encoders_for_Object_Detection_From_Point_Clouds_CVPR_2019_paper.pdf) / CVPR 2019 / PointPillars
 - InfoFocus: 3D Object Detection for Autonomous Driving with Dynamic Information Modeling / [paper](https://www.ecva.net/papers/eccv_2020/papers_ECCV/html/1137_ECCV_2020_paper.php) / ECCV 2020 / InfoFocus
 - M3DETR: Multi-Representation, Multi-Scale, Mutual-Relation 3D Object Detection With Transformers / [paper](https://openaccess.thecvf.com/content/WACV2022/html/Guan_M3DETR_Multi-Representation_Multi-Scale_Mutual-Relation_3D_Object_Detection_With_Transformers_WACV_2022_paper.html) / [project](https://github.com/rayguan97/M3DeTR) / WACV 2022 / M3DETR
+- BirdNet: a 3D Object Detection Framework from LiDAR information / [paper](https://arxiv.org/abs/1805.01195) / [project](https://github.com/beltransen/lidar_bev) / ITSC 2018 / BirdNet
+- BirdNet+: End-to-End 3D Object Detection in LiDAR Bird's Eye View / [paper](https://arxiv.org/abs/2003.04188) / [project](https://github.com/AlejandroBarrera/birdnet2) / ITSC 2020 / BirdNet+
+- BEVDetNet: Bird's Eye View LiDAR Point Cloud based Real-time 3D Object Detection for Autonomous Driving / [paper](https://arxiv.org/abs/2104.10780) / ITSC 2021 / BEVDetNet
+- Complex-YOLO: Real-time 3D Object Detection on Point Clouds / [paper](https://arxiv.org/abs/1803.06199) / [project](https://github.com/maudzung/Complex-YOLOv4-Pytorch) / ECCV 2018 / Complex-YOLO
+- Complexer-YOLO: Real-Time 3D Object Detection and Tracking on Semantic Point Clouds / [paper](https://arxiv.org/abs/1904.07537) / CVPR 2019 / Complexer-YOLO
+- PIXOR: Real-time 3D Object Detection from Point Clouds / [paper](https://arxiv.org/abs/1902.06326) / [project](https://github.com/philip-huang/PIXOR) / CVPR 2018 / PIXOR
+- HDNET: Exploiting HD Maps for 3D Object Detection / [paper](https://arxiv.org/abs/2012.11704) / PMLR 2018 / HDNET
